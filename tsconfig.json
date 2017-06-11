@@ -1,0 +1,64 @@
+{
+    "compilerOptions": {
+       // "target": "es6",
+      //used to be "target": "es5",
+       "target": "es2015",
+       "skipLibCheck": true, // avoid lodash WeakMap mismatch
+
+       // "module" : "es6", //'es2015
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+      //  "jsx": "react",
+       // "watch" : true,
+        // new ^^
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": false,
+        "noLib": false,
+        "outDir" : "js", // was gen_tsc
+       // "sourceMap" : true,
+        "inlineSourceMap": true,
+        "preserveConstEnums": true,
+         //"jsx": "react",
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**"
+    ],
+    "files": [
+        "src/interfaces.d.ts",
+        "src/match/ifmatch.ts",
+        "src/match/toolmatch.ts",
+        "src/model/vismodel.ts",
+        "src/constants.ts",
+        "src/match/indexwords.ts",
+        "src/exec/exec.ts",
+        "src/match/mongoqueries.ts",
+        "src/exec/execserver.ts",
+        "src/exec/makeqbetable.ts",
+        "src/exec/exectemplate.ts",
+        "src/bot/smartdialog.ts",
+        "src/bot/plainrecognizer.ts",
+        "src/match/algol.ts",
+        "src/match/analyze.ts",
+        "src/match/listall.ts",
+        "src/match/matchdata.ts",
+        "src/match/match.ts",
+        "src/match/describe.ts",
+        "src/match/operator.ts",
+        "src/match/tools.ts",
+        "src/match/toolmatcher.ts",
+        "src/match/whatis.ts",
+        "src/utils/logger.ts",
+        "src/utils/dialoglogger.ts"
+
+    ],
+    "exclude": [
+//  "!node_modules/**"
+    ]
+}

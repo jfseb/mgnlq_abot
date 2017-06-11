@@ -1,0 +1,1 @@
+SET GRAPHVIZ=e:\progs\GraphViz\bin\dot.exe
