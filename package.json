@@ -15,6 +15,7 @@
     "test": "gulp test",
     "testOld": "./node_modules/.bin/nodeunit test/match test/utils && eslint",
     "startConsole": "node console_app.js",
+    "version" : "npm show mgnlq_abot@* version",
     "run": "node smartbot",
     "start": "node smartbot",
     "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test",
