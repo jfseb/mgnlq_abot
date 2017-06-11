@@ -28,7 +28,6 @@ const Model = require('mgnlq_model').Model;
 var getModel = require('mgnlq_testmodel_replay').getTestModel;
 var getModel2 = require('mgnlq_testmodel2').getTestModel;
 
-
 process.on('unhandledRejection', function onError(err) {
   console.log(err);
   console.log(err.stack);

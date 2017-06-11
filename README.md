@@ -22,3 +22,4 @@ node smartbot.js
 
 This will attempt to connect to mongodatabase
 testdb on the default port
+
