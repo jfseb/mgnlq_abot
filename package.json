@@ -13,12 +13,12 @@
   "scripts": {
     "setup": "gulp default",
     "test": "gulp test",
-    "testOld": "./node_modules/.bin/nodeunit test/match test/utils && eslint",
+    "testOld": "./node_modules/.bin/nodeunit test/bot test/match test/utils test/exec test/regress test/model && eslint",
     "startConsole": "node console_app.js",
     "version" : "npm show mgnlq_abot@* version",
     "run": "node smartbot",
     "start": "node smartbot",
-    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/match test/bot",
+    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/bot test/match test/utils test/exec test/regress test/model",
     "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
     "coveralls": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov | coveralls"
   },
