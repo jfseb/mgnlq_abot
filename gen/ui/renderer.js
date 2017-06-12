@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * connect  htmlconnector
  * to HTML engine
@@ -23,4 +25,3 @@ connector.setAnswerHook(function (sAnswer) {
 botdialog.makeBot(connector);
 
 module.exports = connector;
-
