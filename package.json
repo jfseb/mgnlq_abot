@@ -18,7 +18,7 @@
     "version" : "npm show mgnlq_abot@* version",
     "run": "node smartbot",
     "start": "node smartbot",
-    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test",
+    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/match test/bot",
     "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
     "coveralls": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov | coveralls"
   },
