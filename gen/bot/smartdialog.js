@@ -84,14 +84,20 @@ var newFlow = true;
 const mgnlq_model_2 = require("mgnlq_model");
 const ExecServer = require("../exec/execserver");
 var models = {};
-var mongooseMock = require('mongoose_record_replay').instrumentMongoose(require('mongoose'), 'node_modules/mgnlq_testmodel_replay/mgrecrep/', 'REPLAY');
-function loadModel(modelPath) {
-    modelPath = modelPath || "";
-    if (!models[modelPath]) {
-        models[modelPath] = mgnlq_model_2.Model.loadModels(mongooseMock, modelPath);
-    }
-    return models[modelPath];
+/*
+var mongooseMock = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
+  'node_modules/mgnlq_testmodel_replay/mgrecrep/',
+  'REPLAY');
+
+
+function loadModel(modelPath?: string): Promise<IMatch.IModels> {
+  modelPath = modelPath || "";
+  if (!models[modelPath])
+    models[modelPath] = Model.loadModels(mongooseMock, modelPath);
+  }
+  return models[modelPath];
 }
+*/
 function isAnonymous(userid) {
     return userid.indexOf("ano:") === 0;
 }
@@ -263,7 +269,7 @@ function logQuery(session, intent, result) {
         text: session.message.text,
         timestamp: session.message.timestamp,
         intent: intent,
-        res: result && result.length && Match.ToolMatch.dumpNice(result[0]) || "0",
+        res: result && result.length && JSON.stringify(result[0]) || "0",
         conversationId: session.message.address
             && session.message.address.conversation
             && session.message.address.conversation.id || "",
@@ -276,24 +282,28 @@ function logQuery(session, intent, result) {
         }
     });
 }
-function logQueryWhatIs(session, intent, result) {
-    fs.appendFile('./logs/showmequeries.txt', "\n" + JSON.stringify({
-        text: session.message.text,
-        timestamp: session.message.timestamp,
-        intent: intent,
-        res: result && result.length && WhatIs.dumpNice(result[0]) || "0",
-        conversationId: session.message.address
-            && session.message.address.conversation
-            && session.message.address.conversation.id || "",
-        userid: session.message.address
-            && session.message.address.user
-            && session.message.address.user.id || ""
-    }), function (err, res) {
-        if (err) {
-            debuglog("logging failed " + err);
-        }
-    });
+/*
+
+function logQueryWhatIs(session: builder.Session, intent: string, result?: Array<IMatch.IWhatIsAnswer>) {
+
+  fs.appendFile('./logs/showmequeries.txt', "\n" + JSON.stringify({
+    text: session.message.text,
+    timestamp: session.message.timestamp,
+    intent: intent,
+    res: result && result.length && WhatIs.dumpNice(result[0]) || "0",
+    conversationId: session.message.address
+    && session.message.address.conversation
+    && session.message.address.conversation.id || "",
+    userid: session.message.address
+    && session.message.address.user
+    && session.message.address.user.id || ""
+  }), function (err, res) {
+    if (err) {
+      debuglog("logging failed " + err);
+    }
+  });
 }
+*/
 function logQueryWhatIsTupel(session, intent, result) {
     fs.appendFile('./logs/showmequeries.txt', "\n" + JSON.stringify({
         text: session.message.text,
@@ -414,7 +424,7 @@ function makeBot(connector, modelProvider, options) {
                 }
                 // debuglog('result : ' + JSON.stringify(result, undefined, 2));
                 debuglog('best result : ' + JSON.stringify(result[0] || {}, undefined, 2));
-                debuglog('top : ' + Match.ToolMatch.dumpWeightsTop(result, { top: 3 }));
+                debuglog(() => 'top : ' + JSON.stringify(result, undefined, 2));
                 if (Analyze.isComplete(result[0])) {
                     session.dialogData.result = result[0];
                     //    session.send('Showing entity ...');

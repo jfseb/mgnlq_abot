@@ -73,16 +73,6 @@ exports.ToolMatch = {
     isComplete: function (toolmatch) {
         return Object.keys(toolmatch.toolmatchresult.missing).length === 0;
     },
-    dumpNiceTop: function (toolmatches, options) {
-        var s = '';
-        toolmatches.forEach(function (oMatch, index) {
-            if (index < options.top) {
-                s = s + "Toolmatch[" + index + "]...\n";
-                s = s + exports.ToolMatch.dumpNice(oMatch);
-            }
-        });
-        return s;
-    },
     dumpNice: function (toolmatch) {
         var result = {
             s: "",
@@ -119,16 +109,6 @@ exports.ToolMatch = {
         });
         result.push(".\n");
         return result.s;
-    },
-    dumpWeightsTop: function (toolmatches, options) {
-        var s = '';
-        toolmatches.forEach(function (oMatch, index) {
-            if (index < options.top) {
-                s = s + "Toolmatch[" + index + "]...\n";
-                s = s + exports.ToolMatch.dumpWeights(oMatch);
-            }
-        });
-        return s;
     },
     dumpWeights: function (toolmatch) {
         var result = {
@@ -169,6 +149,16 @@ exports.ToolMatch = {
         });
         result.push(".\n");
         return result.s;
+    },
+    dumpWeightsTop: function (toolmatches, options) {
+        var s = '';
+        toolmatches.forEach(function (oMatch, index) {
+            if (index < options.top) {
+                s = s + "Toolmatch[" + index + "]...\n";
+                s = s + exports.ToolMatch.dumpWeights(oMatch);
+            }
+        });
+        return s;
     }
 };
 exports.Result = {

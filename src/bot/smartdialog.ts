@@ -111,7 +111,7 @@ import * as ExecServer from '../exec/execserver';
 
 var models = {};
 
-
+/*
 var mongooseMock = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
   'node_modules/mgnlq_testmodel_replay/mgrecrep/',
   'REPLAY');
@@ -119,11 +119,12 @@ var mongooseMock = require('mongoose_record_replay').instrumentMongoose(require(
 
 function loadModel(modelPath?: string): Promise<IMatch.IModels> {
   modelPath = modelPath || "";
-  if (!models[modelPath]) {
+  if (!models[modelPath])
     models[modelPath] = Model.loadModels(mongooseMock, modelPath);
   }
   return models[modelPath];
 }
+*/
 
 
 
@@ -316,7 +317,7 @@ function logQuery(session: builder.Session, intent: string, result?: Array<IMatc
     text: session.message.text,
     timestamp: session.message.timestamp,
     intent: intent,
-    res: result && result.length && Match.ToolMatch.dumpNice(result[0]) || "0",
+    res: result && result.length && JSON.stringify(result[0]) || "0",
     conversationId: session.message.address
     && session.message.address.conversation
     && session.message.address.conversation.id || "",
@@ -330,7 +331,7 @@ function logQuery(session: builder.Session, intent: string, result?: Array<IMatc
   });
 }
 
-
+/*
 
 function logQueryWhatIs(session: builder.Session, intent: string, result?: Array<IMatch.IWhatIsAnswer>) {
 
@@ -351,6 +352,7 @@ function logQueryWhatIs(session: builder.Session, intent: string, result?: Array
     }
   });
 }
+*/
 
 function logQueryWhatIsTupel(session: builder.Session, intent: string, result?: Array<IMatch.IWhatIsTupelAnswer>) {
 
@@ -494,7 +496,7 @@ function makeBot(connector,
         }
         // debuglog('result : ' + JSON.stringify(result, undefined, 2));
         debuglog('best result : ' + JSON.stringify(result[0] || {}, undefined, 2));
-        debuglog('top : ' + Match.ToolMatch.dumpWeightsTop(result, { top: 3 }));
+        debuglog(()=> 'top : ' + JSON.stringify(result,undefined,2));
 
         if (Analyze.isComplete(result[0])) {
           session.dialogData.result = result[0];

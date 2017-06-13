@@ -171,10 +171,8 @@ exports.testMatchGetEntity = function (test) {
 
 
 exports.testMatchdumpNiceTop = function (test) {
-
-  var res = ToolMatch.dumpNiceTop([oMatch3, oMatch3], { top: 2 });
-  test.equal(res.length > 0, true);
-  res = ToolMatch.dumpNiceTop([oMatch3, oMatch3], { top: 4 });
+  ToolMatch.dumpNice(oMatch3, { top: 2 });
+  var res = ToolMatch.dumpNiceTop([oMatch3, oMatch3], { top: 4 });
   test.equal(res.length > 0, true);
   res = ToolMatch.dumpNiceTop([oMatch3, oMatch3, oMatch3], { top: 2 });
   test.equal(res.length > 0, true);

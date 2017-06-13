@@ -13,7 +13,6 @@
   "scripts": {
     "setup": "gulp default",
     "test": "gulp test",
-    "testOld": "./node_modules/.bin/nodeunit test/bot test/match test/utils test/exec test/regress test/model && eslint",
     "startConsole": "node console_app.js",
     "version" : "npm show mgnlq_abot@* version",
     "run": "node smartbot",

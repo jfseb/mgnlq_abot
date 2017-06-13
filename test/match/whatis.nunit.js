@@ -85,7 +85,57 @@ exports.testCmbByResultTupel = function (test) {
   test.done();
 };
 
+exports.testlocaleCompareArrays = function(test) {
+  test.equal(WhatIs.localeCompareArrays([],[]), 0);
+  test.equal(WhatIs.localeCompareArrays(['A'],['A']), 0);
+  test.equal(WhatIs.localeCompareArrays(['A'],['a']), 1);
+  test.equal(WhatIs.localeCompareArrays(['A'],['A','B']), 1);
+  test.equal(WhatIs.localeCompareArrays(['A','B'],['A']), -1);
+  test.equal(WhatIs.localeCompareArrays(['A','B'],['A','C']), -1);
+  test.equal(WhatIs.localeCompareArrays(['A','C'],['A','B']), +1);
+  test.equal(WhatIs.localeCompareArrays(['A'],['A','B','C']), 1);
+  test.equal(WhatIs.localeCompareArrays(['A'],['A','B','C'],['D']), 1);
+  test.done();
+};
 
+exports.testCmbByResultTupelArrLength = function (test) {
+  var aList = [
+    {
+      _ranking: 1.0,
+      result: ['ABC']
+    },
+    {
+      _ranking: 1.0,
+      result: ['ABC', 'DEF', 'KLM']
+    },
+    {
+      _ranking: 1.0,
+      result: ['ABC', 'DEF']
+    },
+
+    {
+      _ranking: 0.3,
+      result: ['DEF']
+    },
+  ];
+
+  var res = aList.sort(WhatIs.cmpByResultThenRankingTupel);
+
+  test.deepEqual(res[0], { result: ['ABC', 'DEF', 'KLM'], _ranking: 1.0 }, 'sort order');
+  test.deepEqual(res[1], { result: ['ABC','DEF'], _ranking: 1.0 }, 'sort order 2nd');
+
+  var resx = WhatIs.filterDistinctResultAndSortTupel({ tupelanswers: res });
+  res = resx.tupelanswers;
+
+  debuglog(' after filter: ' + JSON.stringify(res));
+  res.sort(WhatIs.cmpByRankingTupel);
+  debuglog(JSON.stringify(res));
+  test.deepEqual(res[0], { result: ['ABC', 'DEF', 'KLM'], _ranking: 1.0 });
+  test.deepEqual(res[1], { result: ['ABC', 'DEF'], _ranking: 1.0 });
+
+  test.equal(res.length, 4);
+  test.done();
+};
 
 exports.testCmbByRankTied = function (test) {
   var aList = [
@@ -812,26 +862,6 @@ exports.testResolveCategoryAmb = function (test) {
   test.done();
 };
 */
-
-var aResults = [{ _ranking: 1 }, { _ranking: 1 }, { _ranking: 0.7 }];
-exports.testFilterOnlyTopRanked = function (test) {
-  var res = WhatIs.filterOnlyTopRanked(aResults);
-  test.equal(res.length, 2);
-  test.done();
-};
-
-var aResultsMisOrdered = [{ _ranking: 1 }, { _ranking: 1 }, { _ranking: 1.2 }];
-exports.testFilterOnlyTopRankedThrows = function (test) {
-  test.expect(1);
-  try {
-    WhatIs.filterOnlyTopRanked(aResultsMisOrdered);
-    test.equal(1, 0);
-  } catch (e) {
-    /*empty*/
-    test.equal(1, 1);
-  }
-  test.done();
-};
 
 
 
