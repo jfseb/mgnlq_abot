@@ -457,7 +457,7 @@ function makeSimplifiedSentencesCategorySet(aSentences: IMatch.IProcessedSentenc
   });
 }
 */
-
+/*
 function makeSimplifiedSentencesCategorySet2(aSentences: IMatch.IProcessedSentences,
   categorySet: { [key: string]: boolean }, track: { fl: number, lf: number }
 ): {
@@ -494,8 +494,9 @@ function makeSimplifiedSentencesCategorySet2(aSentences: IMatch.IProcessedSenten
     };
   });
 }
+*/
 
-
+/*
 function makeSimplifiedSentences(aSentences : IMatch.IProcessedSentences,  track: { fl: number, lf: number }): {
   domains: string[],
   oSentence: IMatch.ISentence,
@@ -525,7 +526,7 @@ function makeSimplifiedSentences(aSentences : IMatch.IProcessedSentences,  track
     };
   });
 }
-
+*/
 
 function classifyWordWithTargetCategory(word: string, targetcategory: string, rules: IMatch.SplitRules,
   wholesentence: string): string {

@@ -20,7 +20,6 @@ function mockDebug(o) {
 exports.mockDebug = mockDebug;
 const _ = require("lodash");
 const mgnlq_er_3 = require("mgnlq_er");
-const mgnlq_er_4 = require("mgnlq_er");
 const Algol = require("./algol");
 /*
 export function cmpByResultThenRanking(a: IMatch.IWhatIsAnswer, b: IMatch.IWhatIsAnswer) {
@@ -424,59 +423,75 @@ function makeSimplifiedSentencesCategorySet(aSentences: IMatch.IProcessedSentenc
   });
 }
 */
-function makeSimplifiedSentencesCategorySet2(aSentences, categorySet, track) {
-    return aSentences.sentences.map(function (oSentence) {
-        var aDomains = [];
-        var rWords = oSentence.filter(function (oWord) {
-            if (oWord.category === "domain") {
-                aDomains.push(oWord.matchedString);
-                return false;
-            }
-            if (oWord.category === "meta") {
-                // e.g. domain XXX
-                return false;
-            }
-            if (oWord.category === "category") {
-                if (categorySet[oWord.matchedString]) {
-                    return true;
-                }
-            }
-            return !!categorySet[oWord.category];
-        });
-        track.fl += oSentence.length;
-        track.lf += rWords.length;
-        return {
-            domains: aDomains,
-            oSentence: oSentence,
-            cntRelevantWords: rWords.length,
-            rWords: rWords
-        };
+/*
+function makeSimplifiedSentencesCategorySet2(aSentences: IMatch.IProcessedSentences,
+  categorySet: { [key: string]: boolean }, track: { fl: number, lf: number }
+): {
+  domains: string[],
+  oSentence: IMatch.ISentence,
+  cntRelevantWords: number,
+  rWords: IMatch.IWord[]
+}[] {
+  return aSentences.sentences.map(function (oSentence) {
+    var aDomains = [] as string[];
+    var rWords = oSentence.filter(function (oWord) {
+      if (oWord.category === "domain") {
+        aDomains.push(oWord.matchedString);
+        return false;
+      }
+      if (oWord.category === "meta") {
+        // e.g. domain XXX
+        return false;
+      }
+      if(oWord.category === "category") {
+        if(categorySet[oWord.matchedString]) {
+          return true;
+        }
+      }
+      return !!categorySet[oWord.category];
     });
+    track.fl += oSentence.length;
+    track.lf += rWords.length;
+    return {
+      domains: aDomains,
+      oSentence: oSentence,
+      cntRelevantWords: rWords.length,
+      rWords: rWords
+    };
+  });
 }
-function makeSimplifiedSentences(aSentences, track) {
-    return aSentences.sentences.map(function (oSentence) {
-        var domains = [];
-        var rWords = oSentence.filter(function (oWord) {
-            if (oWord.category === "domain") {
-                domains.push(oWord.matchedString);
-                return false;
-            }
-            if (oWord.category === "meta") {
-                // e.g. domain XXX
-                return false;
-            }
-            return !mgnlq_er_4.Word.Word.isFiller(oWord);
-        });
-        track.fl += oSentence.length;
-        track.lf += rWords.length;
-        return {
-            oSentence: oSentence,
-            domains: domains,
-            cntRelevantWords: rWords.length,
-            rWords: rWords
-        };
+*/
+/*
+function makeSimplifiedSentences(aSentences : IMatch.IProcessedSentences,  track: { fl: number, lf: number }): {
+  domains: string[],
+  oSentence: IMatch.ISentence,
+  cntRelevantWords: number,
+  rWords: IMatch.IWord[]
+}[] {
+  return aSentences.sentences.map(function (oSentence) {
+    var domains = [] as string[];
+    var rWords = oSentence.filter(function (oWord) {
+      if (oWord.category === "domain") {
+        domains.push(oWord.matchedString);
+        return false;
+      }
+      if (oWord.category === "meta") {
+        // e.g. domain XXX
+        return false;
+      }
+      return !Word.Word.isFiller(oWord);
     });
+    track.fl += oSentence.length;
+    track.lf += rWords.length;
+    return {
+      oSentence: oSentence,
+      domains: domains,
+      cntRelevantWords: rWords.length,
+      rWords: rWords
+    };
+  });
 }
+*/
 function classifyWordWithTargetCategory(word, targetcategory, rules, wholesentence) {
     //console.log("classify " + word + " "  + targetcategory);
     var cats = mgnlq_er_1.InputFilter.categorizeAWord(word, rules, wholesentence, {});
