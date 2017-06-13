@@ -23,6 +23,7 @@ import * as Utils from 'abot_utils';
 
 import * as IMatch from './ifmatch';
 
+import { ErBase as ErBase}  from 'mgnlq_er';
 import * as Toolmatcher from './toolmatcher';
 
 
@@ -31,6 +32,9 @@ export function analyzeAll(sString: string, rules: IMatch.SplitRules, aTools: Ar
   if (sString.length === 0) {
     return [];
   } else {
+
+    var res = ErBase.processString2(sString, rules, words);
+/*
     perf('analyzeString');
  //   InputFilter.resetCnt();
     var matched = InputFilter.analyzeString(sString, rules, words);
@@ -58,8 +62,9 @@ export function analyzeAll(sString: string, rules: IMatch.SplitRules, aTools: Ar
       debuglog(" after reinforce:" + Sentence.dumpNiceArr(aSentencesReinforced, Sentence.rankingProduct));
     }
     aSentencesReinforced = Sentence.cutoffSentenceAtRatio(aSentencesReinforced)
+  */
     perf('matchTools');
-    var matchedTools = Toolmatcher.matchTools(aSentencesReinforced, aTools); //aTool: Array<IMatch.ITool>): any /* objectstream*/ {
+    var matchedTools = Toolmatcher.matchTools(res.sentences, aTools); //aTool: Array<IMatch.ITool>): any /* objectstream*/ {
     perf('matchTools');
     debuglog(" matchedTools" + JSON.stringify(matchedTools, undefined, 2));
     return matchedTools;

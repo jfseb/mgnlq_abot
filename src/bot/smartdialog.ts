@@ -383,11 +383,11 @@ var gwords = {};
  */
 function makeBot(connector,
   modelProvider : () => Promise<IMatch.IModels>,  options? : any ) : builder.UniversalBot {
-  var t = Date.now();
+  var t0 = Date.now();
   var theModelP = modelProvider();
   theModelP.then(
    (theModel) => {
-    var t = Date.now() - t;
+    var t = Date.now() - t0;
     if (options && options.showModelLoadTime) {
       console.log(`model load time ${(t)}`);
     }

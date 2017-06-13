@@ -6,11 +6,11 @@
  */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mgnlq_er_1 = require("mgnlq_er");
 const debug = require("debug");
 const debuglog = debug('analyze');
 const logger = require("../utils/logger");
 var perf = logger.perf('analyze');
+const mgnlq_er_1 = require("mgnlq_er");
 const Toolmatcher = require("./toolmatcher");
 function analyzeAll(sString, rules, aTools, words) {
     "use strict";
@@ -18,34 +18,38 @@ function analyzeAll(sString, rules, aTools, words) {
         return [];
     }
     else {
-        perf('analyzeString');
-        //   InputFilter.resetCnt();
-        var matched = mgnlq_er_1.InputFilter.analyzeString(sString, rules, words);
-        perf('analyzeString');
-        //   InputFilter.dumpCnt();
-        perf('expand');
-        debuglog("After matched " + JSON.stringify(matched));
-        var aSentences = mgnlq_er_1.InputFilter.expandMatchArr(matched);
-        aSentences.sort(mgnlq_er_1.Sentence.cmpRankingProduct);
-        debuglog("after expand" + aSentences.map(function (oSentence) {
-            return mgnlq_er_1.Sentence.rankingProduct(oSentence) + ":" + mgnlq_er_1.Sentence.dumpNice(oSentence);
-        }).join("\n"));
-        if (debuglog.enabled) {
-            debuglog(" after expand:" + mgnlq_er_1.Sentence.dumpNiceArr(aSentencesReinforced, mgnlq_er_1.Sentence.rankingProduct));
-        }
-        perf('expand');
-        var aSentencesReinforced = mgnlq_er_1.InputFilter.reinForce(aSentences);
-        //aSentences.map(function(oSentence) { return InputFilter.reinForce(oSentence); });
-        aSentencesReinforced.sort(mgnlq_er_1.Sentence.cmpRankingProduct);
-        debuglog("after reinforce \n" + aSentencesReinforced.map(function (oSentence) {
-            return mgnlq_er_1.Sentence.rankingProduct(oSentence) + ":" + mgnlq_er_1.Sentence.dumpNice(oSentence);
-        }).join("\n"));
-        if (debuglog.enabled) {
-            debuglog(" after reinforce:" + mgnlq_er_1.Sentence.dumpNiceArr(aSentencesReinforced, mgnlq_er_1.Sentence.rankingProduct));
-        }
-        aSentencesReinforced = mgnlq_er_1.Sentence.cutoffSentenceAtRatio(aSentencesReinforced);
+        var res = mgnlq_er_1.ErBase.processString2(sString, rules, words);
+        /*
+            perf('analyzeString');
+         //   InputFilter.resetCnt();
+            var matched = InputFilter.analyzeString(sString, rules, words);
+            perf('analyzeString');
+         //   InputFilter.dumpCnt();
+            perf('expand');
+            debuglog("After matched " + JSON.stringify(matched));
+            var aSentences = InputFilter.expandMatchArr(matched);
+        
+            aSentences.sort(Sentence.cmpRankingProduct);
+            debuglog("after expand" + aSentences.map(function (oSentence) {
+              return Sentence.rankingProduct(oSentence) + ":" + Sentence.dumpNice(oSentence);
+            }).join("\n"));
+            if (debuglog.enabled) {
+              debuglog(" after expand:" + Sentence.dumpNiceArr(aSentencesReinforced, Sentence.rankingProduct));
+            }
+            perf('expand');
+            var aSentencesReinforced = InputFilter.reinForce(aSentences);
+            //aSentences.map(function(oSentence) { return InputFilter.reinForce(oSentence); });
+            aSentencesReinforced.sort(Sentence.cmpRankingProduct);
+            debuglog("after reinforce \n" + aSentencesReinforced.map(function (oSentence) {
+              return Sentence.rankingProduct(oSentence) + ":" + Sentence.dumpNice(oSentence);
+            }).join("\n"));
+            if (debuglog.enabled) {
+              debuglog(" after reinforce:" + Sentence.dumpNiceArr(aSentencesReinforced, Sentence.rankingProduct));
+            }
+            aSentencesReinforced = Sentence.cutoffSentenceAtRatio(aSentencesReinforced)
+          */
         perf('matchTools');
-        var matchedTools = Toolmatcher.matchTools(aSentencesReinforced, aTools); //aTool: Array<IMatch.ITool>): any /* objectstream*/ {
+        var matchedTools = Toolmatcher.matchTools(res.sentences, aTools); //aTool: Array<IMatch.ITool>): any /* objectstream*/ {
         perf('matchTools');
         debuglog(" matchedTools" + JSON.stringify(matchedTools, undefined, 2));
         return matchedTools;
