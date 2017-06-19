@@ -463,6 +463,7 @@ exports.testinferDomainTwoDomainsByCategory = function (test) {
   });
 };
 
+/*
 exports.testListAllFilterStringList = function (test) {
   var res = ListAll.filterStringListByOp({
     operator: 'contains'
@@ -470,6 +471,7 @@ exports.testListAllFilterStringList = function (test) {
   test.deepEqual(res, ['abc', 'def abc hij', 'soabc']);
   test.done();
 };
+*/
 
 
 exports.testListAllRemoveCaseDuplicates = function (test) {

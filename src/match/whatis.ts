@@ -677,9 +677,11 @@ export function analyzeCategoryMult(categorylist: string, rules: IMatch.SplitRul
   // return classifyWordWithTargetCategory(categorylist, 'category', rules, wholesentence);
 }
 
+/*
 export function analyzeOperator(opword: string, rules: IMatch.SplitRules, wholesentence: string): string {
   return classifyWordWithTargetCategory(opword, 'operator', rules, wholesentence);
 }
+*/
 
 
 import * as ListAll from './listall';

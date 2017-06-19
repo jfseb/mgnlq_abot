@@ -127,12 +127,14 @@ export function listAllTupelWithContext(categories: string[], contextQueryString
     */
 }
 
+/*
 export function filterStringListByOp(operator: IMatch.IOperator, fragment: string, srcarr: string[]): string[] {
   var fragmentLC = BreakDown.trimQuotedSpaced(fragment.toLowerCase());
   return srcarr.filter(function (str) {
     return Operator.matches(operator, fragmentLC, str.toLowerCase());
   }).sort();
 }
+*/
 
 function compareCaseInsensitive(a: string, b: string) {
   var r = a.toLowerCase().localeCompare(b.toLowerCase());

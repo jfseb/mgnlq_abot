@@ -103,13 +103,14 @@ function listAllTupelWithContext(categories, contextQueryString, theModel, domai
       */
 }
 exports.listAllTupelWithContext = listAllTupelWithContext;
-function filterStringListByOp(operator, fragment, srcarr) {
-    var fragmentLC = mgnlq_model_1.BreakDown.trimQuotedSpaced(fragment.toLowerCase());
-    return srcarr.filter(function (str) {
-        return Operator.matches(operator, fragmentLC, str.toLowerCase());
-    }).sort();
+/*
+export function filterStringListByOp(operator: IMatch.IOperator, fragment: string, srcarr: string[]): string[] {
+  var fragmentLC = BreakDown.trimQuotedSpaced(fragment.toLowerCase());
+  return srcarr.filter(function (str) {
+    return Operator.matches(operator, fragmentLC, str.toLowerCase());
+  }).sort();
 }
-exports.filterStringListByOp = filterStringListByOp;
+*/
 function compareCaseInsensitive(a, b) {
     var r = a.toLowerCase().localeCompare(b.toLowerCase());
     if (r) {

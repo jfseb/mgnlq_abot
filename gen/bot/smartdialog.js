@@ -17,14 +17,12 @@ const builder = require("botbuilder");
 const debug = require("debug");
 const Match = require("../match/match");
 const Analyze = require("../match/analyze");
-const mgnlq_model_1 = require("mgnlq_model");
 const WhatIs = require("../match/whatis");
 const ListAll = require("../match/listall");
 const Describe = require("../match/describe");
 const MakeTable = require("../exec/makeqbetable");
 const MongoQueries = require("../match/mongoqueries");
 const Utils = require("abot_utils");
-const _ = require("lodash");
 const DialogLogger = require("../utils/dialoglogger");
 const process = require("process");
 var dburl = process.env.DATABASE_URL || "";
@@ -81,7 +79,7 @@ function getElizaBot(id) {
     return elizabots[id].elizabot;
 }
 var newFlow = true;
-const mgnlq_model_2 = require("mgnlq_model");
+const mgnlq_model_1 = require("mgnlq_model");
 const ExecServer = require("../exec/execserver");
 var models = {};
 /*
@@ -597,7 +595,7 @@ function makeBot(connector, modelProvider, options) {
                         return;
                     }
                     else {
-                        var aRes = mgnlq_model_2.Model.getCategoriesForDomain(theModel, domain);
+                        var aRes = mgnlq_model_1.Model.getCategoriesForDomain(theModel, domain);
                         var res = restrictLoggedOn(session, aRes).join(";\n");
                         dialoglog("ListAll", session, send("my categories in domain \"" + domain + "\" are ...\n" + res));
                         return;
@@ -924,112 +922,6 @@ function makeBot(connector, modelProvider, options) {
                     }
                       */
                 });
-            });
-        }
-    ]);
-    dialog.matches('ListAllBinOp', [
-        function (session, args, next) {
-            var isCombinedIndex = {};
-            var oNewEntity;
-            // expecting entity A1
-            // TODO SHOULD BE OBSOLETE !!!
-            getTheModel().then((theModel) => {
-                if (1 == 1) {
-                    throw new Error('this is subsumed in listall');
-                }
-                var message = session.message.text;
-                debuglog("Intent : ListAllBinOp");
-                debuglog('raw: ' + JSON.stringify(args.entities), undefined, 2);
-                var categoryEntity = builder.EntityRecognizer.findEntity(args.entities, 'category');
-                var categoryWord = categoryEntity.entity;
-                var opEntity = builder.EntityRecognizer.findEntity(args.entities, 'operator');
-                var operatorWord = opEntity && opEntity.entity;
-                // categorize as operator ?
-                var filterDomainEntity = builder.EntityRecognizer.findEntity(args.entities, 'domain');
-                var filterDomainS = filterDomainEntity && filterDomainEntity.entity;
-                var operator = WhatIs.analyzeOperator(operatorWord, theModel.rules, message);
-                var category = WhatIs.analyzeCategory(categoryWord, theModel.rules, message);
-                var operatorArgs = mgnlq_model_2.Model.getOperator(theModel, operator);
-                var a2 = builder.EntityRecognizer.findEntity(args.entities, 'A2');
-                if (!operator) {
-                    var s = "Unknown operator " + operatorWord + ", this is a model bug, check operators.json and intents.json";
-                    dialoglog("ListAllBinOp", session, send("ouch, this was in internal error. Recovering from a weird operator \""
-                        + operatorWord + "\"\n"));
-                    return;
-                    // TODO        throw new Error(s);
-                }
-                var filterDomain = undefined;
-                if (filterDomainS) {
-                    debuglog("found a domainString" + filterDomainS);
-                    filterDomain = ListAll.inferDomain(theModel, filterDomainS);
-                    debuglog("got domain" + filterDomain);
-                    if (!filterDomain) {
-                        dialoglog("Describe", session, send("I did not infer a domain restriction from \"" + filterDomainS + "\". Specify an existing domain. (List all domains) to get exact names.\n"));
-                        return;
-                    }
-                }
-                var fragment = a2 && a2.entity;
-                fragment = mgnlq_model_1.BreakDown.trimQuoted(mgnlq_model_1.BreakDown.trimQuotedSpaced(fragment));
-                debuglog("fragment after trimming \"" + fragment + "\"");
-                if (categoryWord === "categories") {
-                    // do we have a filter?
-                    var aFilteredCategories = ListAll.filterStringListByOp(operatorArgs, fragment, theModel.category);
-                    if (filterDomain) {
-                        var catsForDomain = mgnlq_model_2.Model.getCategoriesForDomain(theModel, filterDomain);
-                        aFilteredCategories = _.intersection(aFilteredCategories, catsForDomain);
-                    }
-                    res = restrictLoggedOn(session, aFilteredCategories).join(";\n");
-                    if (res.length) {
-                        if (filterDomain) {
-                            dialoglog("ListAllBinOp", session, send(`my categories ${operator} "${fragment}" in domain "${filterDomain}" are ...\n` + res));
-                        }
-                        else {
-                            dialoglog("ListAllBinOp", session, send(`my categories ${operator} "${fragment}" are ...\n` + res));
-                        }
-                    }
-                    else {
-                        dialoglog("ListAllBinOp", session, send('I have no categories ' + operator + ' "' + fragment + '"'));
-                    }
-                    return;
-                }
-                else if (categoryWord === "domains") {
-                    var aRes = ListAll.filterStringListByOp(operatorArgs, fragment, theModel.domains);
-                    res = restrictLoggedOn(session, aRes).join(";\n");
-                    if (res.length) {
-                        dialoglog("ListAllBinOp", session, send("my domains " + operator + ' "' + fragment + '" are ...\n' + res));
-                    }
-                    else {
-                        dialoglog("ListAllBinOp", session, send('I have no domains ' + operator + ' "' + fragment + '"'));
-                    }
-                    return;
-                }
-                else {
-                    var cat = WhatIs.analyzeCategory(categoryWord, theModel.rules, message);
-                    if (!cat) {
-                        dialoglog("ListAllBinOp", session, send('I don\'t know anything about "' + categoryWord + '"'));
-                        // next();
-                        return;
-                    }
-                    debuglog('category identified:' + cat);
-                    var aRes = ListAll.getCategoryOpFilterAsDistinctStrings(operatorArgs, fragment, category, theModel.records, filterDomain);
-                    var res = restrictLoggedOn(session, aRes).join(";\n");
-                    var infixExplain = '';
-                    if (!ListAll.likelyPluralDiff(category, categoryWord)) {
-                        infixExplain = '("' + category + '")';
-                    }
-                    if (res.length) {
-                        if (filterDomain) {
-                            dialoglog("ListAllBinOp", session, send(`my ${categoryWord}${infixExplain} ${operator} "${fragment}" in domain "${filterDomain}" are ...\n` + res));
-                        }
-                        else {
-                            dialoglog("ListAllBinOp", session, send(`my ${categoryWord}${infixExplain} ${operator} "${fragment}" are ...\n` + res));
-                        }
-                    }
-                    else {
-                        dialoglog("ListAllBinOp", session, send('I have no ' + categoryWord + infixExplain + ' ' + operator + ' "' + fragment + '"'));
-                    }
-                    return;
-                }
             });
         }
     ]);

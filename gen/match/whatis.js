@@ -622,10 +622,6 @@ function analyzeCategoryMult(categorylist, rules, wholesentence, gWords) {
     // return classifyWordWithTargetCategory(categorylist, 'category', rules, wholesentence);
 }
 exports.analyzeCategoryMult = analyzeCategoryMult;
-function analyzeOperator(opword, rules, wholesentence) {
-    return classifyWordWithTargetCategory(opword, 'operator', rules, wholesentence);
-}
-exports.analyzeOperator = analyzeOperator;
 // const result = WhatIs.resolveCategory(cat, a1.entity,
 //   theModel.mRules, theModel.tools, theModel.records);
 /*

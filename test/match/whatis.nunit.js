@@ -448,6 +448,7 @@ exports.testCategorizeBad = function (test) {
   test.done();
 };
 
+/*
 exports.testanalyzeOperator = function (test) {
   var res = WhatIs.analyzeOperator('starting with', mRules, 'what is unit test for abc');
   test.equal(res, 'starts with');
@@ -459,6 +460,7 @@ exports.testanalyzeOperatorBad = function (test) {
   test.equal(res, undefined);
   test.done();
 };
+*/
 
 /*
 export function resolveCategory(category: string, sString: string,
