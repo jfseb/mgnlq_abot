@@ -14,7 +14,7 @@
     "setup": "gulp default",
     "test": "gulp test",
     "startConsole": "node console_app.js",
-    "version" : "npm show mgnlq_abot@* version",
+    "version": "npm show mgnlq_abot@* version",
     "run": "node smartbot",
     "start": "node smartbot",
     "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/bot test/match test/utils test/exec test/regress test/model/vismodel.nunit.js",
@@ -52,11 +52,11 @@
     "errorhandler": "^1.5.0",
     "lodash": "^4.17.4",
     "mgnlq_er": "0.0.4",
-    "mgnlq_model": "^0.0.4",
+    "mgnlq_model": "^0.0.5",
     "mgnlq_parser1": "^0.0.3",
     "mongoose": "^4.9.9",
-    "node-uuid": "^1.4.7",
-    "pg": "^6.1.2"
+    "pg": "^6.1.2",
+    "uuid": "^3.1.0"
   },
   "bin": {
     "nodeunit": ".nodeunit/bin/nodeunit",
@@ -112,7 +112,6 @@
     "mgnlq_testmodel2": "0.0.2",
     "mgnlq_testmodel_replay": "0.0.7",
     "mongoose_record_replay": "0.0.7",
-    "node-uuid": "^1.4.7",
     "nodeunit": "^0.10.2",
     "request-defaults": "^1.2.0",
     "source-map-loader": "^0.1.6",
