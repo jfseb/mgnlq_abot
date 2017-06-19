@@ -181,6 +181,22 @@ exports.testListAllMultWithCompareBECategories = function (test) {
 };
 
 
+exports.testListAllMultWithCompareBECategories = function (test) {
+  //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."4
+  getModel().then(theModel => {
+    theModel.rules.wordCache = {};
+    ListAll.listAllShowMe('orbits with earth', theModel).then((res) => {
+      //console.log(JSON.stringify(res));
+      test.deepEqual(res.bestURI , 'https://en.wikipedia.org/wiki/Earth',
+          'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
+  });
+};
+
+
+
 ///// with category set !
 
 

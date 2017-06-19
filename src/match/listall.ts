@@ -84,6 +84,11 @@ export function listAllWithCategory(category: string, theModel: IMatch.IModels):
   return matchedAnswers;
 }
 */
+import { MongoQ as MongoQ } from 'mgnlq_parser1';
+
+export function listAllShowMe(query : string, theModel : IMatch.IModels ) : Promise<MongoQ.IProcessedMongoAnswers> {
+  return MongoQueries.listShowMe(query, theModel);
+}
 
 export function listAllTupelWithContext(categories: string[], contextQueryString: string,
   theModel: IMatch.IModels, domainCategoryFilter?: IMatch.IDomainCategoryFilter): Promise<IMatch.IProcessedWhatIsTupelAnswers> {

@@ -56,13 +56,10 @@ function listAllWithContext(category, contextQueryString, theModel, domainCatego
     });
 }
 exports.listAllWithContext = listAllWithContext;
-/*
-export function listAllWithCategory(category: string, theModel: IMatch.IModels): Array<IMatch.IRecord> {
-  var matchedAnswers = matchRecordHavingCategory(category, theModel); //aTool: Array<IMatch.ITool>): any / * objectstream* / {
-  debuglog(" listAllWithCategory:" + JSON.stringify(matchedAnswers, undefined, 2));
-  return matchedAnswers;
+function listAllShowMe(query, theModel) {
+    return MongoQueries.listShowMe(query, theModel);
 }
-*/
+exports.listAllShowMe = listAllShowMe;
 function listAllTupelWithContext(categories, contextQueryString, theModel, domainCategoryFilter) {
     var query = categories.join(" ") + " with " + contextQueryString;
     if (!contextQueryString) {

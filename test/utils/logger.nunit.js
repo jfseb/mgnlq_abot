@@ -60,7 +60,7 @@ exports.testCTor = function (test) {
 
   try {
     Logger.logger('AB','');
-    test.ok(false,true, 'differnt flag on 2nd invocation');
+    test.ok(false,true, 'different flag on 2nd invocation');
   } catch (e) {
     test.ok(true,true);
   }

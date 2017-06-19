@@ -297,9 +297,11 @@ exports.testDescribeDomain = function (test) {
   getModel().then((theModel) =>{
     Describe.describeDomain('cusmos', 'Cosmos', theModel).then((oRes) => {
       test.deepEqual(oRes,
-//  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n' );
-  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n'
-  //"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
+//  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n' );
+
+  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n'
+//  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n'
+  //"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n');
       );
       test.done();
       Model.releaseModel(theModel);
@@ -311,8 +313,10 @@ exports.testDescribeFactWhichIsADomain = function (test) {
   getModel().then((theModel) =>{
     Describe.describeFactInDomain('cusmos', undefined, theModel).then(oRes => {
       test.deepEqual(oRes,
-//  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n' );
-    '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n"cusmos" has a meaning in one domain "metamodel":\n"cusmos" (interpreted as "Cosmos") is a value for category "domain" present in 13(14.8%) of records;\n'
+//  '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n' );
+//    '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cusmos" has a meaning in one domain "metamodel":\n"cusmos" (interpreted as "Cosmos") is a value for category "domain" present in 13(14.8%) of records;\n'
+ '"cusmos" (interpreted as "Cosmos")is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cusmos" has a meaning in one domain "metamodel":\n"cusmos" (interpreted as "Cosmos") is a value for category "domain" present in 13(14.3%) of records;\n',
+ 'abc'
       );
       test.done();
       Model.releaseModel(theModel);

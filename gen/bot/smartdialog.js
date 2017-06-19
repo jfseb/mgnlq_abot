@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const builder = require("botbuilder");
 const debug = require("debug");
-const Match = require("../match/match");
-const Analyze = require("../match/analyze");
 const WhatIs = require("../match/whatis");
 const ListAll = require("../match/listall");
 const Describe = require("../match/describe");
@@ -80,7 +78,6 @@ function getElizaBot(id) {
 }
 var newFlow = true;
 const mgnlq_model_1 = require("mgnlq_model");
-const ExecServer = require("../exec/execserver");
 var models = {};
 /*
 var mongooseMock = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
@@ -407,81 +404,35 @@ function makeBot(connector, modelProvider, options) {
         function (session, args, next) {
             var isCombinedIndex = {};
             var oNewEntity;
+            // ShowMe is a special form of WhatIs which also selects teh
+            // "closest _url" ranked by _preferredUrlOrder
+            // if present, the _url is put into exec.action
+            //
             /// TODO REMODEL
             // expecting entity A1
             debuglog("Show Entity");
             debuglog('raw: ' + JSON.stringify(args.entities), undefined, 2);
             var a1 = builder.EntityRecognizer.findEntity(args.entities, 'A1');
             getTheModel().then((theModel) => {
-                const result = Analyze.analyzeAll(a1.entity, theModel.rules, [], gwords);
-                logQuery(session, 'ShowMe', result);
-                // test.expect(3)
-                //  test.deepEqual(result.weight, 120, 'correct weight');
-                if (!result || result.length === 0) {
-                    next();
-                }
-                // debuglog('result : ' + JSON.stringify(result, undefined, 2));
-                debuglog('best result : ' + JSON.stringify(result[0] || {}, undefined, 2));
-                debuglog(() => 'top : ' + JSON.stringify(result, undefined, 2));
-                if (Analyze.isComplete(result[0])) {
-                    session.dialogData.result = result[0];
-                    //    session.send('Showing entity ...');
-                    next();
-                }
-                else if (Analyze.getPrompt(result[0])) {
-                    var prompt = Analyze.getPrompt(result[0]);
-                    session.dialogData.result = result[0];
-                    session.dialogData.prompt = prompt;
-                    dialoglog("ShowMe", session, send("Not enough information supplied: " + Match.ToolMatch.dumpNice(session.dialogData.result)));
-                    builder.Prompts.text(session, prompt.text);
-                }
-                else {
-                    var best = result.length ? Match.ToolMatch.dumpNice(result[0]) : "<nothing>";
-                    dialoglog("ShowMe", session, send('I did not understand this' + best));
-                }
-            });
-        },
-        function (session, results, next) {
-            var result = session.dialogData.result;
-            if (!result || result.length === 0) {
-                next();
-            }
-            if (results.response) {
-                // some prompting
-                Analyze.setPrompt(session.dialogData.result, session.dialogData.prompt, results.response);
-            }
-            if (Analyze.isComplete(session.dialogData.result)) {
-                next();
-            }
-            else if (Analyze.getPrompt(session.dialogData.result)) {
-                var prompt = Analyze.getPrompt(session.dialogData.result);
-                session.dialogData.prompt = prompt;
-                builder.Prompts.text(session, prompt.text);
-            }
-        },
-        function (session, results, next) {
-            var result = session.dialogData.result;
-            if (results.response) {
-                // some prompting
-                Analyze.setPrompt(session.dialogData.result, session.dialogData.prompt, results.response);
-            }
-            getTheModel().then((theModel) => {
-                if (Analyze.isComplete(session.dialogData.result)) {
-                    const exec = ExecServer.execTool(session.dialogData.result, theModel.records);
+                ListAll.listAllShowMe(a1.entity, theModel).then(resultShowMe => {
+                    logQuery(session, 'ShowMe', resultShowMe.bestURI);
+                    // test.expect(3)
+                    //  test.deepEqual(result.weight, 120, 'correct weight');
+                    if (!resultShowMe || !resultShowMe.bestURI) {
+                        dialoglog("ShowMe", session, send("I did not get what you want"));
+                        return;
+                    }
+                    var bestURI = resultShowMe.bestURI;
+                    // debuglog('result : ' + JSON.stringify(result, undefined, 2));
+                    debuglog('best result : ' + JSON.stringify(resultShowMe || {}, undefined, 2));
+                    // text : "starting unit test \"" + unittest + "\""+  (url?  (' with url ' + url ) : 'no url :-(' ),
+                    //      action : { url: url }
                     var reply = new builder.Message(session)
-                        .text(exec.text)
-                        .addEntity(exec.action);
+                        .text(" starting uri " + bestURI)
+                        .addEntity({ url: bestURI }); // exec.action);
                     // .addAttachment({ fallbackText: "I don't know", contentType: 'image/jpeg', contentUrl: "www.wombat.org" });
                     dialoglog("ShowMe", session, send(reply));
-                }
-                else {
-                    if (session.dialogData.result) {
-                        dialoglog("ShowMe", session, send("Not enough information supplied: " + Match.ToolMatch.dumpNice(session.dialogData.result)));
-                    }
-                    else {
-                        dialoglog("ShowMe", session, send("I did not get what you want"));
-                    }
-                }
+                });
             });
         },
     ]);
@@ -1021,11 +972,11 @@ function makeBot(connector, modelProvider, options) {
           if (results.response) {
             alarm.title = results.response;
           }
-    
+  
           // Prompt for time (title will be blank if the user said cancel)
           if (alarm.title && !alarm.timestamp) {
-    
-    
+  
+  
             builder.Prompts.time(session, 'What time would you like to set the alarm for?');
           } else {
             next();
@@ -1042,7 +993,7 @@ function makeBot(connector, modelProvider, options) {
             // Save address of who to notify and write to scheduler.
             alarm.address = session.message.address;
             //alarms[alarm.title] = alarm;
-    
+  
             // Send confirmation to user
             var date = new Date(alarm.timestamp);
             var isAM = date.getHours() < 12;
