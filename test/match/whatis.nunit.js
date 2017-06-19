@@ -16,9 +16,9 @@ var Sentence = require('mgnlq_er').Sentence;
 const MongoQueries = require(root + '/match/mongoqueries.js');
 const ListAll = require(root + '/match/listall.js');
 
-const InputFilterRules = require('mgnlq_er').InputFilterRules;
+//const InputFilterRules = require('mgnlq_er').InputFilterRules;
 
-const mRules = InputFilterRules.getMRulesSample();
+//const mRules = InputFilterRules.getMRulesSample();
 
 
 const Model = require('mgnlq_model').Model;
@@ -368,11 +368,14 @@ exports.testAnalyzeCategoryMult = function (test) {
   });
 };
 
+
+/*
 exports.testAnalyzeCategoryMult2 = function (test) {
   var res = WhatIs.analyzeCategoryMult('unit test and wiki', mRules, 'what is unit test wiki for abc');
   test.deepEqual(res, undefined); // ['unit test', 'wiki']);
   test.done();
 };
+*/
 
 // TODO, this is bullshit, complete cover must be better than sloppy matches!
 exports.testCategorizeMultElement = function (test) {
@@ -435,7 +438,7 @@ exports.testCategorizeMultElement2 = function (test) {
 };
 
 
-
+/*
 exports.testCategorize = function (test) {
   var res = WhatIs.analyzeCategory('unit test', mRules, 'what is unit test for abc');
   test.equal(res, 'unit test');

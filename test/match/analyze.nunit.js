@@ -14,9 +14,12 @@ const Match = require(root + '/match/match.js');
 const InputFilter = require('mgnlq_er').InputFilter;
 
 const Result = Match.Result;
-const InputFilterRules = require('mgnlq_er').InputFilterRules;
+//const InputFilterRules = require('mgnlq_er').InputFilterRules;
 
-const mRules = InputFilterRules.getMRulesSample();
+//const mRules = InputFilterRules.getMRulesSample();
+
+var mRules = {};
+
 
 var oToolFLPD = { 'name' : 'FLPD',
   'requires' : { 'systemId' : {}, 'client' :{}},
