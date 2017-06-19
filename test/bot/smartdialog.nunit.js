@@ -1170,6 +1170,29 @@ exports.testOperatorStartsWithQuotedMemberInDomain = function (test) {
   });
 };
 
+exports.testShowMeQueryOK = function (test) {
+  testOne('show me orbits with earth', function (conn, oRes) {
+    debuglog(JSON.stringify(oRes));
+    test.deepEqual(oRes,
+ 'starting uri https://en.wikipedia.org/wiki/Earth'
+ //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
+   );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
+    test.done(); releaseConnector(conn);
+  });
+};
+
+
+exports.testShowMeBad = function (test) {
+  testOne('show me funny', function (conn, oRes) {
+    debuglog(JSON.stringify(oRes));
+    test.deepEqual(oRes,
+ 'I did not get what you want'
+ //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
+   );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
+    test.done(); releaseConnector(conn);
+  });
+};
+
 
 //var debug = require('debug');
 
@@ -1187,6 +1210,9 @@ exports.testPerfListAll1 = function (test) {
     test.done(); releaseConnector(conn);
   });
 };
+
+
+
 
 
 exports.testPerfListAll2 = function (test) {
@@ -1208,3 +1234,5 @@ exports.testUpDownRecognizerUp = function (test) {
     test.done();
   });
 };
+
+

@@ -506,7 +506,7 @@ function makeBot(connector,
             //      action : { url: url }
 
             var reply = new builder.Message(session)
-              .text(" starting uri " + bestURI)
+              .text("starting uri " + bestURI)
               .addEntity({ url: bestURI }) // exec.action);
             // .addAttachment({ fallbackText: "I don't know", contentType: 'image/jpeg', contentUrl: "www.wombat.org" });
             dialoglog("ShowMe", session, send(reply));
