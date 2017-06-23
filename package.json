@@ -74,7 +74,8 @@
   },
   "nyc": {
     "exclude": [
-      "gen/extern/elizabot/elizabot.js"
+      "gen/extern/elizabot/elizabot.js",
+      "test/**.js"
     ]
   },
   "devDependencies": {
