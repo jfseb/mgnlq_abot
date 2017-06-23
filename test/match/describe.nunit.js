@@ -325,6 +325,34 @@ exports.testDescribeFactWhichIsADomain = function (test) {
 
 };
 
+
+exports.testDescribeFactInDomainMultiDomain = function (test) {
+  getModel().then((theModel) =>{
+    Describe.describeFactInDomain('earth', 'Philosophers elements', theModel).then(oRes => {
+      test.deepEqual(oRes,
+'"earth" has a meaning in domain "Philosophers elements":\n"earth" is a value for category "element name" present in 1(25.0%) of records;\n'
+
+      );
+      test.done();
+      Model.releaseModel(theModel);
+    });
+  });
+
+};
+exports.testDescribeFactInDomainMultiDomainNoFilter = function (test) {
+  getModel().then((theModel) =>{
+    Describe.describeFactInDomain('earth', undefined, theModel).then(oRes => {
+      test.deepEqual(oRes,
+'"earth" has a meaning in 2 domains: "Cosmos" and "Philosophers elements"\nin domain "Cosmos" "earth" is a value for category "object name" present in 1(14.3%) of records;\nin domain "Philosophers elements" "earth" is a value for category "element name" present in 1(25.0%) of records;\n'
+      );
+      test.done();
+      Model.releaseModel(theModel);
+    });
+  });
+
+};
+
+
 exports.testDescribeCategoryStatsInDomain = function (test) {
   test.expect(1);
   getModel().then((theModel) =>{
