@@ -20,7 +20,7 @@ import * as Exec from '../exec/exec';
 import * as Match from '../match/match';
 import * as mongoose from 'mongoose';
 
-import * as Analyze from '../match/analyze';
+//import * as Analyze from '../match/analyze';
 import { BreakDown } from 'mgnlq_model';
 
 import * as WhatIs from '../match/whatis';
