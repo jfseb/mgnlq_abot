@@ -72,6 +72,11 @@
   "babel": {
     "comments": true
   },
+  "nyc": {
+    "exclude": [
+      "gen/extern/elizabot/elizabot.js"
+    ]
+  },
   "devDependencies": {
     "@types/debug": "0.0.29",
     "@types/fixed-data-table": "^0.6.31",
