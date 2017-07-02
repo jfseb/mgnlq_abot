@@ -14,6 +14,7 @@ var perflog = debug('perf');
 const _ = require("lodash");
 //const perflog = logger.perf("perflistall");
 const Utils = require("abot_utils");
+//import * as Match from './match';
 //import * as Toolmatcher from './toolmatcher';
 const mgnlq_model_1 = require("mgnlq_model");
 const Operator = require("./operator");
@@ -207,14 +208,15 @@ function joinSortedQuoted(strings) {
     return '"' + strings.sort().join('"; "') + '"';
 }
 exports.joinSortedQuoted = joinSortedQuoted;
-function joinDistinct(category, records) {
-    var res = records.reduce(function (prev, oRecord) {
-        prev[oRecord[category]] = 1;
-        return prev;
-    }, {});
-    return joinSortedQuoted(Object.keys(res));
+/*
+export function joinDistinct(category: string, records: Array<IMatch.IRecord>): string {
+  var res = records.reduce(function (prev, oRecord) {
+    prev[oRecord[category]] = 1;
+    return prev;
+  }, {} as any);
+  return joinSortedQuoted(Object.keys(res));
 }
-exports.joinDistinct = joinDistinct;
+*/
 function formatDistinctFromWhatIfResult(answers) {
     var strs = projectFullResultsToFlatStringArray(answers);
     var resFirst = strs.map(r => r[0]);
@@ -312,6 +314,75 @@ function joinResultsFilterDuplicates(answers) {
     return res;
 }
 exports.joinResultsFilterDuplicates = joinResultsFilterDuplicates;
+function isOKAnswer(answer) {
+    return !(answer.errors) && (answer.domain !== undefined);
+}
+exports.isOKAnswer = isOKAnswer;
+function isNotUndefined(obj) {
+    return !(obj === undefined);
+}
+function isNotEmptyResult(answer) {
+    return (answer.results.length > 0);
+}
+/**
+ *
+ * @param answers
+ * @return {string[]} an array of strings
+ */
+function getDistinctOKDomains(answers) {
+    return _.uniq(answers.filter(isOKAnswer).map(r => r.domain).filter(isNotUndefined));
+}
+exports.getDistinctOKDomains = getDistinctOKDomains;
+function hasOKAnswer(answers) {
+    return getDistinctOKDomains(answers).length > 0;
+}
+exports.hasOKAnswer = hasOKAnswer;
+function hasError(answers) {
+    return !answers.every(isOKAnswer);
+}
+exports.hasError = hasError;
+function hasEmptyResult(answers) {
+    return !answers.every(answer => {
+        if (answer.results.length <= 0) {
+            console.log('here empty' + JSON.stringify(answer));
+        }
+        return (answer.results.length > 0);
+    });
+}
+exports.hasEmptyResult = hasEmptyResult;
+/**
+ *
+ * @param answers
+ */
+function getOKIfDistinctOKDomains(answers) {
+    return _.uniq(answers.filter(isOKAnswer).map(r => r.domain).filter(isNotUndefined));
+}
+exports.getOKIfDistinctOKDomains = getOKIfDistinctOKDomains;
+function removeErrorsIfOKAnswers(answers) {
+    if (hasOKAnswer(answers)) {
+        return answers.filter(isOKAnswer);
+    }
+    return answers;
+}
+exports.removeErrorsIfOKAnswers = removeErrorsIfOKAnswers;
+function removeEmptyResults(answers) {
+    if (hasOKAnswer(answers)) {
+        return answers.filter(isNotEmptyResult);
+    }
+    return answers;
+}
+exports.removeEmptyResults = removeEmptyResults;
+function removeMetamodelResultIfOthers(answers) {
+    if (hasError(answers) || hasEmptyResult(answers)) {
+        throw Error('run removeEmptyResults before');
+    }
+    var domains = getDistinctOKDomains(answers);
+    if ((domains.length > 1) && domains.indexOf('metamodel') > 0) {
+        return answers.filter(a => (a.domain !== 'metamodel'));
+    }
+    return answers;
+}
+exports.removeMetamodelResultIfOthers = removeMetamodelResultIfOthers;
 /**
  * TODO
  * @param results

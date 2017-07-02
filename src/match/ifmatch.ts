@@ -32,7 +32,7 @@ export interface IERErrorNO_KNOWN_WORD extends IERError{
   }
 };
 
-
+/*
 
 export interface IPromptDescription {
   description: string,
@@ -42,6 +42,7 @@ export interface IPromptDescription {
   default: string,
   required: boolean
 }
+*/
 
 export const aOperatorNames = ["starting with", "ending with", "containing", "excluding", "having", "being"];
 export type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having";
@@ -56,31 +57,35 @@ export interface IOperator {
 export type IRecord = { [key : string] : string
 };
 
-
+/*
 export interface IWhatIsAnswer {
   sentence: ISentence,
   record : IRecord,
   category : string,
   result: string,
   _ranking : number
-}
+}*/
 
 export type IRule = IFModel.IRule;
 
 export type mRule = IFModel.mRule;
 
-
+/*
 export interface IProcessedWhatIsAnswers extends IProcessed {
   sentences? : ISentence[],
   answers : IWhatIsAnswer[]
 }
+*/
 
 
 export type IProcessedWhatIsTupelAnswers = MongoQ.IProcessedMongoAnswers;
 //  sentences? : ISentence[],
 //  tupelanswers : Array<IWhatIsTupelAnswer>
 //}
+
 export type IWhatIsTupelAnswer = MongoQ.IQueryResult;
+export type ITupelAnswer = MongoQ.IQueryResult;
+export type ITupelAnswers = MongoQ.IQueryResult[];
 /*
 export interface IWhatIsTupelAnswer {
   sentence: ISentence,
@@ -128,13 +133,14 @@ export type IToolSets = {
  *   'optional' : { 'catalog' : {}, 'group' :{}}
  * };
 */
+/*
 export interface ITool {
   name: string,
   requires: { [key: string]: Object },
   optional?: { [key: string]: Object },
   sets?: IToolSets
-}
-
+}*/
+/*
 export interface IToolMatchResult {
   required: { [key: string]: IWord },
   missing: { [key: string]: number },
@@ -147,6 +153,7 @@ export interface IPrompt {
   text: string,
   category: string
 }
+*/
 
 /*
 export interface IToolMatch {
@@ -181,13 +188,15 @@ export interface IntentRule {
   follows?: context
 }
 
+/*
 export interface IRange {
   low: number, high: number,
-};
+};*/
 
+/*
 export interface IWordRange extends IRange
 {
-  rule? : mRule };
+  rule? : mRule }; */
 /**
  * A rule matching a single string
  */
@@ -285,6 +294,7 @@ export type context = { [key: string]: string };
  * Defines the interface for an analysis
  * reponse
  */
+/*
 export interface IResponse {
   rating: number,
   type: EnumResponseCode,
@@ -295,13 +305,14 @@ export interface IResponse {
   prompts: {
     [key: string]: {
       text: string,
-      /**
+      / **
        * Follows the features of NPM prompts
-       */
+       * /
       description: IPromptDescription
     };
   }
 }
+*/
 
 export const enum EnumActionType {
   STARTURL,

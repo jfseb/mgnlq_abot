@@ -14,13 +14,45 @@ exports.ERR_NO_KNOWN_WORD = "NO_KNOWN_WORD";
 exports.ERR_EMPTY_INPUT = "EMPTY_INPUT";
 ;
 ;
+/*
+
+export interface IPromptDescription {
+  description: string,
+  type: string,
+  pattern: RegExp,
+  message: string,
+  default: string,
+  required: boolean
+}
+*/
 exports.aOperatorNames = ["starting with", "ending with", "containing", "excluding", "having", "being"];
 ;
 ;
 ;
 ;
-;
-;
+/**
+ * Defines the interface for an analysis
+ * reponse
+ */
+/*
+export interface IResponse {
+  rating: number,
+  type: EnumResponseCode,
+  query: string,
+  context: { [key: string]: string },
+  text: string,
+  action: IAction,
+  prompts: {
+    [key: string]: {
+      text: string,
+      / **
+       * Follows the features of NPM prompts
+       * /
+      description: IPromptDescription
+    };
+  }
+}
+*/
 var EnumActionType;
 (function (EnumActionType) {
     EnumActionType[EnumActionType["STARTURL"] = 0] = "STARTURL";

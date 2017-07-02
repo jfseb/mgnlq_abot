@@ -401,6 +401,124 @@ exports.testListAllWithContextDomainLikeAmbiguous = function (test) {
   });
 };
 
+exports.testGetDistinctDomains = function(test) {
+  var res = [{ domain : 'a'},{ domain: undefined }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res),['a']);
+  var res1b = [{ domain : 'a'},{ domain : 'a'},{ domain: undefined }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res1b),['a']);
+  var res2 = [{ domain : 'a', errors: {} },{ domain: undefined }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res2),[]);
+  var res3 = [{ domain : 'a', errors : false}, { domain : 'A', errors: false }, { domain : 'a'}, { domain: 'b'}];
+  test.deepEqual(ListAll.getDistinctOKDomains(res3),['a','A', 'b']);
+  test.done();
+};
+
+exports.testhasOKAnswer = function(test) {
+  var res = [{ domain : 'a'},{ domain: undefined }];
+  test.deepEqual(ListAll.hasOKAnswer(res), true);
+  var res2 = [{ domain : 'a', errors: {} },{ domain: undefined }];
+  test.deepEqual(ListAll.hasOKAnswer(res2),false);
+  test.done();
+};
+
+exports.testFilterOKAnswer = function(test) {
+  test.deepEqual(ListAll.isOKAnswer({ domain : undefined}),false);
+  test.done();
+};
+
+exports.testremoveErrorsIfOKAnswers = function(test) {
+  var res = [{ domain : 'a'},{ domain: undefined }];
+  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res),[{ domain : 'a'}]);
+  var res2 = [{ domain : 'a', errors: {} },{ domain: undefined }];
+  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res2), [{ domain : 'a', errors: {} },{ domain: undefined }] );
+  var res3 = [{ domain : 'a', errors : false}, { domain : 'A', errors: false }, { domain : 'a'}, { domain : undefined}, { domain : 'b', errors: {}} ,{ domain: 'b'}];
+  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res3),[{ domain : 'a', errors : false},
+  { domain : 'A', errors: false }, { domain : 'a'}, { domain: 'b'}], ' filter list'
+  );
+  test.done();
+};
+
+exports.testRemoveEmptyResults = function(test) {
+  var res = [{ domain : 'a', results: []},{ domain: 'b', results: [{}]} ];
+  test.deepEqual(ListAll.removeEmptyResults(res),[{ domain : 'b', results: [{}]}]);
+  test.done();
+};
+
+/*
+exports.testSortMetamodelLast = function(test) {
+  var res = [{ domain : 'b', results: []},{ domain: 'metamodel', results: ['a']},
+  { domain: 'a', results: [{}]},
+  { domain: 'metamodel', results: ['a']},
+  ];
+  test.deepEqual(ListAll.sortMetamodelsLast(res),[{ domain : 'b', results: [{}]}]);
+  test.done();
+};
+*/
+
+exports.testHasEmpty = function(test) {
+  var res = [{ domain : 'b', results: ['x']},{ domain: 'metamodel', results: ['a']},
+  { domain: 'a', results: [{}]},
+  { domain: 'metamodel', results: ['a']},
+  ];
+  test.deepEqual(ListAll.hasEmptyResult(res), false);
+  test.done();
+};
+
+
+
+exports.testRemoveMetamodelsResultIfOthersThrowsEmpty = function(test) {
+  var res = [{ domain : 'b', results: []},{ domain: 'metamodel', results: ['a']},
+    { domain: 'a', results: [{}]},
+    { domain: 'metamodel', results: ['a']},
+  ];
+  try {
+    ListAll.removeMetamodelResultIfOthers(res);
+    test.equal(0,1);
+  } catch(e) {
+    test.equal(0,0);
+  }
+  test.done();
+};
+
+exports.testRemoveMetamodelsResultIfOthersThrowsError = function(test) {
+  var res = [{ domain : 'b', errors :{}, results: ['a']}];
+  try {
+    ListAll.removeMetamodelResultIfOthers(res);
+    test.equal(0,1);
+  } catch(e) {
+    test.equal(0,0);
+  }
+  test.done();
+};
+
+
+exports.testRemoveMetamodelsResultIfOthersOthers = function(test) {
+  var res = [{ domain : 'b', results: ['x']},{ domain: 'metamodel', results: ['a']},
+  { domain: 'a', results: [{}]},
+  { domain: 'metamodel', results: ['a']},
+  ];
+  test.deepEqual(ListAll.removeMetamodelResultIfOthers(res),[{ domain : 'b', results: ['x']},
+  { domain: 'a', results: [{}]}]);
+  test.done();
+};
+
+exports.testRemoveMetamodelsResultIfOthersOnlyMetamodel = function(test) {
+  var res = [{ domain: 'metamodel', results: ['a']},
+    { domain: 'metamodel', results: [{}]},
+    { domain: 'metamodel', results: ['a']}
+  ];
+  test.deepEqual(ListAll.removeMetamodelResultIfOthers(res),[{ domain: 'metamodel', results: ['a']},
+    { domain: 'metamodel', results: [{}]},
+    { domain: 'metamodel', results: ['a']}
+  ]);
+  test.done();
+};
+
+exports.testSortByDomains = function(test) {
+
+  test.done();
+};
+
 /*
 
 exports.testListAllWithCategory = function (test) {

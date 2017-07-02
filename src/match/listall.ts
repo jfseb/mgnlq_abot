@@ -17,7 +17,7 @@ import * as _ from 'lodash';
 
 import * as Utils from 'abot_utils';
 import * as IMatch from './ifmatch';
-import * as Match from './match';
+//import * as Match from './match';
 
 //import * as Toolmatcher from './toolmatcher';
 import { BreakDown } from 'mgnlq_model';
@@ -343,6 +343,79 @@ export function joinResultsFilterDuplicates(answers: Array<IMatch.IWhatIsTupelAn
   }, 0);
   return res;
 }
+
+export function isOKAnswer(answer : IMatch.ITupelAnswer) : boolean {
+  return !(answer.errors) && (answer.domain !== undefined);
+}
+function isNotUndefined(obj : any) : boolean {
+  return !(obj === undefined);
+}
+
+function isNotEmptyResult(answer : IMatch.ITupelAnswer) : boolean {
+  return (answer.results.length > 0)
+}
+
+/**
+ *
+ * @param answers
+ * @return {string[]} an array of strings
+ */
+export function getDistinctOKDomains(answers : IMatch.ITupelAnswer[]) : string[] {
+  return _.uniq(answers.filter(isOKAnswer).map(r => r.domain).filter(isNotUndefined));
+}
+
+export function hasOKAnswer(answers : IMatch.ITupelAnswers) : boolean {
+  return getDistinctOKDomains(answers).length > 0 ;
+}
+
+export function hasError(answers : IMatch.ITupelAnswers) : boolean {
+  return !answers.every(isOKAnswer);
+}
+
+export function hasEmptyResult(answers : IMatch.ITupelAnswers) : boolean {
+  return !answers.every(answer =>
+  {
+    if(answer.results.length <= 0) {
+      console.log('here empty' + JSON.stringify(answer));
+    }
+    return (answer.results.length > 0);
+  });
+}
+
+
+/**
+ *
+ * @param answers
+ */
+export function getOKIfDistinctOKDomains(answers : IMatch.ITupelAnswer[]) : string[] {
+  return _.uniq(answers.filter(isOKAnswer).map(r => r.domain).filter(isNotUndefined));
+}
+
+export function removeErrorsIfOKAnswers(answers: IMatch.ITupelAnswers) : IMatch.ITupelAnswers {
+  if (hasOKAnswer(answers) ) {
+    return answers.filter(isOKAnswer);
+  }
+  return answers;
+}
+
+export function removeEmptyResults(answers: IMatch.ITupelAnswers) : IMatch.ITupelAnswers {
+  if (hasOKAnswer(answers) ) {
+    return answers.filter(isNotEmptyResult);
+  }
+  return answers;
+}
+
+export function removeMetamodelResultIfOthers(answers : IMatch.ITupelAnswers) : IMatch.ITupelAnswers {
+  if(hasError(answers) || hasEmptyResult(answers)) {
+    throw Error('run removeEmptyResults before');
+  }
+  var domains = getDistinctOKDomains(answers);
+  if ((domains.length > 1) && domains.indexOf('metamodel') > 0 ) {
+    return answers.filter(a => (a.domain !== 'metamodel'));
+  }
+  return answers;
+}
+
 
 /**
  * TODO
