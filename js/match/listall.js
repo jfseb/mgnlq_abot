@@ -21,10 +21,16 @@ const WhatIs = require("./whatis");
 const mgnlq_er_1 = require("mgnlq_er");
 const mgnlq_model_2 = require("mgnlq_model");
 const MongoQueries = require("./mongoqueries");
-function projectResultsToStringArray(results) {
-    return results.results.map(res => results.columns.map(c => {
-        return ('' + res[c]);
-    }));
+function projectResultToStringArray(answer, result) {
+    return answer.columns.map(c => '' + result[c]);
+}
+exports.projectResultToStringArray = projectResultToStringArray;
+function projectResultsToStringArray(answer) {
+    return answer.results.map(rec => projectResultToStringArray(answer, rec)); /*answer.columns.map( c =>
+      { //console.log('here ' + JSON.stringify(res));
+        return ('' + res[c]); }
+    ));
+    */
 }
 exports.projectResultsToStringArray = projectResultsToStringArray;
 function projectFullResultsToFlatStringArray(answers) {
@@ -34,21 +40,19 @@ function projectFullResultsToFlatStringArray(answers) {
     }, []);
 }
 exports.projectFullResultsToFlatStringArray = projectFullResultsToFlatStringArray;
-function projectResultToStringArray(results, result) {
-    return results.columns.map(c => '' + result[c]);
-}
-exports.projectResultToStringArray = projectResultToStringArray;
 var sWords = {};
-function matchRecordHavingCategory(category, records) {
-    debuglog(debuglog.enabled ? JSON.stringify(records, undefined, 2) : "-");
-    var relevantRecords = records.filter(function (record) {
-        return (record[category] !== undefined) && (record[category] !== null);
-    });
-    var res = [];
-    debuglog("relevant records nr:" + relevantRecords.length);
-    return relevantRecords;
+/*
+export function matchRecordHavingCategory(category: string, records: Array<IMatch.IRecord>)
+  : Array<IMatch.IRecord> {
+  debuglog(debuglog.enabled ? JSON.stringify(records, undefined, 2) : "-");
+  var relevantRecords = records.filter(function (record: IMatch.IRecord) {
+    return (record[category] !== undefined) && (record[category] !== null);
+  });
+  var res = [];
+  debuglog("relevant records nr:" + relevantRecords.length);
+  return relevantRecords;
 }
-exports.matchRecordHavingCategory = matchRecordHavingCategory;
+*/
 function analyzeContextString(contextQueryString, rules) {
     return WhatIs.analyzeContextString(contextQueryString, rules);
 }

@@ -6,6 +6,7 @@ logs
 tmp
 
 gen3
+gen/**
 testmodel/*.bak
 testmodel/graph/*
 testmodel/*.gv

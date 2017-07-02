@@ -29,11 +29,17 @@ import { ErError as ErError } from 'mgnlq_er';
 import { Model } from 'mgnlq_model';
 import * as MongoQueries from './mongoqueries';
 
-export function projectResultsToStringArray( results : IMatch.IWhatIsTupelAnswer) : string[][] {
-  return results.results.map( res => results.columns.map( c =>
+
+export function projectResultToStringArray( answer : IMatch.IWhatIsTupelAnswer, result : MongoQ.IResultRecord) : string[] {
+  return answer.columns.map( c => '' + result[c]);
+}
+
+export function projectResultsToStringArray( answer : IMatch.IWhatIsTupelAnswer) : string[][] {
+  return answer.results.map( rec => projectResultToStringArray(answer, rec )); /*answer.columns.map( c =>
     { //console.log('here ' + JSON.stringify(res));
       return ('' + res[c]); }
   ));
+  */
 }
 
 export function projectFullResultsToFlatStringArray( answers : IMatch.IWhatIsTupelAnswer[]) : string[][] {
@@ -44,12 +50,8 @@ export function projectFullResultsToFlatStringArray( answers : IMatch.IWhatIsTup
 }
 
 
-export function projectResultToStringArray( results : IMatch.IWhatIsTupelAnswer, result : MongoQ.IResultRecord) : string[] {
-  return results.columns.map( c => '' + result[c]);
-}
-
 var sWords = {};
-
+/*
 export function matchRecordHavingCategory(category: string, records: Array<IMatch.IRecord>)
   : Array<IMatch.IRecord> {
   debuglog(debuglog.enabled ? JSON.stringify(records, undefined, 2) : "-");
@@ -60,6 +62,7 @@ export function matchRecordHavingCategory(category: string, records: Array<IMatc
   debuglog("relevant records nr:" + relevantRecords.length);
   return relevantRecords;
 }
+*/
 
 
 export function analyzeContextString(contextQueryString: string, rules: IMatch.SplitRules) {
@@ -237,6 +240,7 @@ export function joinSortedQuoted(strings: string[]): string {
   return '"' + strings.sort().join('"; "') + '"';
 }
 
+/*
 export function joinDistinct(category: string, records: Array<IMatch.IRecord>): string {
   var res = records.reduce(function (prev, oRecord) {
     prev[oRecord[category]] = 1;
@@ -244,6 +248,7 @@ export function joinDistinct(category: string, records: Array<IMatch.IRecord>): 
   }, {} as any);
   return joinSortedQuoted(Object.keys(res));
 }
+*/
 
 export function formatDistinctFromWhatIfResult(answers: Array<IMatch.IWhatIsTupelAnswer>): string {
   var strs = projectFullResultsToFlatStringArray(answers);
