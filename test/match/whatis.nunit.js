@@ -606,6 +606,17 @@ exports.testWhatIsBSPNameFioriIntentManageLabelsNew = function (test) {
     //AppNAme filters for it?
         [ 'FRA_ALERT_MAN', '#ComplianceAlerts-manage', 'Manage Alerts' ]
       ], 'result');
+
+    test.equal(WhatIs.cmpByResultThenRankingTupel(resultArr[0],resultArr[1]),1);
+    test.equal(WhatIs.cmpByResultThenRankingTupel(resultArr[1],resultArr[0]),-1);
+    test.equal(WhatIs.cmpByResultThenRankingTupel(resultArr[1],resultArr[1]), 0);
+   // console.log(JSON.stringify(resultArr[0].results, undefined, 2));
+   // console.log(JSON.stringify(resultArr[1].results, undefined, 3));
+
+    test.equal(WhatIs.cmpRecords(resultArr[0].results[0],resultArr[1].results[0]), 1);
+    test.equal(WhatIs.cmpRecords(resultArr[1].results[0],resultArr[0].results[0]), -1);
+    test.equal(WhatIs.cmpRecords(resultArr[1].results[0],resultArr[1].results[0]), 0);
+
     var indis = WhatIs.isIndiscriminateResultTupel(resultArr);
     test.deepEqual(indis !== undefined, true);
     // 'Many comparable results, perhaps you want to specify a discriminating uri,appId,ApplicationComponent,RoleName,ApplicationType,BSPApplicationURL,releaseName,releaseId,BusinessCatalog,TechnicalCatalog,detailsurl,BSPPackage,AppDocumentationLinkKW,BusinessRoleName,BusinessGroupName,//BusinessGroupDescription,PrimaryODataServiceName,SemanticObject,FrontendSoftwareComponent,TransactionCodes,PrimaryODataPFCGRole,ExternalReleaseName,ArtifactId,ProjectPortalLink,AppKey or use "list all ..."',
