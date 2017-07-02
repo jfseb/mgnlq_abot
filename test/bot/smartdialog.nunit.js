@@ -1,5 +1,5 @@
 var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+var root = '../../js';
 //var debuglog = require('debug')('plainRecoginizer.nunit');
 
 var debug = require('debug');
@@ -658,7 +658,8 @@ exports.testListAllMultOnlyCat = function (test) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
     // TODO CHECK
-    'the orbits, object type are ...\n"null";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
+     'the orbits, object type are ...\n"null" and "null";\n"null" and "star";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
+//    'the orbits, object type are ...\n"null";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
   //  'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf";\n"null"'
    //   'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"n/a" and "star";\n"n/a" and "star, red dwarf";\n"Sun" and "planet"'
       //    'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"n/a" and "star, red dwarf";\n"Sun" and "planet"'

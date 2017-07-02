@@ -23,7 +23,6 @@ var sourcemaps = require('gulp-sourcemaps');
  * Directory containing generated sources which still contain
  * JSDOC etc.
  */
-// var genDir = 'gen';
 var srcDir = 'src';
 var testDir = 'test';
 
@@ -34,6 +33,18 @@ gulp.task('watch', function () {
 
 const babel = require('gulp-babel');
 
+/**
+ * Definition files
+ */
+gulp.task('tsc_d_ts', ['babel'], function () {
+  var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap: true
+  });
+  var tsResult = tsProject.src() // gulp.src('lib/*.ts')
+    .pipe(sourcemaps.init()) // This means sourcemaps will be generated
+    .pipe(tsProject());
+  return tsResult.dts
+    .pipe(gulp.dest('js'));
+});
 /**
  * compile tsc (including srcmaps)
  * @input srcDir
@@ -63,7 +74,7 @@ gulp.task('tsc', function () {
       }}
       )) // ,  { sourceRoot: './' } ))
       // Now the sourcemaps are added to the .js file
-    .pipe(gulp.dest('gen'));
+    .pipe(gulp.dest('js'));
 });
 
 var del = require('del');
@@ -80,7 +91,7 @@ gulp.task('clean', ['clean:models']);
 var jsdoc = require('gulp-jsdoc3');
 
 gulp.task('doc', function (cb) {
-  gulp.src([srcDir + '/**/*.js', 'README.md', './gen/**/*.js'], { read: false })
+  gulp.src([srcDir + '/**/*.js', 'README.md', './js/**/*.js'], { read: false })
     .pipe(jsdoc(cb));
 });
 
@@ -95,10 +106,10 @@ gulp.task('doc', function (cb) {
 var newer = require('gulp-newer');
 
 var imgSrc = 'src/**/*.js';
-var imgDest = 'gen';
+var imgDest = 'js';
 
 // compile standard sources with babel,
-// as the coverage input requires this
+// this takes care of copying plain js files from src to dest
 //
 gulp.task('babel', ['tsc'], function () {
   // Add the newer pipe to pass through newer images only
@@ -108,7 +119,7 @@ gulp.task('babel', ['tsc'], function () {
       comments: true,
       presets: ['es2015']
     }))
-    .pipe(gulp.dest('gen'));
+    .pipe(gulp.dest('js'));
 });
 
 //const replace = require('gulp-replace');
@@ -119,31 +130,33 @@ gulp.task('copyeliza', function () {
   // Add the newer pipe to pass through newer images only
   return gulp.src(['node_modules/elizabot/elizabot.js'])
     //.pipe(replace(/elizadata.jsfoo(.{3})/g, '$1foo'))
-    .pipe(gulp.dest('gen/extern/elizabot'));
+    .pipe(gulp.dest('js/extern/elizabot'));
 });
 
-
+/*
 gulp.task('copyelizacov', function () {
   // Add the newer pipe to pass through newer images only
   return gulp.src(['node_modules/elizabot/elizabot.js'])
   //  .pipe(replace(/elizadata.jsfoo(.{3})/g, '$1foo'))
     .pipe(gulp.dest('gencov/extern/elizabot/'));
 });
+*/
 
 var nodeunit = require('gulp-nodeunit');
-var env = require('gulp-env');
+//var env = require('gulp-env');
 
 /**
  * This does not work, as we are somehow unable to
  * redirect the lvoc reporter output to a file
  */
+/*
 gulp.task('testcov', ['copyelizacov'], function () {
   const envs = env.set({
     FSD_COVERAGE: '1',
     FSDEVSTART_COVERAGE: '1'
   });
   // the file does not matter
-  gulp.src(['./**/match/dispatcher.nunit.js'])
+  gulp.src(['./ ** /match/dispatcher.nunit.js'])
     .pipe(envs)
     .pipe(nodeunit({
       reporter: 'lcov',
@@ -152,8 +165,9 @@ gulp.task('testcov', ['copyelizacov'], function () {
       }
     })).pipe(gulp.dest('./cov/lcov.info'));
 });
+*/
 
-gulp.task('test', ['tsc', 'babel', 'copyeliza', 'copyelizacov'], function () {
+gulp.task('test', ['tsc', 'babel', 'copyeliza'], function () {
   gulp.src(['test/**/*.js'])
     .pipe(nodeunit({
       reporter: 'minimal'
@@ -195,14 +209,16 @@ gulp.task('eslint', () => {
 });
 
 // we don't use this'
+/*
 var coveralls = require('gulp-coveralls');
 
 gulp.task('coveralls', function () {
-  gulp.src('testcov/**/lcov.info')
+  gulp.src('testcov/ *    * /lcov.info')
     .pipe(coveralls());
 });
+*/
 
 // Default Task
-gulp.task('default', ['tsc', 'babel', 'eslint', 'doc', 'test']);
+gulp.task('default', ['tsc', 'tsc_d_ts', 'babel', 'eslint', 'doc', 'test']);
 gulp.task('build', ['tsc', 'babel', 'eslint']);
 gulp.task('allhome', ['default']);

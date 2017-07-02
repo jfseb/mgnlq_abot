@@ -19,7 +19,7 @@ import * as Utils from 'abot_utils';
 import * as IMatch from './ifmatch';
 import * as Match from './match';
 
-import * as Toolmatcher from './toolmatcher';
+//import * as Toolmatcher from './toolmatcher';
 import { BreakDown } from 'mgnlq_model';
 import { Sentence as Sentence } from 'mgnlq_er';
 import { Word as Word } from 'mgnlq_er';
@@ -29,7 +29,24 @@ import { ErError as ErError } from 'mgnlq_er';
 import { Model } from 'mgnlq_model';
 import * as MongoQueries from './mongoqueries';
 
+export function projectResultsToStringArray( results : IMatch.IWhatIsTupelAnswer) : string[][] {
+  return results.results.map( res => results.columns.map( c =>
+    { //console.log('here ' + JSON.stringify(res));
+      return ('' + res[c]); }
+  ));
+}
 
+export function projectFullResultsToFlatStringArray( answers : IMatch.IWhatIsTupelAnswer[]) : string[][] {
+  return answers.reduce( (prev,result) =>  {
+    prev = prev.concat(projectResultsToStringArray(result));
+    return prev;
+  } , []);
+}
+
+
+export function projectResultToStringArray( results : IMatch.IWhatIsTupelAnswer, result : MongoQ.IResultRecord) : string[] {
+  return results.columns.map( c => '' + result[c]);
+}
 
 var sWords = {};
 
@@ -54,8 +71,9 @@ export function analyzeContextString(contextQueryString: string, rules: IMatch.S
 
 
 export function listAllWithContext(category: string, contextQueryString: string,
-  theModel: IMatch.IModels, domainCategoryFilter?: IMatch.IDomainCategoryFilter): Promise<IMatch.IProcessedWhatIsAnswers> {
-  return listAllTupelWithContext([category], contextQueryString, theModel, domainCategoryFilter).then(
+  theModel: IMatch.IModels, domainCategoryFilter?: IMatch.IDomainCategoryFilter): Promise<IMatch.IProcessedWhatIsTupelAnswers> {
+  return listAllTupelWithContext([category], contextQueryString, theModel, domainCategoryFilter);
+  /*.then(
     (res) => {
       var answers = res.tupelanswers.map(function (o): IMatch.IWhatIsAnswer {
         return {
@@ -74,6 +92,7 @@ export function listAllWithContext(category: string, contextQueryString: string,
         answers: answers
       };
     })
+    */
 }
 
 
@@ -89,6 +108,25 @@ import { MongoQ as MongoQ } from 'mgnlq_parser1';
 export function listAllShowMe(query : string, theModel : IMatch.IModels ) : Promise<MongoQ.IProcessedMongoAnswers> {
   return MongoQueries.listShowMe(query, theModel);
 }
+
+
+/**
+ * analyze results of a query,
+ *
+ * Resorting results
+ *
+ * -> split by domains
+ * -> order by significance of sentence, dropping "lees relevant" (e.g. metamodel) answers
+ * -> prune
+ */
+
+export function sortAnwsersByDomains( )
+ {
+
+ }
+//
+
+
 
 export function listAllTupelWithContext(categories: string[], contextQueryString: string,
   theModel: IMatch.IModels, domainCategoryFilter?: IMatch.IDomainCategoryFilter): Promise<IMatch.IProcessedWhatIsTupelAnswers> {
@@ -192,9 +230,6 @@ export function likelyPluralDiff(a: string, pluralOfa: string): boolean {
   return false;
 };
 
-
-
-
 export function joinSortedQuoted(strings: string[]): string {
   if (strings.length === 0) {
     return "";
@@ -210,57 +245,118 @@ export function joinDistinct(category: string, records: Array<IMatch.IRecord>): 
   return joinSortedQuoted(Object.keys(res));
 }
 
-export function formatDistinctFromWhatIfResult(answers: Array<IMatch.IWhatIsAnswer>): string {
-  return joinSortedQuoted(answers.map(function (oAnswer) {
+export function formatDistinctFromWhatIfResult(answers: Array<IMatch.IWhatIsTupelAnswer>): string {
+  var strs = projectFullResultsToFlatStringArray(answers);
+  var resFirst = strs.map(r => r[0]);
+
+  return joinSortedQuoted( resFirst ); /*projectResultsToStringArray(answers) answers.map(function (oAnswer) {
     return oAnswer.result;
-  }));
+  }));*/
 }
 
-export function joinResults(results: Array<IMatch.IWhatIsAnswer>): string[] {
-  var res = [];
-  var cnt = results.reduce(function (prev, result) {
-    if (result._ranking === results[0]._ranking) {
-      if (res.indexOf(result.result) < 0) {
-        res.push(result.result);
-      }
-      return prev + 1;
-    }
-  }, 0);
+
+
+export function flattenErrors(results: IMatch.IProcessedWhatIsTupelAnswers) : any[] {
+  debuglog('flatten errors');
+  return results.reduce( (prev, rec) =>  { if ((rec.errors !== undefined) && (rec.errors !== false)
+    && (!_.isArray(rec.errors) || rec.errors.length > 0)) {
+      prev.push(rec.errors); }
+    return prev;
+  }, []);
+}
+
+export function flattenComplete(r : any[]) : any[] {
+  var res =[];
+  r.forEach(mem => { if ( _.isArray(mem)) {
+     res = res.concat(mem);
+   } else {
+     res.push(mem);
+   }});
   return res;
 }
-
 
 /**
  * return undefined if resutls is not only erroneous
  * @param results
  */
 export function returnErrorTextIfOnlyError(results: IMatch.IProcessedWhatIsTupelAnswers): string {
-  if (results.tupelanswers.length === 0) {
+  var errors = flattenErrors(results);
+  debuglog(()=>'here flattened errors ' + errors.length + '/' + results.length);
+  if(errors.length === results.length) {
+    var listOfErrors = flattenComplete(errors);
+    var r = ErError.explainError(listOfErrors);
+    debuglog(()=>'here explain ' + r);
+    return r;
+  }
+  return undefined;
+  /*
+  if (results.length === 0) {
     debuglog(() => ` no answers: ${JSON.stringify(results, undefined, 2)}`);
-    if (results.errors.length > 0) {
-      if ((results.errors as any).filter(err => (err === false)).length > 0) {
+    if (errors.length > 0) {
+      if ((errors as any[]).filter(err => (err === false)).length > 0) {
         debuglog('valid result')
         return undefined; // at least one query was ok
       }
-      debuglog(() => ` errors:  ${JSON.stringify(results.errors, undefined, 2)}`);
-      if (results.errors[0]) {
-        return ErError.explainError(results.errors); //[0].text
+      debuglog(() => ` errors:  ${JSON.stringify(errors, undefined, 2)}`);
+      if (errors.length) {
+        return ErError.explainError(errors); //[0].text
       }
     }
   }
   return undefined;
+  */
 }
 
-export function joinResultsTupel(results: Array<IMatch.IWhatIsTupelAnswer>): string[] {
+export function flattenToStringArray(results: Array<IMatch.IWhatIsTupelAnswer>): string[][] {
+  // TODO SPLIT BY DOMAIN
   var res = [];
   var cnt = results.reduce(function (prev, result) {
-    if (result._ranking === results[0]._ranking) {
-      var value = Utils.listToQuotedCommaAnd(result.result);
-      if (res.indexOf(value) < 0) {
-        res.push(value);
-      }
-      return prev + 1;
+    if (true) { // TODO result._ranking === results[0]._ranking) {
+      var arrs = projectResultsToStringArray(result);
+      res = res.concat(arrs);
     }
+    return prev;
+  }, 0);
+  return res;
+}
+
+export function joinResultsFilterDuplicates(answers: Array<IMatch.IWhatIsTupelAnswer>): string[] {
+  var res = [];
+  var seen = []; // serialized index
+  var cnt = answers.reduce(function (prev, result) {
+    if (true) { // TODO result._ranking === results[0]._ranking) {
+      var arrs = projectResultsToStringArray(result);
+      var cntlen = arrs.reduce( (prev,row) => {
+        var value = Utils.listToQuotedCommaAnd(row); //projectResultToStringArray(result, result));
+        if (seen.indexOf(value) < 0) {
+          seen.push(value);
+          res.push(row);
+        }
+        return prev + 1;} , 0);
+    }
+    return prev;
+  }, 0);
+  return res;
+}
+
+/**
+ * TODO
+ * @param results
+ */
+export function joinResultsTupel(results: Array<IMatch.IWhatIsTupelAnswer>): string[] {
+  // TODO SPLIT BY DOMAIN
+  var res = [];
+  var cnt = results.reduce(function (prev, result) {
+    if (true) { // TODO result._ranking === results[0]._ranking) {
+      var arrs = projectResultsToStringArray(result);
+      var cntlen = arrs.reduce( (prev,row) => {
+        var value = Utils.listToQuotedCommaAnd(row); //projectResultToStringArray(result, result));
+        if (res.indexOf(value) < 0) {
+          res.push(value);
+        }
+        return prev + 1;} , 0);
+    }
+    return prev;
   }, 0);
   return res;
 }

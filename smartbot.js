@@ -10,7 +10,7 @@ var MONGO_DBURL = 'mongodb://localhost/testdb';
 // Create bot and bind to console
 var connector = new builder.ConsoleConnector().listen();
 
-var botdialog = require('./gen/bot/smartdialog.js');
+var botdialog = require('./js/bot/smartdialog.js');
 
 
 var mongoose = require('mongoose');

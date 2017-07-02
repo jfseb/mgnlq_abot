@@ -5,7 +5,7 @@
  */
 
 var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+var root =  '../../js';
 
 //var debuglog = require('debug')('listall.nunit');
 
@@ -19,6 +19,12 @@ const Model = require('mgnlq_model').Model;
 
 var getModel = require('mgnlq_testmodel_replay').getTestModel;
 
+process.on('unhandledRejection', function onError(err) {
+  console.log(err);
+  console.log(err.stack);
+  throw err;
+});
+
 /*
 const mRules = InputFilterRules.getMRulesSample();
 
@@ -29,7 +35,7 @@ var records = [
     'url': 'com.sap.NTA'
   },
   {
-    'unit test': 'CrossApplcationNavigation',
+    'unit test': 'CrossApplcationNavigatiofn',
     'url': 'com.sap.NTA'
   },
   {
@@ -46,14 +52,13 @@ exports.testListAllWithContext = function (test) {
     // NEW NOT RULES
     ListAll.listAllWithContext('url', 'unit test NavTargetResolution',
       theModel).then((res) => {
-
-
-        test.deepEqual(ListAll.formatDistinctFromWhatIfResult([]), '');
-        var res3 = ListAll.joinResults(res.answers);
+        //console.log(JSON.stringify(res));
+       // test.deepEqual(ListAll.formatDistinctFromWhatIfResult([]), '');
+        var res3 = ListAll.joinResultsFilterDuplicates(res);
         //test.deepEqual(res3, ['com.sap.NTA' ]);
         test.deepEqual(res3, []);
 
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res.answers);
+        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
 
         test.deepEqual(res2, ''); // '"com.sap.NTA"');
         test.done();
@@ -64,14 +69,10 @@ exports.testListAllWithContext = function (test) {
 
 exports.testJoinResultsTupel = function (test) {
   var result = [{
-    'sentence': [{ 'string': 'mercury', 'matchedString': 'mercury', 'category': 'element name', '_ranking': 0.95 }],
-    'record': {
-      'element name': 'mercury', 'element symbol': 'Hg', 'element number': '80', 'atomic weight': '200.592(3)',
-      'tool': 'NoTool', '_domain': 'IUPAC'
-    },
-    'categories': ['element name', 'atomic weight'], 'result': ['mercury', '200.592(3)'], '_ranking': 1.5
+    // 'sentence': [{ 'string': 'mercury', 'matchedString': 'mercury', 'category': 'element name', '_ranking': 0.95 }],
+    'columns': ['element name', 'atomic weight'], 'results': [
+      { 'element name' : 'mercury',  'atomic weight' : '200.592(3)'}]
   }];
-
   var res = ListAll.joinResultsTupel(result);
   test.deepEqual(res, ['"mercury" and "200.592(3)"']);
   test.done();
@@ -84,7 +85,7 @@ exports.testListAllMultWithCompareOneBadCat = function (test) {
       theModel).then((res) => {
 
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
           [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
             ['FI-LOC-FI',
               'ODATA_GLO_FIN_APP_DESCRIPTORS',
@@ -108,7 +109,7 @@ exports.testListAllMultHavingCompareOneBadCat = function (test) {
       theModel).then((res) => {
 
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
 
           [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
             ['FI-LOC-FI',
@@ -134,7 +135,7 @@ exports.testListAllMultHavingCompareBECategories = function (test) {
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'devclass', 'BackendCatalogId'], 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
           [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
             ['FI-LOC-FI',
               'ODATA_GLO_FIN_APP_DESCRIPTORS',
@@ -163,9 +164,9 @@ exports.testListAllMultWithCompareBECategories = function (test) {
       theModel).then((res) => {
 
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
-          [ [ 'CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN' ],
-            [ 'CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN' ] ]
+        test.deepEqual(ListAll.flattenToStringArray(res),
+          [['CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN'],
+          ['CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN']]
           /*
       [['CA', 'n/a', 'n/a'],
       ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
@@ -180,6 +181,30 @@ exports.testListAllMultWithCompareBECategories = function (test) {
   });
 };
 
+exports.testProjectResultToStringArray = function (test) {
+  var src = {
+    columns: ['b', 'a', 'c', 'e'],
+    results: [{ a: 1, b: true, c: null, e: 'abc' }
+        , { a: -17.5, b: false, c: null, e: 'abc' }
+    ]
+  };
+  var res = ListAll.projectResultsToStringArray(
+   src);
+  test.deepEqual('' + src.results[0].c, 'null' );
+  test.deepEqual('' + res[0][2], 'null', 'is null' );
+  test.deepEqual(res,
+    [['true', '1', 'null', 'abc'],
+    ['false', '-17.5', 'null', 'abc']
+    ]);
+  test.done();
+};
+
+exports.testFlattenErrors = function (test) {
+  var r = [{ errors: false }, { errors: { abc: 1 } }];
+  var res = ListAll.flattenErrors(r);
+  test.deepEqual(res, [ { abc: 1 }]);
+  test.done();
+};
 
 exports.testListAllMultWithCompareBECategories = function (test) {
   //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."4
@@ -187,8 +212,8 @@ exports.testListAllMultWithCompareBECategories = function (test) {
     theModel.rules.wordCache = {};
     ListAll.listAllShowMe('orbits with earth', theModel).then((res) => {
       //console.log(JSON.stringify(res));
-      test.deepEqual(res.bestURI , 'https://en.wikipedia.org/wiki/Earth',
-          'correct result');
+      test.deepEqual(res.bestURI, 'https://en.wikipedia.org/wiki/Earth',
+        'correct result');
       test.done();
       Model.releaseModel(theModel);
     });
@@ -209,7 +234,7 @@ exports.testListAllMultWithCompareBECategoriesWithSet = function (test) {
       theModel).then((res) => {
 
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
           [
             ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
             ['FI-LOC-FI',
@@ -232,7 +257,7 @@ exports.testListAllMultWithCompareBECategoriesWithSetDomain = function (test) {
       theModel).then((res) => {
         //console.log(JSON.stringify(res));
 
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
           [
             ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
             ['FI-LOC-FI',
@@ -257,7 +282,7 @@ exports.testListAllMultHavingCompareBECategoriesWithSet = function (test) {
       theModel, categorySet).then((res) => {
 
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
           [
 
             ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
@@ -280,7 +305,7 @@ exports.testListAllMultHavingCompareBECategoriesWithSetOrder = function (test) {
     ListAll.listAllTupelWithContext(cats, 'TransactionCode S_ALR_87012394',
       theModel, categorySet).then((res) => {
         //console.log(JSON.stringify(res));
-        test.deepEqual(res.tupelanswers.map(o => o.result),
+        test.deepEqual(ListAll.flattenToStringArray(res),
           [['APPL_FIN_APP_DESCRIPTORS', 'FI-AR', 'SAP_TC_FIN_ACC_BE_APPS'],
             ['ODATA_GLO_FIN_APP_DESCRIPTORS', 'FI-LOC-FI',
 
@@ -339,7 +364,7 @@ exports.testListAllWithContextDomainOPLike = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', 'domain "SOBJ Tables"',
       theModel).then((res) => {
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res.answers);
+        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
         test.deepEqual(res2, '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'); // '"com.sap.NTA"; "com.sap.SNav"');
         test.done();
         Model.releaseModel(theModel);
@@ -352,7 +377,7 @@ exports.testListAllWithContextDomainLike = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', '"SOBJ Tables"',
       theModel).then((res) => {
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res.answers);
+        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
         test.deepEqual(res2, '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'); // '"com.sap.NTA"; "com.sap.SNav"');
         test.done();
         Model.releaseModel(theModel);
@@ -366,7 +391,7 @@ exports.testListAllWithContextDomainLikeAmbiguous = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', 'SOBJ Tables',
       theModel).then((res) => {
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res.answers);
+        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
         test.deepEqual(res2,
           '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'
         ); // '"com.sap.NTA"; "com.sap.SNav"');

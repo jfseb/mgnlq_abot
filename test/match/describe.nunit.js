@@ -3,9 +3,9 @@
  * @module toolmatcher.nunit
  * @copyright (c) 2016 Gerd Forstmann
  */
+const process = require('process');
+var root = '../../js';
 
-var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
 
 var debuglog = require('debug')('describe.nunit');
 

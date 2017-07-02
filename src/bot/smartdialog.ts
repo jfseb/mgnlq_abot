@@ -16,7 +16,6 @@ import * as fs from 'fs';
 import * as builder from 'botbuilder';
 import * as debug from 'debug';
 
-import * as Exec from '../exec/exec';
 import * as Match from '../match/match';
 import * as mongoose from 'mongoose';
 
@@ -102,12 +101,11 @@ function getElizaBot(id: string) {
 }
 
 import * as IMatch from '../match/ifmatch';
-import * as Tools from '../match/tools';
+//import * as Tools from '../match/tools';
 
 var newFlow = true;
 
 import { Model } from 'mgnlq_model';
-import * as ExecServer from '../exec/execserver';
 
 var models = {};
 
@@ -311,7 +309,7 @@ var oRules = PlainRecognizer.parseRules(oJSON);
 // var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
 
-function logQuery(session: builder.Session, intent: string, result?: Array<IMatch.IToolMatch>) {
+function logQuery(session: builder.Session, intent: string, result?: Array<any>) {
 
   fs.appendFile('./logs/showmequeries.txt', "\n" + JSON.stringify({
     text: session.message.text,
@@ -563,11 +561,11 @@ function makeBot(connector,
             //  dialoglog("ListAll", session, send(err_text));
             //  return;
           }
-          var joinresults = restrictLoggedOn(session, ListAll.joinResultsTupel(resultWI.tupelanswers));
-          logQueryWhatIsTupel(session, 'ListAll', resultWI.tupelanswers);
+          var joinresults = restrictLoggedOn(session, ListAll.joinResultsTupel(resultWI));
+          logQueryWhatIsTupel(session, 'ListAll', resultWI);
           debuglog(debuglog ? ('listall result2 >:' + JSON.stringify(resultWI)) : '-');
           // debuglog('result : ' + JSON.stringify(result, undefined, 2));
-          debuglog(debuglog.enabled ? ('best result : ' + JSON.stringify(resultWI.tupelanswers[0].result[0] || {}, undefined, 2)) : '-');
+          debuglog(debuglog.enabled ? ('best result : ' + JSON.stringify(resultWI[0].results[0] || {}, undefined, 2)) : '-');
           // debuglog(debuglog.enabled? ('top : ' + WhatIs.dumpWeightsTop(result1.tupelanswers[0].result[0] || {}, { top: 3 })): '-');
           // TODO cleansed sentence
 
@@ -576,8 +574,9 @@ function makeBot(connector,
 
 
           debuglog(debuglog ? ('listall result >:' + JSON.stringify(resultWI)) : '-');
-          var joinresults = restrictLoggedOn(session, ListAll.joinResultsTupel([resultWI.tupelanswers[0]]));
-          logQueryWhatIsTupel(session, 'ListAll', resultWI.tupelanswers);
+          // TODO Why only FIRST!???
+          var joinresults = restrictLoggedOn(session, ListAll.joinResultsTupel([resultWI[0]]));
+          logQueryWhatIsTupel(session, 'ListAll', resultWI);
           debuglog(debuglog ? ('listall result2 >:' + JSON.stringify(resultWI)) : '-');
           if (joinresults.length) {
             var suffix = inSomething ? ' of ' + inSomething : '';
@@ -640,15 +639,6 @@ function makeBot(connector,
           dialoglog("ListAll", session, send("my domains are ...\n" + res));
           return;
         }
-        /*
-        if (category === "tools") {
-          var res = restrictLoggedOn(session, theModel.tools).map(function (oTool) {
-            return oTool.name;
-          }).join(";\n");
-          dialoglog("ListAll", session, send("my tools are ...\n" + res));
-          return;
-        }
-        */
         //console.log(JSON.stringify(theModel.rules.wordMap['co-fio']));
         var query = category;
         var categoriesjoined = category;
@@ -658,11 +648,12 @@ function makeBot(connector,
         MongoQueries.listAll(query, theModel).then(result1 => {
           var cats = [];
           try {
+            debuglog('analyzing category from ' + category);
             cats = WhatIs.analyzeCategoryMultOnlyAndComma(category, theModel.rules, message);
             debuglog("here cats: " + cats.join(","));
           } catch (e) {
             if (e) {
-              debuglog("here exception" + e);
+              debuglog("here exception: " + e);
               // Go on for now
               //
 
@@ -686,8 +677,8 @@ function makeBot(connector,
             //  dialoglog("ListAll", session, send(err_text));
             //  return;
           }
-          var joinresults = restrictLoggedOn(session, ListAll.joinResultsTupel(result1.tupelanswers));
-          logQueryWhatIsTupel(session, 'ListAll', result1.tupelanswers);
+          var joinresults = restrictLoggedOn(session, ListAll.joinResultsTupel(result1));
+          logQueryWhatIsTupel(session, 'ListAll', result1);
           debuglog(() => ('listall result2 >:' + JSON.stringify(result1)));
           var suffix = (inSomething) ? " for " + inSomething : "";
           if (joinresults.length) {

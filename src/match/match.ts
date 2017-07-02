@@ -67,6 +67,7 @@ export function rankToolMatch(a: IMatch.IToolMatchResult): number {
   return res;
 };
 
+/*
 export const ToolMatch = {
   rankResult: function (a: IMatch.IToolMatchResult): number {
     return rankToolMatch(a);
@@ -179,7 +180,9 @@ export const ToolMatch = {
   }
 }
 
+*/
 
+/*
 export const Result = {
   getEntity: function (match: IMatch.IToolMatch, key: string): IMatch.IWord {
     if (!match.toolmatchresult) {
@@ -195,3 +198,4 @@ export const Result = {
     return undefined;
   }
 }
+*/

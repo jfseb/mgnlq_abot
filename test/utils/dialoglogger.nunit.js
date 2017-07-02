@@ -1,7 +1,8 @@
 // import * as dlsh from '../../src/ts/utils/damerauLevenshtein.js'
 
-var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+
+var root = '../../js';
+
 
 var DialogLogger = require(root + '/utils/dialoglogger.js');
 

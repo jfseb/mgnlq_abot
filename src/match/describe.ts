@@ -18,7 +18,7 @@ var perflog = debug('perf');
 //const perflog = logger.perf("perflistall");
 
 
-import * as Toolmatcher from './toolmatcher';
+//import * as Toolmatcher from './toolmatcher';
 
 import { Sentence as Sentence } from 'mgnlq_er';
 
@@ -133,6 +133,7 @@ interface IDescribeFact {
     multivalued : boolean
   }
 
+/*
 export function countRecordPresenceFact(fact : string, category : string, domain : string, theModel : IMatch.IModels) : Promise<IDescribeFact> {
   var res = { totalrecords : 0,
     presentrecords : 0,
@@ -158,6 +159,7 @@ export function countRecordPresenceFact(fact : string, category : string, domain
     return res;
   });
 }
+*/
 
 /*
 export function countRecordPresenceFactOld(fact : string, category : string, domain : string, theModel : IMatch.IModels) : IDescribeFact {

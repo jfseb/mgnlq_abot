@@ -5,16 +5,13 @@
  */
 
 var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
-
+var root = '../../js';
 var debuglog = require('debug')('analyze.nunit');
 
 const WhatIs = require(root + '/match/whatis.js');
-
-var Sentence = require('mgnlq_er').Sentence;
+const ListAll = require(root + '/match/listall.js');
 
 const MongoQueries = require(root + '/match/mongoqueries.js');
-const ListAll = require(root + '/match/listall.js');
 
 //const InputFilterRules = require('mgnlq_er').InputFilterRules;
 
@@ -45,25 +42,24 @@ function setMockDebug() {
 if (!debuglog.enabled) {
   setMockDebug();
 }
-
-
+/*
 exports.testCmbByResultTupel = function (test) {
   var aList = [
     {
       _ranking: 1.0,
-      result: ['ABC']
+      results: [{ a: 'ABC'} ]
     },
     {
       _ranking: 0.9,
-      result: ['ABC']
+      results: [{ a: 'ABC'}]
     },
     {
       _ranking: 1.2,
-      result: ['DEF']
+      results: [{ a: 'DEF'}]
     },
     {
       _ranking: 0.3,
-      result: ['DEF']
+      results: [{ a : 'DEF'}]
     },
   ];
 
@@ -84,6 +80,7 @@ exports.testCmbByResultTupel = function (test) {
   test.equal(res.length, 2);
   test.done();
 };
+*/
 
 exports.testlocaleCompareArrays = function(test) {
   test.equal(WhatIs.localeCompareArrays([],[]), 0);
@@ -97,7 +94,7 @@ exports.testlocaleCompareArrays = function(test) {
   test.equal(WhatIs.localeCompareArrays(['A'],['A','B','C'],['D']), 1);
   test.done();
 };
-
+/*
 exports.testCmbByResultTupelArrLength = function (test) {
   var aList = [
     {
@@ -106,16 +103,18 @@ exports.testCmbByResultTupelArrLength = function (test) {
     },
     {
       _ranking: 1.0,
-      result: ['ABC', 'DEF', 'KLM']
+      columns: ['a'],
+      results: [{ a: 'ABC'}, {a : 'DEF'}, { a: 'KLM'}]
     },
     {
       _ranking: 1.0,
-      result: ['ABC', 'DEF']
+      columns: ['a'],
+      results: [{ a: 'ABC'}, { a: 'DEF'}]
     },
-
     {
       _ranking: 0.3,
-      result: ['DEF']
+      columns: ['a'],
+      results: [{ a: 'DEF'}]
     },
   ];
 
@@ -136,52 +135,9 @@ exports.testCmbByResultTupelArrLength = function (test) {
   test.equal(res.length, 4);
   test.done();
 };
-
-exports.testCmbByRankTied = function (test) {
-  var aList = [
-    {
-      _ranking: 1.0,
-      result: 'ABC',
-      record: { 'category': 'ccc' }
-    },
-    {
-      _ranking: 1.0,
-      result: 'ABC',
-      record: { 'category': 'AAA', 'some': 'AAAA' }
-    },
-    {
-      _ranking: 1.0,
-      result: 'ABC',
-      record: { 'category': 'AAA', 'nosome': 'AAAA' }
-    },
-    {
-      _ranking: 1.0,
-      result: 'ABC',
-      record: { 'category': 'ZZZ' }
-    }
-  ];
-
-  var res = aList.sort(WhatIs.cmpByRanking);
-
-  test.deepEqual(res[0], {
-    result: 'ABC', _ranking: 1.0,
-    record: { 'category': 'AAA', 'nosome': 'AAAA' }
-  }, 'sort order');
-  test.deepEqual(res[1], {
-    result: 'ABC', _ranking: 1.0,
-    record: {
-      'category': 'AAA',
-      'some': 'AAAA'
-    }
-  }, 'sort order 2nd');
-
-
-  test.done();
-};
-
+*/
 
 exports.testFilterAcceptingOnly = function (test) {
-
   var inp = [
     [
       {
@@ -233,104 +189,6 @@ exports.testFilterAcceptingOnly = function (test) {
   test.deepEqual(res, [inp[2]]);
   test.done();
 };
-
-
-
-exports.testcmpByNrCategoriesAndSameDomain2 = function (test) {
-  var inp = [
-    [
-      {
-        matchedString: 'abc',
-        category: 'category'
-      },
-      {
-        matchedString: 'abc',
-        category: 'filler'
-      }],
-    [
-      {
-        matchedString: 'abc',
-        'category': 'category'
-      },
-      {
-        matchedString: 'abc',
-        'category': 'category'
-      },
-      {
-        matchedString: 'abc',
-        'category': 'category'
-      },
-      {
-        matchedString: 'def',
-        category: 'category'
-      }],
-    [
-      {
-        matchedString: 'abc',
-        'category': 'category'
-      },
-      {
-        matchedString: 'hij',
-        'category': 'category'
-      },
-      {
-        matchedString: 'def',
-        category: 'category'
-      }],
-    [
-      {
-        category: 'filler'
-      },
-      {
-        category: 'filler'
-      }
-    ]
-  ];
-  var res = inp;
-  res.sort(WhatIs.cmpByNrCategoriesAndSameDomain);
-  var res2 = Sentence.getDistinctCategoriesInSentence(res[0]);
-  test.deepEqual(res2, ['abc', 'hij', 'def']);
-  test.done();
-};
-
-
-
-exports.testcmpByNrCategoriesAndSameDomain = function (test) {
-  var inp = [
-    [
-      {
-        matchedString: 'abc',
-        category: 'category'
-      },
-      {
-        matchedString: 'abc',
-        category: 'filler'
-      }],
-    [
-      {
-        matchedString: 'abc',
-        'category': 'category'
-      },
-      {
-        matchedString: 'def',
-        category: 'category'
-      }],
-    [
-      {
-        category: 'filler'
-      },
-      {
-        category: 'filler'
-      }
-    ]
-  ];
-  var best = inp[1];
-  var res = inp;
-  res.sort(WhatIs.cmpByNrCategoriesAndSameDomain);
-  test.deepEqual(res[0], best);
-  test.done();
-};
-
 
 
 exports.testAnalyzeCategoryElemSingle = function (test) {
@@ -574,13 +432,12 @@ function doRecognizeNew(cat, str, fn) {
   getModel2().then((theModel2) => {
     MongoQueries.listAll(cat + ' with ' + str, theModel2).then(resultWI => {
       debuglog(debuglog ? ('listall result2 >:' + JSON.stringify(resultWI)) : '-');
-      var joinresults = ListAll.joinResultsTupel(resultWI.tupelanswers);
+      var joinresults = ListAll.joinResultsTupel(resultWI);
       debuglog(()=> JSON.stringify(joinresults));
       //var res = WhatIs.resolveCategory(cat, str,
       //  theModel2.rules);
-      debuglog(resultWI.tupelanswers.map(o => {
+      debuglog(resultWI.map(o => {
         var u = Object.assign({}, o);
-        delete u.record;
         return JSON.stringify(u);
       }).join(' \n**\n'));
       fn(undefined, resultWI, theModel2);
@@ -605,11 +462,11 @@ function doRecognizeMultNew(cats, str, fn) {
   getModel2().then((theModel2) => {
     MongoQueries.listAll(cats.join(' ')+ ' with ' + str, theModel2).then(resultWI => {
       debuglog(debuglog ? ('listall result2 >:' + JSON.stringify(resultWI)) : '-');
-      var joinresults = ListAll.joinResultsTupel(resultWI.tupelanswers);
+      var joinresults = ListAll.joinResultsTupel(resultWI);
       debuglog(()=> JSON.stringify(joinresults));
       //var res = WhatIs.resolveCategory(cat, str,
       //  theModel2.rules);
-      debuglog(resultWI.tupelanswers.map(o => {
+      debuglog(resultWI.map(o => {
         var u = Object.assign({}, o);
         delete u.record;
         return JSON.stringify(u);
@@ -649,43 +506,13 @@ exports.testUpDownWhatIsBSPNameManageLabels = function (test) {
 
 
 
-exports.testcmpByRankingTupel = function (test) {
-  var a1 = {
-    _ranking: 1.0,
-    record: { 'a': '1', 'b': '2' },
-    result: ['a']
-  };
-  var b1 = {
-    _ranking: 1.0,
-    record: { 'a': '1', 'b': '3' },
-    result: ['a']
-  };
-  var c1 = {
-    _ranking: 1.0,
-    record: { 'a': '1' },
-    result: ['a']
-  };
-  var res = WhatIs.cmpByRankingTupel(a1, a1);
-  test.equal(res, 0);
-  res = WhatIs.cmpByRankingTupel(a1, b1, 'compare 2');
-  // console.log('here res' + res);
-  test.equal(res < 0, true, 'cmp 2'); //
-  res = WhatIs.cmpByRankingTupel(b1, a1, 'def');
-  test.equal(res < 0, false);
-  res = WhatIs.cmpByRankingTupel(c1, a1);
-  test.equal(res < 0, false);
-  res = WhatIs.cmpByRankingTupel(a1, c1);
-  test.equal(res < 0, true);
-  test.done();
-};
-
 exports.testUpDownWhatIsBSPNameManageLabelsNew = function (test) {
   doRecognizeNew('BSPName', 'manage labels', function (err, res, aModel) {
     debuglog(()=>' here the result '+ JSON.stringify(res,undefined,2));
-    test.deepEqual(res.tupelanswers[0].result[0], 'n/a', ' correct results');
-    test.deepEqual(res.tupelanswers[1].result[0], 'FRA_ALERT_MAN', ' correct results');
+    test.deepEqual(res[0].results[0].BSPName, 'n/a', ' correct results');
+    test.deepEqual(res[1].results[0].BSPName, 'FRA_ALERT_MAN', ' correct results');
     //console.log(JSON.stringify(Object.keys(res.answers[0])));
-    test.deepEqual(res.tupelanswers[0].categories[0], 'BSPName', ' category');
+    test.deepEqual(res[0].columns[0], 'BSPName', ' category');
     //  test.deepEqual(res.answers[1].sentence[0].matchedString, 'Manage Alerts', ' category');
   /*  test.deepEqual(res.answers.map(o => o.result),
       ['n/a'], 'ranking');
@@ -694,7 +521,7 @@ exports.testUpDownWhatIsBSPNameManageLabelsNew = function (test) {
       //[ 2.1374999999999997, 2.0074551529620215 ]
       , 'ranking');
 */
-    var indis = WhatIs.isIndiscriminateResultTupel(res.tupelanswers);
+    var indis = WhatIs.isIndiscriminateResultTupel(res);
     debuglog(()=>'here indis' + JSON.stringify(indis));
     test.deepEqual(indis, 'Your question does not have a specific answer');
     test.done();
@@ -720,14 +547,14 @@ exports.testUpDownWhatIsBSPNameManageLablesQuote = function (test) {
 
 exports.testUpDownWhatIsBSPNameManageLabelQuoteNew = function (test) {
   doRecognizeNew('BSPName', '"manage labels"', function (err, res, aModel) {
-    test.deepEqual(res.tupelanswers[0].result, ['n/a'], ' correct results');
+    test.deepEqual(res[0].results, [{ BSPName: 'n/a'}], ' correct results');
     //console.log(JSON.stringify(Object.keys(res.answers[0])));
-    test.deepEqual(res.tupelanswers.length, 1, 'one result');
-    test.deepEqual(res.tupelanswers[0].categories[0], 'BSPName', ' category');
+    test.deepEqual(res.length, 1, 'one result');
+    test.deepEqual(res[0].columns[0], 'BSPName', ' category');
    //?? test.deepEqual(res.tupelanswers[0].categories[0], 'BSPName', ' category');
-    test.deepEqual(res.tupelanswers[0].sentence[2].matchedString, 'Manage Labels', ' matched' );
-    test.deepEqual(res.tupelanswers.map(o => o.result),
-      [['n/a']], ' value');
+    test.deepEqual(res[0].aux.sentence[2].matchedString, 'Manage Labels', ' matched' );
+    test.deepEqual(res.map(o => o.results),
+      [[ { BSPName: 'n/a'}]], ' value');
       /*
     test.deepEqual(res.answers.map(o => o._ranking),
       // [ 2.1374999999999997 ]
@@ -735,7 +562,7 @@ exports.testUpDownWhatIsBSPNameManageLabelQuoteNew = function (test) {
 
       , 'ranking');
       */
-    var indis = WhatIs.isIndiscriminateResultTupel(res.tupelanswers);
+    var indis = WhatIs.isIndiscriminateResultTupel(res);
     test.deepEqual(indis, undefined);
     test.done();
     Model.releaseModel(aModel);
@@ -771,15 +598,15 @@ exports.testUpWhatIsBSPNameFioriIntentManageLablesQuote = function (test) {
 
 exports.testWhatIsBSPNameFioriIntentManageLabelsNew = function (test) {
   doRecognizeMultNew(['BSPName', 'fiori intent', 'AppName'], 'manage labels', function (err, resultArr, aModel) {
-    test.deepEqual(resultArr.tupelanswers[0].result[0], 'n/a');
-    test.deepEqual(resultArr.tupelanswers.map(o => o.result),
+    test.deepEqual(resultArr[0].results[0], { BSPName: 'n/a', 'fiori intent': '#ProductLabel-manage', 'AppName': 'Manage Labels'});
+    test.deepEqual( ListAll.projectFullResultsToFlatStringArray(resultArr), // .map(o => ListAll.projectResultsToStringArray(o)),
       [
         ['n/a', '#ProductLabel-manage', 'Manage Labels'],
     // TODO: 2nd result should not be there as it is not close enoough
     //AppNAme filters for it?
         [ 'FRA_ALERT_MAN', '#ComplianceAlerts-manage', 'Manage Alerts' ]
       ], 'result');
-    var indis = WhatIs.isIndiscriminateResultTupel(resultArr.tupelanswers);
+    var indis = WhatIs.isIndiscriminateResultTupel(resultArr);
     test.deepEqual(indis !== undefined, true);
     // 'Many comparable results, perhaps you want to specify a discriminating uri,appId,ApplicationComponent,RoleName,ApplicationType,BSPApplicationURL,releaseName,releaseId,BusinessCatalog,TechnicalCatalog,detailsurl,BSPPackage,AppDocumentationLinkKW,BusinessRoleName,BusinessGroupName,//BusinessGroupDescription,PrimaryODataServiceName,SemanticObject,FrontendSoftwareComponent,TransactionCodes,PrimaryODataPFCGRole,ExternalReleaseName,ArtifactId,ProjectPortalLink,AppKey or use "list all ..."',
     // 'indis');
@@ -790,11 +617,11 @@ exports.testWhatIsBSPNameFioriIntentManageLabelsNew = function (test) {
 
 exports.testUpWhatIsBSPNameFioriIntentManageLabelsQuoteNew = function (test) {
   doRecognizeMultNew(['BSPName', 'fiori intent', 'AppName'], '"manage labels"', function (err, resultArr, aModel) {
-    test.deepEqual(resultArr.tupelanswers[0].result[0],'n/a');
-    test.deepEqual(resultArr.tupelanswers.map(o => o.result),
+    test.deepEqual(resultArr[0].results[0].BSPName,'n/a');
+    test.deepEqual( ListAll.projectFullResultsToFlatStringArray(resultArr),  // resultArr.map(o => o.results),
       [
         ['n/a', '#ProductLabel-manage', 'Manage Labels']], 'result');
-    var indis = WhatIs.isIndiscriminateResultTupel(resultArr.tupelanswers);
+    var indis = WhatIs.isIndiscriminateResultTupel(resultArr);
     test.deepEqual(indis, undefined, 'indis');
     test.done();
     Model.releaseModel(aModel);

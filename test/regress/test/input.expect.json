@@ -1,6 +1,6 @@
 [
   "my domains are ...\nexample commands;\nGeneticDNA;\nFioriBOM;\nhints;\nIUPAC;\nmetamodel;\nexample questions;\nTWF_countries;\nTWF fields",
-  "I don't know anything about \"Applications\" (\"ApplicationComponent\").\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'",
+  "I don't know anything about \"Applications\" (\"\").\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: 'FACT'",
   "The Sex Ratio of germany is \"at birth: :1.06 male(s)/female; 0-14 years: :1.06 male(s)/female; 15-24 years: :1.04 male(s)/female; 25-54 years: :1.03 male(s)/female; 55-64 years: :0.97 male(s)/female; 65 years and over: :0.76 male(s)/female; total population: :0.97 male(s)/female (2014 est.)\"\n",
   "The BSPName of Manage Labels is \"n/a\"\n",
   "The Application Component of Manage Change Master is \"PLM-FIO-RCP\"\n",
@@ -16,8 +16,8 @@
   "the ApplicationComponent for Fiori App \"Manage Label Sets\" are ...\n\"PLM-FIO-RCP\"",
   "the AppName for AppName Manage Label Sets are ...\n\"Manage Label Sets\"",
   "The fiori intent of Fiori App \"Manage Labels\" is \"#ProductLabel-manage\"\n",
-  "I don't know anything about \"fiori\" (\"AppName\") in relation to \"fiori\".\nI do not understand \"fiori\".\nI do not understand \"fiori\".",
-  "I don't know anything about \"fiori\" (\"AppName\") in relation to \"fiori intent\".\nI do not understand \"fiori\".",
+  "I don't know anything about \"fiori\" (\"\") in relation to \"fiori\".\nI do not understand \"fiori\".\nI do not understand \"fiori\".",
+  "I don't know anything about \"fiori\" (\"\") in relation to \"fiori intent\".\nI do not understand \"fiori\".",
   "I don't know anything about \"fiori App\" (\"AppName\") in relation to \"fiori\".\nI do not understand \"fiori\".",
   "I don't know anything about \"fiori for fiori\" (\"\").\nI do not understand \"fiori\".",
   "the appNames in ApplicationComponent PLM-FIO-RCP are ...\n\"Manage Change Master\";\n\"Manage Label Sets\";\n\"Manage Recipes\";\n\"Manage Specifications\";\n\"Recipe Change Simulation\";\n\"Recipe Finder\"",

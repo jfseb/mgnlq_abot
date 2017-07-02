@@ -3,9 +3,7 @@
  * @module word.nunit
  * @copyright (c) 2016 Gerd Forstmann
  */
-
-var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+var root = '../../js';
 
 //var debuglog = require('debug')('word.nunit');
 

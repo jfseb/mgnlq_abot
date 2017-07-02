@@ -2,8 +2,8 @@
 
 var debuglog = require('debug')('logger.nunit');
 
-var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+var root = '../../js';
+
 
 var Logger = require(root + '/utils/logger.js');
 

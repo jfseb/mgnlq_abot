@@ -6,8 +6,8 @@
 
 /* eslint-disable */
 
-var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+var root = '../../js';
+
 
 var debuglog = require('debug')('indexwords.nunit');
 

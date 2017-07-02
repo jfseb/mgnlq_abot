@@ -2,6 +2,8 @@
 
 import { IFModel } from 'mgnlq_model';
 
+import { MongoQ as MongoQ } from 'mgnlq_parser1';
+
 export const enum EnumResponseCode {
   NOMATCH = 0,
   EXEC,
@@ -74,13 +76,12 @@ export interface IProcessedWhatIsAnswers extends IProcessed {
 }
 
 
-
-export interface IProcessedWhatIsTupelAnswers extends IProcessed {
-  sentences? : ISentence[],
-  tupelanswers : Array<IWhatIsTupelAnswer>
-}
-
-
+export type IProcessedWhatIsTupelAnswers = MongoQ.IProcessedMongoAnswers;
+//  sentences? : ISentence[],
+//  tupelanswers : Array<IWhatIsTupelAnswer>
+//}
+export type IWhatIsTupelAnswer = MongoQ.IQueryResult;
+/*
 export interface IWhatIsTupelAnswer {
   sentence: ISentence,
   record : IRecord,
@@ -88,6 +89,7 @@ export interface IWhatIsTupelAnswer {
   result: string[],
   _ranking : number
 }
+*/
 
 
 export interface IMatchedSetRecord {
@@ -146,12 +148,15 @@ export interface IPrompt {
   category: string
 }
 
+/*
 export interface IToolMatch {
   toolmatchresult: IToolMatchResult,
   sentence: ISentence,
   tool: ITool,
   rank: number
 }
+*/
+
 
 export interface IWord {
   string: string,

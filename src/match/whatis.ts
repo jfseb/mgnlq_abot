@@ -7,6 +7,8 @@
 
 
 import { InputFilter as InputFilter} from 'mgnlq_er';
+import { MongoQ as MongoQ } from 'mgnlq_parser1';
+
 
 import * as debug from 'debug';
 
@@ -31,9 +33,8 @@ import * as _ from 'lodash';
 
 import * as IMatch from './ifmatch';
 
-import * as Match from './match';
-
-import * as Toolmatcher from './toolmatcher';
+//import * as Match from './match';
+//import * as Toolmatcher from './toolmatcher';
 
 import { Sentence as Sentence} from 'mgnlq_er';
 
@@ -79,6 +80,69 @@ export function localeCompareArrays(aaresult: string[], bbresult: string[]): num
   return 0;
 }
 
+
+export function localeCompareRecordArrays(aaresult: MongoQ.IResultRecord[], bbresult: MongoQ.IResultRecord[]):  number {
+  var cmp = 0;
+  var blen = bbresult.length;
+  aaresult.every(function (a, index) {
+    if (blen <= index) {
+      cmp = -1;
+      return false;
+    }
+    cmp = localeCompareRecord(a,bbresult[index]);
+    if (cmp) {
+      return false;
+    }
+    return true;
+  });
+  if (cmp) {
+    return cmp;
+  }
+  if (blen > aaresult.length) {
+    cmp = +1;
+    return cmp;
+  }
+  return 0;
+}
+
+
+export function localeCompareRecord(aaresult: MongoQ.IResultRecord, bbresult: MongoQ.IResultRecord): number {
+  var cmp = 0;
+  var blen = bbresult.length;
+  var keys = Object.keys(aaresult).sort();
+  keys.every(function (keya, index)  : boolean{
+   var a = aaresult[keya];
+    if (blen <= index) {
+      cmp = -1;
+      return false;
+    }
+    var b = bbresult[keya];
+    var ta = typeof a;
+    var tb = typeof b;
+    if(ta !== tb ) {
+      cmp = ta.localeCompare(tb);
+      return false;
+    }
+    if(typeof ta === 'number') {
+      cmp = safeDelta(a as number,b as number);
+    } else {
+      cmp = (a as string).localeCompare( (b as string));
+    }
+    if (cmp) {
+      return false;
+    }
+    return true;
+  });
+  if (cmp) {
+    return cmp;
+  }
+  if (blen > aaresult.length) {
+    cmp = +1;
+    return cmp;
+  }
+  return 0;
+}
+
 export function safeEqual(a : number, b : number) : boolean {
   var delta = a - b ;
   if(Math.abs(delta) < Algol.RANKING_EPSILON) {
@@ -96,11 +160,11 @@ export function safeDelta(a : number, b : number) : number {
 }
 
 export function cmpByResultThenRankingTupel(aa: IMatch.IWhatIsTupelAnswer, bb: IMatch.IWhatIsTupelAnswer) {
-  var cmp = localeCompareArrays(aa.result, bb.result);
+  var cmp = localeCompareRecordArrays(aa.results, bb.results);
   if (cmp) {
     return cmp;
   }
-  return -safeDelta(aa._ranking,bb._ranking);
+  return 0; // -safeDelta(aa._ranking,bb._ranking);
 }
 
 
@@ -125,6 +189,7 @@ export function cmpRecords(a: IMatch.IRecord, b: IMatch.IRecord) : number {
   return res;
 }
 
+/*
 export function cmpByRanking(a: IMatch.IWhatIsAnswer, b: IMatch.IWhatIsAnswer) : number {
   var cmp = - safeDelta(a._ranking, b._ranking) as number;
   if (cmp) {
@@ -137,20 +202,21 @@ export function cmpByRanking(a: IMatch.IWhatIsAnswer, b: IMatch.IWhatIsAnswer) :
 
   return cmpRecords(a.record,b.record);
 }
+*/
 
-
+/*
 export function cmpByRankingTupel(a: IMatch.IWhatIsTupelAnswer, b: IMatch.IWhatIsTupelAnswer) : number {
-  var cmp = - safeDelta(a._ranking, b._ranking);
+  var cmp = 0; // - safeDelta(a._ranking, b._ranking);
   if (cmp) {
     return cmp;
   }
-  cmp = localeCompareArrays(a.result, b.result);
+  cmp = localeCompareRecordArrays(a.results, b.results);
   if (cmp) {
     return cmp;
   }
-  return cmpRecords(a.record,b.record);
+  return 0; //cmpRecords(a.record,b.record);
 }
-
+*/
 
 export function dumpNiceTupel(answer: IMatch.IWhatIsTupelAnswer) {
   var result = {
@@ -158,17 +224,20 @@ export function dumpNiceTupel(answer: IMatch.IWhatIsTupelAnswer) {
     push: function (s) { this.s = this.s + s; }
   };
   var s =
-    `**Result for categories: ${answer.categories.join(";")} is ${answer.result}
- rank: ${answer._ranking}
+    `**Result for categories: ${answer.columns.join(";")} is ${answer.results}
+ rank: ${1 /*answer._ranking*/}
 `;
   result.push(s);
-  Object.keys(answer.record).forEach(function (sRequires, index) {
+  answer.results.forEach(function (queryresult,index) {
+  answer.columns.forEach(function (sRequires, index) {
     if (sRequires.charAt(0) !== '_') {
-      result.push(`record: ${sRequires} -> ${answer.record[sRequires]}`);
+      result.push(`record: ${sRequires} -> ${queryresult[sRequires]}`);
     }
     result.push('\n');
   });
-  var oSentence = answer.sentence;
+});
+
+  var oSentence = answer.aux.sentence || [];
   oSentence.forEach(function (oWord, index) {
     var sWord = `[${index}] : ${oWord.category} "${oWord.string}" => "${oWord.matchedString}"`
     result.push(sWord + "\n");
@@ -177,7 +246,7 @@ export function dumpNiceTupel(answer: IMatch.IWhatIsTupelAnswer) {
   return result.s;
 }
 
-
+/*
 export function filterDistinctResultAndSortTupel(res: IMatch.IProcessedWhatIsTupelAnswers): IMatch.IProcessedWhatIsTupelAnswers {
   var result = res.tupelanswers.filter(function (iRes, index) {
     if (debuglog.enabled) {
@@ -192,6 +261,7 @@ export function filterDistinctResultAndSortTupel(res: IMatch.IProcessedWhatIsTup
   result.sort(cmpByRankingTupel);
   return (Object as any).assign(res, { tupelanswers: result });
 }
+*/
 
 /*
 export function filterOnlyTopRanked(results: Array<IMatch.IWhatIsAnswer>): Array<IMatch.IWhatIsAnswer> {
@@ -618,7 +688,6 @@ export function processString(query: string, rules: IMatch.SplitRules
 */
 }
 
-
 export function analyzeContextString(contextQueryString: string, rules: IMatch.SplitRules):
   IMatch.IProcessedSentences {
 
@@ -633,11 +702,12 @@ export function analyzeContextString(contextQueryString: string, rules: IMatch.S
   return aSentencesReinforced;
 }
 
+/*
 export function cmpByNrCategoriesAndSameDomain(a: IMatch.ISentence, b: IMatch.ISentence): number {
   //console.log("compare a" + a + " cntb " + b);
   var cnta = Sentence.getDistinctCategoriesInSentence(a).length;
   var cntb = Sentence.getDistinctCategoriesInSentence(b).length;
-  /*
+  / *
     var cnta = a.reduce(function(prev, oWord) {
       return prev + ((oWord.category === "category")? 1 : 0);
     },0);
@@ -645,16 +715,12 @@ export function cmpByNrCategoriesAndSameDomain(a: IMatch.ISentence, b: IMatch.IS
       return prev + ((oWord.category === "category")? 1 : 0);
     },0);
    // console.log("cnt a" + cnta + " cntb " + cntb);
-   */
+   * /
   return cntb - cnta;
-}
+}*/
 
 export function analyzeCategoryMult(categorylist: string, rules: IMatch.SplitRules, wholesentence: string, gWords:
   { [key: string]: IMatch.ICategorizedString[] }): string[] {
-
-
-
-
 
   var res = analyzeContextString(categorylist, rules);
   //  debuglog("resulting category sentences", JSON.stringify(res));
@@ -753,19 +819,19 @@ export function resolveCategories(categories: string[], contextQueryString: stri
 
 export function isIndiscriminateResultTupel(results: Array<IMatch.IWhatIsTupelAnswer>): string {
   var cnt = results.reduce(function (prev, result) {
-    if (safeEqual(result._ranking,results[0]._ranking)) {
+    if (safeEqual(1, 1)) { // result._ranking,results[0]._ranking)) {
       return prev + 1;
     }
   }, 0);
   if (cnt > 1) {
     // search for a discriminating category value
-    var discriminating = Object.keys(results[0].record).reduce(function (prev, category) {
+    var discriminating = []; /*Object.keys(results[0].record).reduce(function (prev, category) {
       if ((category.charAt(0) !== '_' && results[0].categories.indexOf(category) < 0)
         && (results[0].record[category] !== results[1].record[category])) {
         prev.push(category);
       }
       return prev;
-    }, []);
+    }, []); */
     if (discriminating.length) {
       return "Many comparable results, perhaps you want to specify a discriminating " + discriminating.join(',') + ' or use "list all ..."';
     }

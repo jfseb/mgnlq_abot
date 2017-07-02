@@ -1,5 +1,6 @@
-var process = require('process');
-var root = (process.env.FSD_COVERAGE) ? '../../gen_cov' : '../../gen';
+
+var root = '../../js';
+
 
 //var debug = require('debug')('vismodel.nunit');
 
