@@ -2,16 +2,18 @@
  * @file
  * @module toolmatcher.nunit
  * @copyright (c) 2016 Gerd Forstmann
- */
+*/
 
 var process = require('process');
-var root =  '../../js';
+var root = '../../js';
 
 //var debuglog = require('debug')('listall.nunit');
 
 const ListAll = require(root + '/match/listall.js');
+const ErBase = require('mgnlq_er').ErBase;
+const MongoQueries = require(root + '/match/mongoqueries.js');
 //const WhatIs = require(root + '/match/whatis');
-
+//const Sentence = require('mgnlq_er').Sentence;
 const Model = require('mgnlq_model').Model;
 
 //const theModel = Model.loadModels();
@@ -25,26 +27,6 @@ process.on('unhandledRejection', function onError(err) {
   throw err;
 });
 
-/*
-const mRules = InputFilterRules.getMRulesSample();
-
-
-var records = [
-  {
-    'unit test': 'NavTargetResolution',
-    'url': 'com.sap.NTA'
-  },
-  {
-    'unit test': 'CrossApplcationNavigatiofn',
-    'url': 'com.sap.NTA'
-  },
-  {
-    'unit test': 'ShellNavigation',
-    'url': 'com.sap.SNav'
-  }
-];
-*/
-
 //WhatIs.resetCache();
 
 exports.testListAllWithContext = function (test) {
@@ -52,8 +34,8 @@ exports.testListAllWithContext = function (test) {
     // NEW NOT RULES
     ListAll.listAllWithContext('url', 'unit test NavTargetResolution',
       theModel).then((res) => {
-        //console.log(JSON.stringify(res));
-       // test.deepEqual(ListAll.formatDistinctFromWhatIfResult([]), '');
+        // console.log(JSON.stringify(res));
+        // test.deepEqual(ListAll.formatDistinctFromWhatIfResult([]), '');
         var res3 = ListAll.joinResultsFilterDuplicates(res);
         //test.deepEqual(res3, ['com.sap.NTA' ]);
         test.deepEqual(res3, []);
@@ -71,7 +53,7 @@ exports.testJoinResultsTupel = function (test) {
   var result = [{
     // 'sentence': [{ 'string': 'mercury', 'matchedString': 'mercury', 'category': 'element name', '_ranking': 0.95 }],
     'columns': ['element name', 'atomic weight'], 'results': [
-      { 'element name' : 'mercury',  'atomic weight' : '200.592(3)'}]
+      { 'element name': 'mercury', 'atomic weight': '200.592(3)' }]
   }];
   var res = ListAll.joinResultsTupel(result);
   test.deepEqual(res, ['"mercury" and "200.592(3)"']);
@@ -185,13 +167,13 @@ exports.testProjectResultToStringArray = function (test) {
   var src = {
     columns: ['b', 'a', 'c', 'e'],
     results: [{ a: 1, b: true, c: null, e: 'abc' }
-        , { a: -17.5, b: false, c: null, e: 'abc' }
+      , { a: -17.5, b: false, c: null, e: 'abc' }
     ]
   };
   var res = ListAll.projectResultsToStringArray(
-   src);
-  test.deepEqual('' + src.results[0].c, 'null' );
-  test.deepEqual('' + res[0][2], 'null', 'is null' );
+    src);
+  test.deepEqual('' + src.results[0].c, 'null');
+  test.deepEqual('' + res[0][2], 'null', 'is null');
   test.deepEqual(res,
     [['true', '1', 'null', 'abc'],
     ['false', '-17.5', 'null', 'abc']
@@ -202,7 +184,7 @@ exports.testProjectResultToStringArray = function (test) {
 exports.testFlattenErrors = function (test) {
   var r = [{ errors: false }, { errors: { abc: 1 } }];
   var res = ListAll.flattenErrors(r);
-  test.deepEqual(res, [ { abc: 1 }]);
+  test.deepEqual(res, [{ abc: 1 }]);
   test.done();
 };
 
@@ -373,6 +355,85 @@ exports.testListAllWithContextDomainOPLike = function (test) {
 };
 
 
+exports.testIsSignificantDifference = function (test) {
+  test.deepEqual(ListAll.isSignificantDifference('abcdefs', 'hijlk'), true);
+  test.deepEqual(ListAll.isSignificantDifference('abcdef', 'abcdef'), false);
+  test.deepEqual(ListAll.isSignificantDifference('abcdefss', 'abcdef'), true);
+  test.deepEqual(ListAll.isSignificantDifference('Abcdef', 'abcDefs'), false);
+  test.deepEqual(ListAll.isSignificantDifference('abcdef', 'abcdefss'), true);
+  test.deepEqual(ListAll.isSignificantDifference('abcdefs', 'abcdef'), false);
+  test.done();
+};
+
+exports.testIsSignificantWord = function (test) {
+  getModel().then(theModel => {
+    var procstring = ErBase.processString('element name Nickel in IUPAC', theModel.rules, {});
+    //debuglog(JSON.stringify(procstring.sentences));
+    //Object.keys(theModel));
+
+    var res = procstring.sentences[0].filter(ListAll.isSignificantWord);
+    var r2 = res.map(res => res.matchedString);
+    test.deepEqual(r2, ['element name', 'nickel', 'In'], 'correct filtered words');
+    test.done();
+    Model.releaseModel(theModel);
+  });
+};
+
+exports.testListAllNewFormatELementNames = function (test) {
+  getModel().then(theModel => {
+    MongoQueries.listAll('Elements nAmes', theModel).then(res => {
+      var nonerror = ListAll.removeErrorsIfOKAnswers(res);
+      var nonempty = ListAll.removeEmptyResults(nonerror);
+      var res2 = ListAll.resultAsListString(nonempty, theModel);
+      test.deepEqual(res2,
+        'The query has answers in more than one domain:\nElements nAmes ("element name") in domain "IUPAC"...\n"actinium"\n"aluminium"\n"americium"\n"antimony"\n"argon"\n"arsenic"\n"astatine"\n"barium"\n"berkelium"\n"beryllium"\n"bismuth"\n"bohrium"\n"boron"\n"bromine"\n"cadmium"\n"caesium"\n"calcium"\n"californium"\n"carbon"\n"cerium"\n"chlorine"\n"chromium"\n"cobalt"\n"copernicium"\n"copper"\n"curium"\n"darmstadtium"\n"dubnium"\n"dysprosium"\n"einsteinium"\n"erbium"\n"europium"\n"fermium"\n"flerovium"\n"fluorine"\n"francium"\n"gadolinium"\n"gallium"\n"germanium"\n"gold"\n"hafnium"\n"hassium"\n"helium"\n"holmium"\n"hydrogen"\n"indium"\n"iodine"\n"iridium"\n"iron"\n"krypton"\n"lanthanum"\n"lawrencium"\n"lead"\n"lithium"\n"livermorium"\n"lutetium"\n"magnesium"\n"manganese"\n"meitnerium"\n"mendelevium"\n"mercury"\n"molybdenum"\n"moscovium"\n"neodymium"\n"neon"\n"neptunium"\n"nickel"\n"nihonium"\n"niobium"\n"nitrogen"\n"nobelium"\n"oganesson"\n"osmium"\n"oxygen"\n"palladium"\n"phosphorus"\n"platinum"\n"plutonium"\n"polonium"\n"potassium"\n"praseodymium"\n"promethium"\n"protactinium"\n"radium"\n"radon"\n"rhenium"\n"rhodium"\n"roentgenium"\n"rubidium"\n"ruthenium"\n"rutherfordium"\n"samarium"\n"scandium"\n"seaborgium"\n"selenium"\n"silicon"\n"silver"\n"sodium"\n"strontium"\n"sulfur"\n"tantalum"\n"technetium"\n"tellurium"\n"tennesine"\n"terbium"\n"thallium"\n"thorium"\n"thulium"\n"tin"\n"titanium"\n"tungsten"\n"uranium"\n"vanadium"\n"xenon"\n"ytterbium"\n"yttrium"\n"zinc"\n"zirconium"\n\nElements nAmes ("element name") in domain "Philosophers elements"...\n"earth"\n"fire"\n"water"\n"wind"\n'
+      );
+      test.done();
+      Model.releaseModel(theModel);
+    });
+  });
+};
+
+
+exports.testListAllFilterByRank = function (test) {
+  getModel().then(theModel => {
+    MongoQueries.listAll('Elements nAme', theModel).then(res => {
+      var nonerror = ListAll.removeErrorsIfOKAnswers(res);
+      var nonempty = ListAll.removeEmptyResults(nonerror);
+      //     debuglog(() => nonempty.map(answer =>
+      //       Sentence.dumpNiceRuled(answer.aux.sentence)).join('\n'));
+      var filtered = ListAll.retainOnlyTopRankedPerDomain(nonempty);
+      //     debuglog(()=> ' post filter\n' + filtered.map(answer =>
+      //      Sentence.dumpNiceRuled(answer.aux.sentence)).join('\n'));
+
+      var res2 = ListAll.resultAsListString(filtered, theModel);
+      test.deepEqual(res2,
+        'The query has answers in more than one domain:\nElements nAme ("element name") in domain "IUPAC"...\n"actinium"\n"aluminium"\n"americium"\n"antimony"\n"argon"\n"arsenic"\n"astatine"\n"barium"\n"berkelium"\n"beryllium"\n"bismuth"\n"bohrium"\n"boron"\n"bromine"\n"cadmium"\n"caesium"\n"calcium"\n"californium"\n"carbon"\n"cerium"\n"chlorine"\n"chromium"\n"cobalt"\n"copernicium"\n"copper"\n"curium"\n"darmstadtium"\n"dubnium"\n"dysprosium"\n"einsteinium"\n"erbium"\n"europium"\n"fermium"\n"flerovium"\n"fluorine"\n"francium"\n"gadolinium"\n"gallium"\n"germanium"\n"gold"\n"hafnium"\n"hassium"\n"helium"\n"holmium"\n"hydrogen"\n"indium"\n"iodine"\n"iridium"\n"iron"\n"krypton"\n"lanthanum"\n"lawrencium"\n"lead"\n"lithium"\n"livermorium"\n"lutetium"\n"magnesium"\n"manganese"\n"meitnerium"\n"mendelevium"\n"mercury"\n"molybdenum"\n"moscovium"\n"neodymium"\n"neon"\n"neptunium"\n"nickel"\n"nihonium"\n"niobium"\n"nitrogen"\n"nobelium"\n"oganesson"\n"osmium"\n"oxygen"\n"palladium"\n"phosphorus"\n"platinum"\n"plutonium"\n"polonium"\n"potassium"\n"praseodymium"\n"promethium"\n"protactinium"\n"radium"\n"radon"\n"rhenium"\n"rhodium"\n"roentgenium"\n"rubidium"\n"ruthenium"\n"rutherfordium"\n"samarium"\n"scandium"\n"seaborgium"\n"selenium"\n"silicon"\n"silver"\n"sodium"\n"strontium"\n"sulfur"\n"tantalum"\n"technetium"\n"tellurium"\n"tennesine"\n"terbium"\n"thallium"\n"thorium"\n"thulium"\n"tin"\n"titanium"\n"tungsten"\n"uranium"\n"vanadium"\n"xenon"\n"ytterbium"\n"yttrium"\n"zinc"\n"zirconium"\n\nElements nAme ("element name") in domain "Philosophers elements"...\n"earth"\n"fire"\n"water"\n"wind"\n'
+      );
+      test.done();
+      Model.releaseModel(theModel);
+    });
+  });
+};
+
+
+exports.testListAllNewFormatELementNames2 = function (test) {
+  getModel().then(theModel => {
+    MongoQueries.listAll('element names starting with ni', theModel).then(res => {
+      var nonerror = ListAll.removeErrorsIfOKAnswers(res);
+      var nonempty = ListAll.removeEmptyResults(nonerror);
+      var res2 = ListAll.resultAsListString(nonempty, theModel);
+      test.deepEqual(res2,
+        'element names starting with ni\n..."nickel"\n"nihonium"\n"niobium"\n"nitrogen"\n');
+      test.done();
+      Model.releaseModel(theModel);
+    });
+  });
+};
+
+
+
+
 exports.testListAllWithContextDomainLike = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', '"SOBJ Tables"',
@@ -401,46 +462,46 @@ exports.testListAllWithContextDomainLikeAmbiguous = function (test) {
   });
 };
 
-exports.testGetDistinctDomains = function(test) {
-  var res = [{ domain : 'a'},{ domain: undefined }];
-  test.deepEqual(ListAll.getDistinctOKDomains(res),['a']);
-  var res1b = [{ domain : 'a'},{ domain : 'a'},{ domain: undefined }];
-  test.deepEqual(ListAll.getDistinctOKDomains(res1b),['a']);
-  var res2 = [{ domain : 'a', errors: {} },{ domain: undefined }];
-  test.deepEqual(ListAll.getDistinctOKDomains(res2),[]);
-  var res3 = [{ domain : 'a', errors : false}, { domain : 'A', errors: false }, { domain : 'a'}, { domain: 'b'}];
-  test.deepEqual(ListAll.getDistinctOKDomains(res3),['a','A', 'b']);
+exports.testGetDistinctDomains = function (test) {
+  var res = [{ domain: 'a' }, { domain: undefined }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res), ['a']);
+  var res1b = [{ domain: 'a' }, { domain: 'a' }, { domain: undefined }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res1b), ['a']);
+  var res2 = [{ domain: 'a', errors: {} }, { domain: undefined }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res2), []);
+  var res3 = [{ domain: 'a', errors: false }, { domain: 'A', errors: false }, { domain: 'a' }, { domain: 'b' }];
+  test.deepEqual(ListAll.getDistinctOKDomains(res3), ['a', 'A', 'b']);
   test.done();
 };
 
-exports.testhasOKAnswer = function(test) {
-  var res = [{ domain : 'a'},{ domain: undefined }];
+exports.testhasOKAnswer = function (test) {
+  var res = [{ domain: 'a' }, { domain: undefined }];
   test.deepEqual(ListAll.hasOKAnswer(res), true);
-  var res2 = [{ domain : 'a', errors: {} },{ domain: undefined }];
-  test.deepEqual(ListAll.hasOKAnswer(res2),false);
+  var res2 = [{ domain: 'a', errors: {} }, { domain: undefined }];
+  test.deepEqual(ListAll.hasOKAnswer(res2), false);
   test.done();
 };
 
-exports.testFilterOKAnswer = function(test) {
-  test.deepEqual(ListAll.isOKAnswer({ domain : undefined}),false);
+exports.testFilterOKAnswer = function (test) {
+  test.deepEqual(ListAll.isOKAnswer({ domain: undefined }), false);
   test.done();
 };
 
-exports.testremoveErrorsIfOKAnswers = function(test) {
-  var res = [{ domain : 'a'},{ domain: undefined }];
-  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res),[{ domain : 'a'}]);
-  var res2 = [{ domain : 'a', errors: {} },{ domain: undefined }];
-  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res2), [{ domain : 'a', errors: {} },{ domain: undefined }] );
-  var res3 = [{ domain : 'a', errors : false}, { domain : 'A', errors: false }, { domain : 'a'}, { domain : undefined}, { domain : 'b', errors: {}} ,{ domain: 'b'}];
-  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res3),[{ domain : 'a', errors : false},
-  { domain : 'A', errors: false }, { domain : 'a'}, { domain: 'b'}], ' filter list'
+exports.testremoveErrorsIfOKAnswers = function (test) {
+  var res = [{ domain: 'a' }, { domain: undefined }];
+  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res), [{ domain: 'a' }]);
+  var res2 = [{ domain: 'a', errors: {} }, { domain: undefined }];
+  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res2), [{ domain: 'a', errors: {} }, { domain: undefined }]);
+  var res3 = [{ domain: 'a', errors: false }, { domain: 'A', errors: false }, { domain: 'a' }, { domain: undefined }, { domain: 'b', errors: {} }, { domain: 'b' }];
+  test.deepEqual(ListAll.removeErrorsIfOKAnswers(res3), [{ domain: 'a', errors: false },
+  { domain: 'A', errors: false }, { domain: 'a' }, { domain: 'b' }], ' filter list'
   );
   test.done();
 };
 
-exports.testRemoveEmptyResults = function(test) {
-  var res = [{ domain : 'a', results: []},{ domain: 'b', results: [{}]} ];
-  test.deepEqual(ListAll.removeEmptyResults(res),[{ domain : 'b', results: [{}]}]);
+exports.testRemoveEmptyResults = function (test) {
+  var res = [{ domain: 'a', results: [] }, { domain: 'b', results: [{}] }];
+  test.deepEqual(ListAll.removeEmptyResults(res), [{ domain: 'b', results: [{}] }]);
   test.done();
 };
 
@@ -455,10 +516,10 @@ exports.testSortMetamodelLast = function(test) {
 };
 */
 
-exports.testHasEmpty = function(test) {
-  var res = [{ domain : 'b', results: ['x']},{ domain: 'metamodel', results: ['a']},
-  { domain: 'a', results: [{}]},
-  { domain: 'metamodel', results: ['a']},
+exports.testHasEmpty = function (test) {
+  var res = [{ domain: 'b', results: ['x'] }, { domain: 'metamodel', results: ['a'] },
+  { domain: 'a', results: [{}] },
+  { domain: 'metamodel', results: ['a'] },
   ];
   test.deepEqual(ListAll.hasEmptyResult(res), false);
   test.done();
@@ -466,55 +527,55 @@ exports.testHasEmpty = function(test) {
 
 
 
-exports.testRemoveMetamodelsResultIfOthersThrowsEmpty = function(test) {
-  var res = [{ domain : 'b', results: []},{ domain: 'metamodel', results: ['a']},
-    { domain: 'a', results: [{}]},
-    { domain: 'metamodel', results: ['a']},
+exports.testRemoveMetamodelsResultIfOthersThrowsEmpty = function (test) {
+  var res = [{ domain: 'b', results: [] }, { domain: 'metamodel', results: ['a'] },
+  { domain: 'a', results: [{}] },
+  { domain: 'metamodel', results: ['a'] },
   ];
   try {
     ListAll.removeMetamodelResultIfOthers(res);
-    test.equal(0,1);
-  } catch(e) {
-    test.equal(0,0);
+    test.equal(0, 1);
+  } catch (e) {
+    test.equal(0, 0);
   }
   test.done();
 };
 
-exports.testRemoveMetamodelsResultIfOthersThrowsError = function(test) {
-  var res = [{ domain : 'b', errors :{}, results: ['a']}];
+exports.testRemoveMetamodelsResultIfOthersThrowsError = function (test) {
+  var res = [{ domain: 'b', errors: {}, results: ['a'] }];
   try {
     ListAll.removeMetamodelResultIfOthers(res);
-    test.equal(0,1);
-  } catch(e) {
-    test.equal(0,0);
+    test.equal(0, 1);
+  } catch (e) {
+    test.equal(0, 0);
   }
   test.done();
 };
 
 
-exports.testRemoveMetamodelsResultIfOthersOthers = function(test) {
-  var res = [{ domain : 'b', results: ['x']},{ domain: 'metamodel', results: ['a']},
-  { domain: 'a', results: [{}]},
-  { domain: 'metamodel', results: ['a']},
+exports.testRemoveMetamodelsResultIfOthersOthers = function (test) {
+  var res = [{ domain: 'b', results: ['x'] }, { domain: 'metamodel', results: ['a'] },
+  { domain: 'a', results: [{}] },
+  { domain: 'metamodel', results: ['a'] },
   ];
-  test.deepEqual(ListAll.removeMetamodelResultIfOthers(res),[{ domain : 'b', results: ['x']},
-  { domain: 'a', results: [{}]}]);
+  test.deepEqual(ListAll.removeMetamodelResultIfOthers(res), [{ domain: 'b', results: ['x'] },
+  { domain: 'a', results: [{}] }]);
   test.done();
 };
 
-exports.testRemoveMetamodelsResultIfOthersOnlyMetamodel = function(test) {
-  var res = [{ domain: 'metamodel', results: ['a']},
-    { domain: 'metamodel', results: [{}]},
-    { domain: 'metamodel', results: ['a']}
+exports.testRemoveMetamodelsResultIfOthersOnlyMetamodel = function (test) {
+  var res = [{ domain: 'metamodel', results: ['a'] },
+  { domain: 'metamodel', results: [{}] },
+  { domain: 'metamodel', results: ['a'] }
   ];
-  test.deepEqual(ListAll.removeMetamodelResultIfOthers(res),[{ domain: 'metamodel', results: ['a']},
-    { domain: 'metamodel', results: [{}]},
-    { domain: 'metamodel', results: ['a']}
+  test.deepEqual(ListAll.removeMetamodelResultIfOthers(res), [{ domain: 'metamodel', results: ['a'] },
+  { domain: 'metamodel', results: [{}] },
+  { domain: 'metamodel', results: ['a'] }
   ]);
   test.done();
 };
 
-exports.testSortByDomains = function(test) {
+exports.testSortByDomains = function (test) {
 
   test.done();
 };
@@ -651,11 +712,11 @@ exports.testListAllFilterStringList = function (test) {
   var res = ListAll.getCategoryOpFilterAsDistinctStrings({
     operator: 'starting with'
   }, 'aBc', 'cat1', [
-      { 'cat1': 'abCAndMore' },
-      { 'cat1': 'abCAndSomeMore' },
-      { 'cat1': 'abcAndsomemore' },
-      { 'cat1': 'abCAndAnything' },
-      { 'cat1': 'AbcAndsomemore' },
+    { 'cat1': 'abCAndMore' },
+    { 'cat1': 'abCAndSomeMore' },
+    { 'cat1': 'abcAndsomemore' },
+    { 'cat1': 'abCAndAnything' },
+    { 'cat1': 'AbcAndsomemore' },
 
     {
       'cat1': 'abCAndMore',
@@ -665,8 +726,8 @@ exports.testListAllFilterStringList = function (test) {
       'cat1': 'nononAndMore',
       'cat2': 'abcAndMore'
     },
-      { 'cat0': 'abCAndMore' },
-      { 'cat1': 'abCAndMore' },
+    { 'cat0': 'abCAndMore' },
+    { 'cat1': 'abCAndMore' },
   ]);
   test.deepEqual(res, ['abCAndAnything', 'abCAndMore', 'AbcAndsomemore']);
   test.done();

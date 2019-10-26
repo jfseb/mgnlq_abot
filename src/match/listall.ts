@@ -376,7 +376,7 @@ export function hasEmptyResult(answers : IMatch.ITupelAnswers) : boolean {
   return !answers.every(answer =>
   {
     if(answer.results.length <= 0) {
-      console.log('here empty' + JSON.stringify(answer));
+      //console.log('here empty' + JSON.stringify(answer));
     }
     return (answer.results.length > 0);
   });
@@ -406,7 +406,10 @@ export function removeEmptyResults(answers: IMatch.ITupelAnswers) : IMatch.ITupe
 }
 
 export function removeMetamodelResultIfOthers(answers : IMatch.ITupelAnswers) : IMatch.ITupelAnswers {
-  if(hasError(answers) || hasEmptyResult(answers)) {
+  if(hasError(answers)) {
+    throw Error('remove errors before');
+  }
+  if(hasEmptyResult(answers)) {
     throw Error('run removeEmptyResults before');
   }
   var domains = getDistinctOKDomains(answers);
@@ -416,6 +419,104 @@ export function removeMetamodelResultIfOthers(answers : IMatch.ITupelAnswers) : 
   return answers;
 }
 
+export function isSignificantWord(word : IMatch.IWord) {
+  return word.rule.wordType === 'F'
+      || word.rule.wordType === 'C';
+}
+
+export function isSignificantDifference(actualword : string, matchedWord: string) {
+  var lca = actualword.toLowerCase();
+  var lcm = matchedWord.toLowerCase();
+  if( lca === lcm) {
+    return false;
+  }
+  if ( lca + 's' === lcm) {
+    return false;
+  }
+  if ( lca === lcm +'s' ) {
+    return false;
+  }
+  return true;
+}
+
+export function getQueryString(answ : IMatch.ITupelAnswer) : string {
+  var words = [];
+  debuglog(()=> 'here tokens:' + answ.aux.tokens);
+  debuglog(()=> JSON.stringify(answ.aux.sentence,undefined,2));
+  debuglog(()=> ' ' + Sentence.dumpNiceRuled(answ.aux.sentence));
+  answ.aux.sentence.forEach( (word, index) => {
+    var word = answ.aux.sentence[index];
+    words.push(word.string);
+    if ( isSignificantWord(word))
+    if ( isSignificantDifference(word.matchedString, word.string) ) {
+            words.push("(\"" + word.rule.matchedString + "\")");
+    }
+  });
+  return words.join(" ");
+};
+
+
+export function cmpDomainSentenceRanking(a : IMatch.ITupelAnswer, b : IMatch.ITupelAnswer) : number {
+  var r = a.domain.localeCompare(b.domain);
+  if (r) {
+    return r;
+  }
+  var ca = Sentence.rankingGeometricMean(a.aux.sentence);
+  var cb = Sentence.rankingGeometricMean(b.aux.sentence);
+  return cb - ca;
+}
+
+export function retainOnlyTopRankedPerDomain(answers : IMatch.ITupelAnswers) : IMatch.ITupelAnswers {
+  var domains = getDistinctOKDomains(answers);
+ /* domains.sort();
+ / answers.forEach( (answer, index) =>  {
+    console.log(Sentence.rankingGeometricMean(answer.aux.sentence));
+  });
+  */
+  answers.sort(cmpDomainSentenceRanking);
+  return answers.filter( (entry, index, arr) =>  {
+    if ((index === 0) ||  (entry.domain !== arr[index-1].domain)) {
+      return true;
+    }
+    var prev = arr[index-1];
+    var rank_prev = Sentence.rankingGeometricMean(prev.aux.sentence);
+    var rank = Sentence.rankingGeometricMean(entry.aux.sentence);
+    if (!WhatIs.safeEqual(rank, rank_prev)) {
+      debuglog( ()=> `dropping ${ index } ${ Sentence.dumpNiceRuled(entry.aux.sentence) } `);
+    }
+    return false;
+  });
+}
+
+export function resultAsListString(answers:IMatch.ITupelAnswers) : string {
+  var nonerror = removeErrorsIfOKAnswers(answers);
+  var nonempty = removeEmptyResults(nonerror);
+  var filteredNoMM = removeMetamodelResultIfOthers(nonempty);
+  var filtered = retainOnlyTopRankedPerDomain(filteredNoMM);
+  var domains = getDistinctOKDomains(filtered);
+  domains.sort();
+  var res = '';
+  if(domains.length > 1 ) {
+    res = "The query has answers in more than one domain:\n"
+  }
+  res += domains.map(dom => {
+    var answersForDomain =  answers.filter(a => (a.domain === dom));
+    return answersForDomain.map( answ => {
+      var localres = '';
+      var querystr = getQueryString(answ);
+      var answerN = joinResultsTupel([answ]).join("\n");
+      localres += querystr;
+      if(domains.length > 1) {
+        localres += " in domain \"" + dom + "\"...\n";
+      } else {
+        localres += "\n..."
+      }
+      localres += joinResultsTupel([answ]).join("\n") + "\n";
+      return localres;
+    }).join("\n");
+  }).join("\n");
+  return res;
+}
 
 /**
  * TODO

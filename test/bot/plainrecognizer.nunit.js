@@ -177,8 +177,8 @@ exports.testRecognizerListallID = function (test) {
         startIndex: 9,
         endIndex: 53 }
       ],
-        score: 0.9,
-        intent: 'ListAll' }
+      score: 0.9,
+      intent: 'ListAll' }
       , 'correct result');
     test.done();
   });
@@ -722,7 +722,7 @@ exports.testRecognizeListAllWhere = function (test) {
 exports.testtrimTrailingSentenceDelimiters = function(test) {
   test.equal(recognizer.trimTrailingSentenceDelimiters('abc !!!?!'), 'abc');
   test.equal(recognizer.trimTrailingSentenceDelimiters('abc '), 'abc');
-  test.equal(recognizer.trimTrailingSentenceDelimiters('defhij " \n !!\n!?!'), 'defhij \"');
+  test.equal(recognizer.trimTrailingSentenceDelimiters('defhij " \n !!\n!?!'), 'defhij "');
   test.equal(recognizer.trimTrailingSentenceDelimiters('defhij'), 'defhij');
   test.equal(recognizer.trimTrailingSentenceDelimiters(''), '');
 
@@ -796,19 +796,19 @@ exports.testRecognizeWith = function (test) {
 
 exports.testNormalizeWhitespace = function(test) {
   test.deepEqual(recognizer.normalizeWhitespace(' This is  \t  not\t"a love song"   and "we do like the USofA  '),
-                ' This is not "a love song" and "we do like the USofA ');
+    ' This is not "a love song" and "we do like the USofA ');
   test.done();
 };
 
 exports.testCompactQuoted = function (test) {
   test.deepEqual(recognizer.compactQuoted(' This is not "a love song" and "we do like" the USofA'),
-                ' This is not <word> and <word> the USofA');
+    ' This is not <word> and <word> the USofA');
   test.done();
 };
 
 exports.testCompactQuotedUnterminated = function (test) {
   test.deepEqual(recognizer.compactQuoted(' This is not "a love song" and "we do like the USofA'),
-                ' This is not <word> and "we do like the USofA');
+    ' This is not <word> and "we do like the USofA');
 
   test.done();
 };

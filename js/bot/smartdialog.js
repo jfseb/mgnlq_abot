@@ -5,11 +5,12 @@
  * Instantiate apssing a connector via
  * makeBot
  *
+ *
  */
 /**
  * @file
  * @module jfseb.mgnlq_abot.smartdialog
- * @copyright (c) 2016 Gerd Forstmann
+ * @copyright (c) 2016-2109 Gerd Forstmann
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
@@ -153,7 +154,7 @@ const aBackFromTraining = [
     'Thanks for having this lecture session, now i am back to our usual self.\n Ask me a question.'
 ];
 const aTrainNoKlingon = [
-    "He who masters the dark arts of SAP must not dwell in the earthly realms of Start Trek.",
+    "He who masters the dark arts of SAP must not dwell in the earthly realms of Star Trek.",
     "SAP is a cloud company, not a space company.",
     "The depth of R/3 are deeper than Deep Space 42.",
     "My brainpower is fully absorbed with mastering other realms.",
@@ -272,7 +273,7 @@ function logQuery(session, intent, result) {
         userid: session.message.address
             && session.message.address.user
             && session.message.address.user.id || ""
-    }), function (err, res) {
+    }), function (err) {
         if (err) {
             debuglog("logging failed " + err);
         }
@@ -312,7 +313,7 @@ function logQueryWhatIsTupel(session, intent, result) {
         userid: session.message.address
             && session.message.address.user
             && session.message.address.user.id || ""
-    }), function (err, res) {
+    }), function (err) {
         if (err) {
             debuglog("logging failed " + err);
         }

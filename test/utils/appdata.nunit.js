@@ -113,10 +113,11 @@ exports.testPersistenceNoJSON = function (test) {
   } catch (e) {
     // ok, hope not present
   }
-  fs.writeFile(dirf.fileName, 'ABC', {
-    flag: 'w',
-    encoding: 'utf8'
-  },
+  fs.writeFile(dirf.fileName, 'ABC',
+    {
+      flag: 'w',
+      encoding: 'utf8'
+    },
     function (err) {
       if (err) {
         // console.log('cannot open file for writing!')

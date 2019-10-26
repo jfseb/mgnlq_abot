@@ -160,7 +160,7 @@ exports.testUpDownWhatIsBSPNameManageLablesQuote = function (test) {
 exports.testUpDownWhatIsBSPNameFioriIntentManageLabels = function (test) {
   testOne('what is the bspname, fiori intent, appname for manage labels', function (conn, res) {
     test.deepEqual(res,
-     'The bspname, fiori intent, appname of manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"',
+      'The bspname, fiori intent, appname of manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"',
 
       //    'Many comparable results, perhaps you want to specify a discriminating uri,appId,ApplicationComponent,RoleName,ApplicationType,BSPApplicationURL,releaseName,releaseId,BusinessCatalog,TechnicalCatalog,detailsurl,BSPPackage,AppDocumentationLinkKW,BusinessRoleName,BusinessGroupName,BusinessGroupDescription,PrimaryODataServiceName,SemanticObject,FrontendSoftwareComponent,TransactionCodes,PrimaryODataPFCGRole,ExternalReleaseName,ArtifactId,ProjectPortalLink,AppKey,UITechnology or use "list all ..."' );
       'correct result');
@@ -173,9 +173,9 @@ exports.testUpDownWhatIsBSPNameFioriIntentManageLablesQuote = function (test) {
   testOne('what is the bspname, fiori intent, appname for "manage labels"', function (conn, res) {
     test.deepEqual(res,
       // 'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
-    'The bspname, fiori intent, appname of "manage labels" are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"' ,
-   'correct result'
-//      'The "BSPName", "fiori intent" and "AppName" of "manage labels" are "n/a", "#ProductLabel-manage" and "Manage Labels"\n'
+      'The bspname, fiori intent, appname of "manage labels" are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"' ,
+      'correct result'
+      //      'The "BSPName", "fiori intent" and "AppName" of "manage labels" are "n/a", "#ProductLabel-manage" and "Manage Labels"\n'
     );
     test.done();
     releaseConnector(conn);
@@ -185,11 +185,11 @@ exports.testUpDownWhatIsBSPNameFioriIntentManageLablesQuote = function (test) {
 exports.testListAllSemObjFI = function (test) {
   testOne('list all SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain', function (conn, res) {
     test.deepEqual(res,
-'I did not find any SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain.\n'
+      'I did not find any SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain.\n'
 
-//OK
+      //OK
 
-   //   'the SemanticObject for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain are ...\nGLAccount'
+      //   'the SemanticObject for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain are ...\nGLAccount'
 
       // 'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
       // 'the SemanticObject for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain are ...\nGLAccount;\nProfitCenter'
@@ -203,9 +203,9 @@ exports.testListAllSemObjFI = function (test) {
 exports.testListAllSemObjFImanage = function (test) {
   testOne('list all SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" manage', function (conn, res) {
     test.deepEqual(res,
-//'I did not find any SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" manage.\n'
-'the SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" manage are ...\n"GLAccount"'
-     //'the SemanticObject for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain are ...\nGLAccount'
+      //'I did not find any SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" manage.\n'
+      'the SemanticObject  for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" manage are ...\n"GLAccount"'
+      //'the SemanticObject for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain are ...\nGLAccount'
 
       // 'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
       // 'the SemanticObject for FI-FIO-GL with ApplicationType "FPM/WEbDynpro" Maintain are ...\nGLAccount;\nProfitCenter'
@@ -218,7 +218,7 @@ exports.testListAllSemObjFImanage = function (test) {
 exports.testUpDWhatisTransactionCodeALR = function (test) {
   testOne('What is the TransactionCodes for S_ALR_87012394 "PrepareTax Report"', function (conn, res) {
     test.deepEqual(res,
-     'The TransactionCodes of S_ALR_87012394 "PrepareTax Report" is "S_ALR_87012394"\n'
+      'The TransactionCodes of S_ALR_87012394 "PrepareTax Report" is "S_ALR_87012394"\n'
       // 'the bspname, fiori intent, appname for manage labels are ...\n"FRA_ALERT_MAN", "#ComplianceAlerts-manage" and "Manage Alerts";\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
     );
     test.done();
@@ -231,9 +231,9 @@ exports.testUpDWhatisTransactionCodeALR = function (test) {
 exports.testUpDownListAllBSPName = function (test) {
   testOne('list all bspname, fiori intent, appname for manage labels', function (conn, res) {
     test.deepEqual(res,
-//      'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
-//TODO!!!!????
-    'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels";\n"FRA_ALERT_MAN", "#ComplianceAlerts-manage" and "Manage Alerts"'
+      //      'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
+      //TODO!!!!????
+      'the bspname, fiori intent, appname for manage labels are ...\n"n/a", "#ProductLabel-manage" and "Manage Labels";\n"FRA_ALERT_MAN", "#ComplianceAlerts-manage" and "Manage Alerts"'
       // 'the bspname, fiori intent, appname for manage labels are ...\n"FRA_ALERT_MAN", "#ComplianceAlerts-manage" and "Manage Alerts";\n"n/a", "#ProductLabel-manage" and "Manage Labels"'
     );
     test.done();
@@ -302,8 +302,8 @@ exports.testListAllDomainsOBJ = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-    'the Tables in domain SOBJ Tables are ...\n"/UIF/LREPDATTR";\n"/UIF/LREPDATTRCD";\n"/UIF/LREPDCONT";\n"/UIF/LREPDCONTCD";\n"/UIF/LREPDEREF";\n"/UIF/LREPDEREFCD";\n"/UIF/LREPDLTXT";\n"/UIF/LREPDLTXTCD";\n"/UIF/LREPDREF";\n"/UIF/LREPDREFCD";\n"/UIF/LREPDSTXT";\n"/UIF/LREPDSTXTCD";\n"/UIF/LREPDTEXT";\n"/UIF/LREPDTEXTCD";\n"LTDHTRAW";\n"LTDHTTMPL";\n"LTR_REPOSITORY";\n"SWOTDI";\n"SWOTDQ";\n"TZS02"'
-    ,'correct tables'
+      'the Tables in domain SOBJ Tables are ...\n"/UIF/LREPDATTR";\n"/UIF/LREPDATTRCD";\n"/UIF/LREPDCONT";\n"/UIF/LREPDCONTCD";\n"/UIF/LREPDEREF";\n"/UIF/LREPDEREFCD";\n"/UIF/LREPDLTXT";\n"/UIF/LREPDLTXTCD";\n"/UIF/LREPDREF";\n"/UIF/LREPDREFCD";\n"/UIF/LREPDSTXT";\n"/UIF/LREPDSTXTCD";\n"/UIF/LREPDTEXT";\n"/UIF/LREPDTEXTCD";\n"LTDHTRAW";\n"LTDHTTMPL";\n"LTR_REPOSITORY";\n"SWOTDI";\n"SWOTDQ";\n"TZS02"'
+      ,'correct tables'
     );
     test.done();
     releaseConnector(conn);
@@ -318,9 +318,9 @@ exports.testListAllTablesInDomainsOBJIUPAC = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-     'I don\'t know anything about "Tables in domain IUPAC" ("").\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\''
-     // TODO NICER ERROR?
-     , 'correct tables');
+      'I don\'t know anything about "Tables in domain IUPAC" ("").\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\'\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\''
+      // TODO NICER ERROR?
+      , 'correct tables');
     test.done(); releaseConnector(conn);
   });
 };
@@ -331,9 +331,9 @@ exports.testListAllInDomainsQuoted = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-    'the Tables in domain "SOBJ Tables" are ...\n"/UIF/LREPDATTR";\n"/UIF/LREPDATTRCD";\n"/UIF/LREPDCONT";\n"/UIF/LREPDCONTCD";\n"/UIF/LREPDEREF";\n"/UIF/LREPDEREFCD";\n"/UIF/LREPDLTXT";\n"/UIF/LREPDLTXTCD";\n"/UIF/LREPDREF";\n"/UIF/LREPDREFCD";\n"/UIF/LREPDSTXT";\n"/UIF/LREPDSTXTCD";\n"/UIF/LREPDTEXT";\n"/UIF/LREPDTEXTCD";\n"LTDHTRAW";\n"LTDHTTMPL";\n"LTR_REPOSITORY";\n"SWOTDI";\n"SWOTDQ";\n"TZS02"'
+      'the Tables in domain "SOBJ Tables" are ...\n"/UIF/LREPDATTR";\n"/UIF/LREPDATTRCD";\n"/UIF/LREPDCONT";\n"/UIF/LREPDCONTCD";\n"/UIF/LREPDEREF";\n"/UIF/LREPDEREFCD";\n"/UIF/LREPDLTXT";\n"/UIF/LREPDLTXTCD";\n"/UIF/LREPDREF";\n"/UIF/LREPDREFCD";\n"/UIF/LREPDSTXT";\n"/UIF/LREPDSTXTCD";\n"/UIF/LREPDTEXT";\n"/UIF/LREPDTEXTCD";\n"LTDHTRAW";\n"LTDHTTMPL";\n"LTR_REPOSITORY";\n"SWOTDI";\n"SWOTDQ";\n"TZS02"'
     );
-//      'the Tables for domain "SOBJ Tables" are ...\n/UIF/LREPDATTR;\n/UIF/LREPDATTRCD;\n/UIF/LREPDCONT;\n/UIF/LREPDCONTCD;\n/UIF/LREPDEREF;\n/UIF/LREPDEREFCD;\n/UIF/LREPDLTXT;\n/UIF/LREPDLTXTCD;\n/UIF/LREPDREF;\n/UIF/LREPDREFCD;\n/UIF/LREPDSTXT;\n/UIF/LREPDSTXTCD;\n/UIF/LREPDTEXT;\n/UIF/LREPDTEXTCD;\nLTDHTRAW;\nLTDHTTMPL;\nLTR_REPOSITORY;\nSWOTDI;\nSWOTDQ;\nTZS02', 'correct tables');
+    //      'the Tables for domain "SOBJ Tables" are ...\n/UIF/LREPDATTR;\n/UIF/LREPDATTRCD;\n/UIF/LREPDCONT;\n/UIF/LREPDCONTCD;\n/UIF/LREPDEREF;\n/UIF/LREPDEREFCD;\n/UIF/LREPDLTXT;\n/UIF/LREPDLTXTCD;\n/UIF/LREPDREF;\n/UIF/LREPDREFCD;\n/UIF/LREPDSTXT;\n/UIF/LREPDSTXTCD;\n/UIF/LREPDTEXT;\n/UIF/LREPDTEXTCD;\nLTDHTRAW;\nLTDHTTMPL;\nLTR_REPOSITORY;\nSWOTDI;\nSWOTDQ;\nTZS02', 'correct tables');
     test.done(); releaseConnector(conn);
   });
 };
@@ -343,7 +343,7 @@ exports.testListAllInImplicitDomainQuoted = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-     'the Tables in "SOBJ Tables" are ...\n"/UIF/LREPDATTR";\n"/UIF/LREPDATTRCD";\n"/UIF/LREPDCONT";\n"/UIF/LREPDCONTCD";\n"/UIF/LREPDEREF";\n"/UIF/LREPDEREFCD";\n"/UIF/LREPDLTXT";\n"/UIF/LREPDLTXTCD";\n"/UIF/LREPDREF";\n"/UIF/LREPDREFCD";\n"/UIF/LREPDSTXT";\n"/UIF/LREPDSTXTCD";\n"/UIF/LREPDTEXT";\n"/UIF/LREPDTEXTCD";\n"LTDHTRAW";\n"LTDHTTMPL";\n"LTR_REPOSITORY";\n"SWOTDI";\n"SWOTDQ";\n"TZS02"'
+      'the Tables in "SOBJ Tables" are ...\n"/UIF/LREPDATTR";\n"/UIF/LREPDATTRCD";\n"/UIF/LREPDCONT";\n"/UIF/LREPDCONTCD";\n"/UIF/LREPDEREF";\n"/UIF/LREPDEREFCD";\n"/UIF/LREPDLTXT";\n"/UIF/LREPDLTXTCD";\n"/UIF/LREPDREF";\n"/UIF/LREPDREFCD";\n"/UIF/LREPDSTXT";\n"/UIF/LREPDSTXTCD";\n"/UIF/LREPDTEXT";\n"/UIF/LREPDTEXTCD";\n"LTDHTRAW";\n"LTDHTTMPL";\n"LTR_REPOSITORY";\n"SWOTDI";\n"SWOTDQ";\n"TZS02"'
       , 'correct tables');
     test.done(); releaseConnector(conn);
   });
@@ -370,8 +370,8 @@ exports.testListAllCAtegoryInDomainNonDomain = function (test) {
       /*   'the Tables for domain SOBJ Tables are ...\n/UIF/LREPDATTR;\n/UIF/LREPDATTRCD;\n/UIF/LREPDCONT;\n/UIF/LREPDCONTCD;\n/UIF/LREPDEREF;\n/UIF/LREPDEREFCD;\n/UIF/LREPDLTXT;\n/UIF/LREPDLTXTCD;\n/UIF/LREPDREF;\n/UIF/LREPDREFCD;\n/UIF/LREPDSTXT;\n/UIF/LREPDSTXTCD;\n/UIF/LREPDTEXT;\n/UIF/LREPDTEXTCD;\nLTDHTRAW;\nLTDHTTMPL;\nLTR_REPOSITORY;\nTZS02'  */
       /*  'I did not infer a domain restriction from "domain ELOM", all my categories are ...\nAppDocumentationLinkKW;\nAppKey;\nAppName;\nApplicationComponent;\nApplicationType;\nArtifactId;\nBSPApplicationURL;\nBSPName;\nBSPPackage;\nBusinessCatalog;\nBusinessGroupDescription;\nBusinessGroupName;\nBusinessRoleName;\nCategory;\nExternalReleaseName;\nFrontendSoftwareComponent;\nLPDCustInstance;\nObject name length;\nPrimaryODataPFCGRole;\nPrimaryODataServiceName;\nPrimaryTable;\nRoleName;\nSemanticAction;\nSemanticObject;\nShortText;\nTable;\nTableTransportKeySpec;\nTechnicalCatalog;\nTransactionCodes;\nTranslationRelevant;\nTransportObject;\nType;\nURLParameters;\n_url;\nalbedo;\nappId;\natomic weight;\nclient;\nclientSpecific;\ndetailsurl;\ndevclass;\ndistance;\neccentricity;\nelement name;\nelement number;\nelement properties;\nelement symbol;\nfiori catalog;\nfiori group;\nfiori intent;\nisPublished;\nmass;\nobject name;\nobject type;\norbit radius;\norbital period;\norbits;\nradius;\nrecordKey;\nreleaseId;\nreleaseName;\nsystemId;\ntcode;\ntool;\ntransaction;\ntransaction description;\nunit test;\nuri;\nurl;\nvisual luminosity;\nvisual magnitude;\nwiki'
         */
-     'I don\'t know anything about "categories in domain ELOM" ("").\nI do not understand "ELOM".'
-        , 'correct tables');
+      'I don\'t know anything about "categories in domain ELOM" ("").\nI do not understand "ELOM".'
+      , 'correct tables');
     test.done(); releaseConnector(conn);
   });
 };
@@ -395,9 +395,9 @@ exports.testListAllSingleSimple = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-    'the element names with element number 10 are ...\n"neon";\n"10"',
-    // TODO
-    'result should be the element names for element number 10 are ...\n"neon"');
+      'the element names with element number 10 are ...\n"neon";\n"10"',
+      // TODO
+      'result should be the element names for element number 10 are ...\n"neon"');
     test.done(); releaseConnector(conn);
   });
 };
@@ -410,11 +410,11 @@ exports.testWhatIsNonParseable = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-    'I don\'t know anything about "atomic weight, element name" ("atomic weight" and "element name") in relation to "element name silver sowasgibts nicht".\nI do not understand "sowasgibts".\nI do not understand "nicht".'
-//    'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht" ("").\nI do not understand "sowasgibts".\nI do not understand "nicht".'
+      'I don\'t know anything about "atomic weight, element name" ("atomic weight" and "element name") in relation to "element name silver sowasgibts nicht".\nI do not understand "sowasgibts".\nI do not understand "nicht".'
+      //    'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht" ("").\nI do not understand "sowasgibts".\nI do not understand "nicht".'
     // deepEqual 'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht(Error: "atomic weight for element name silver sowasgibts nicht" is not a category!)'
-//   'I don\'t know anything about "atomic weight, element name" ("atomic weight" and "element name") in relation to "element name silver sowasgibts nicht".\nI do not understand "sowasgibts".\nI do not understand "nicht".' );
-//    'I don\'t know anything about "atomic weight, element name" ("atomic weight" and "element name")" in relation to "element name silver sowasgibts nicht"\nI do not understand "sowasgibts".\nI do not understand "nicht".');
+      //   'I don\'t know anything about "atomic weight, element name" ("atomic weight" and "element name") in relation to "element name silver sowasgibts nicht".\nI do not understand "sowasgibts".\nI do not understand "nicht".' );
+      //    'I don\'t know anything about "atomic weight, element name" ("atomic weight" and "element name")" in relation to "element name silver sowasgibts nicht"\nI do not understand "sowasgibts".\nI do not understand "nicht".');
     );
     test.done();
     releaseConnector(conn);
@@ -426,11 +426,11 @@ exports.testListAllNonParseableSingleCat = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-// TODO:
- 'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht" ("").\nI do not understand "sowasgibts".\nI do not understand "nicht".'
-// deepEqual 'I don\'t know anything about "atomic weight, sowasgibtsgarnicht, element symbol"(Error: "sowasgibtsgarnicht" is not a category!)'
-//    'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht(Error: "atomic weight for element name silver sowasgibts nicht" is not a category!)'
-     // 'i did not find any atomic weight for element name silver sowasgibts nicht.\n\nI do not understand "sowasgibts".\nI do not understand "nicht".'
+      // TODO:
+      'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht" ("").\nI do not understand "sowasgibts".\nI do not understand "nicht".'
+      // deepEqual 'I don\'t know anything about "atomic weight, sowasgibtsgarnicht, element symbol"(Error: "sowasgibtsgarnicht" is not a category!)'
+      //    'I don\'t know anything about "atomic weight for element name silver sowasgibts nicht(Error: "atomic weight for element name silver sowasgibts nicht" is not a category!)'
+      // 'i did not find any atomic weight for element name silver sowasgibts nicht.\n\nI do not understand "sowasgibts".\nI do not understand "nicht".'
     );
     test.done();
     releaseConnector(conn);
@@ -442,7 +442,7 @@ exports.testListAllMultipleCategoriesJunk = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-    'I don\'t know anything about "atomic weight, sowasgibtsgarnicht, element symbol for element name silver" ("").\nI do not understand "sowasgibtsgarnicht".'
+      'I don\'t know anything about "atomic weight, sowasgibtsgarnicht, element symbol for element name silver" ("").\nI do not understand "sowasgibtsgarnicht".'
     // 'I don\'t know anything about "atomic weight, sowasgibtsgarnicht, element symbol"(Error: "sowasgibtsgarnicht" is not a category!)
     );
     test.done();
@@ -456,9 +456,9 @@ exports.testListAllMultipleCategories2 = function (test) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
     //  'I don\'t know anything about "atomic weight and element symbol" ("atomic weight" and "element symbol") in relation to "gold".\nError: parsing error in  input[{"name":"NotAllInputParsedException","message":"Redundant input, expecting EOF but found: and"' deepEqual 'The "atomic weight" and "element symbol" of gold are "196.966 569(5)" and "Au"\n'
-'The atomic weight and element symbol of gold are ...\n"196.966 569(5)" and "Au"'
-     //'The "atomic weight" and "element symbol" of gold are "196.966 569(5)" and "Au"\n'
-     );
+      'The atomic weight and element symbol of gold are ...\n"196.966 569(5)" and "Au"'
+      //'The "atomic weight" and "element symbol" of gold are "196.966 569(5)" and "Au"\n'
+    );
     test.deepEqual(sRes.indexOf('966') >= 0, true, 'wiki present');
     test.done();
     releaseConnector(conn);
@@ -470,10 +470,10 @@ exports.testListAllMultipleCategoriesBadMix = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-    'I don\'t know anything about "unit test and element symbol" ("") in relation to "gold".\nI do not understand "unit".\nI do not understand "test".'
-     );
-     // TODO other crossdomain unit test
-     // deepEqual 'I don\'t know anything about "unit test and element symbol" ("unit test" and "element symbol")" in relation to "gold"'
+      'I don\'t know anything about "unit test and element symbol" ("") in relation to "gold".\nI do not understand "unit".\nI do not understand "test".'
+    );
+    // TODO other crossdomain unit test
+    // deepEqual 'I don\'t know anything about "unit test and element symbol" ("unit test" and "element symbol")" in relation to "gold"'
 
     //'I don\'t know anything about "unit test and element symbol" ("unit test" and "element symbol")" in relation to "gold"');
     test.done();
@@ -487,7 +487,7 @@ exports.testListAllMultipleOK2 = function (test) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
     // TODO Horrible wrong!
-    'the element name, atomic weight for mercury are ...\n"mercury" and "200.592(3)";\n"80" and "200.592(3)"'
+      'the element name, atomic weight for mercury are ...\n"mercury" and "200.592(3)";\n"80" and "200.592(3)"'
 
     //'the element name, atomic weight for mercury are ...\n"mercury" and "200.592(3)"'
     );
@@ -515,11 +515,11 @@ exports.testTooLongSentence = function (test) {
     + ' kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk '
     + ' jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj jjjjjjjjjjjjjjjjjjjj'
     + ' llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll',
-    function (conn, oRes) {
-      test.deepEqual(SmartDialog.aResponsesOnTooLong.indexOf(oRes) >= 0, true);
-      test.done();
-      releaseConnector(conn);
-    });
+  function (conn, oRes) {
+    test.deepEqual(SmartDialog.aResponsesOnTooLong.indexOf(oRes) >= 0, true);
+    test.done();
+    releaseConnector(conn);
+  });
 };
 
 exports.testListAllMultipleBadCombine = function (test) {
@@ -528,11 +528,11 @@ exports.testListAllMultipleBadCombine = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-     'I don\'t know anything about "element name, wiki for mercury" ("").\nI do not understand "wiki".'
-    // TODO corresponding testcase and error for cross-domain nofit
-     //'I cannot combine "element name, wiki(Error: categories "element name" and "wiki" have no common domain.)'
+      'I don\'t know anything about "element name, wiki for mercury" ("").\nI do not understand "wiki".'
+      // TODO corresponding testcase and error for cross-domain nofit
+      //'I cannot combine "element name, wiki(Error: categories "element name" and "wiki" have no common domain.)'
 
-     );
+    );
     test.done();
     releaseConnector(conn);
   });
@@ -588,7 +588,7 @@ exports.testListWithContextDontKnow = function (test) {
   testOne('list abcnames for silver', function (conn, oRes) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
-    test.deepEqual(sRes.indexOf('know anything about \"abcnames') >= 0, true, 'not found');
+    test.deepEqual(sRes.indexOf('know anything about "abcnames') >= 0, true, 'not found');
     test.done();
     releaseConnector(conn);
   });
@@ -644,10 +644,10 @@ exports.testListAllNotACat = function (test) {
   testOne('list all NOTACATEGORY', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'I don\'t know anything about "NOTACATEGORY" ("").\nI do not understand "NOTACATEGORY".'
+      'I don\'t know anything about "NOTACATEGORY" ("").\nI do not understand "NOTACATEGORY".'
     );
-     //
-     // 'I don\'t know anything about "NOTACATEGORY"(Error: "NOTACATEGORY" is not a category!)');
+    //
+    // 'I don\'t know anything about "NOTACATEGORY"(Error: "NOTACATEGORY" is not a category!)');
     test.done(); releaseConnector(conn);
   });
 };
@@ -658,10 +658,10 @@ exports.testListAllMultOnlyCat = function (test) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
     // TODO CHECK
-     'the orbits, object type are ...\n"null" and "null";\n"null" and "star";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
-//    'the orbits, object type are ...\n"null";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
-  //  'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf";\n"null"'
-   //   'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"n/a" and "star";\n"n/a" and "star, red dwarf";\n"Sun" and "planet"'
+      'the orbits, object type are ...\n"null" and "null";\n"null" and "star";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
+      //    'the orbits, object type are ...\n"null";\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf"'
+      //  'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"Sun" and "planet";\n"n/a" and "star, red dwarf";\n"null"'
+      //   'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"n/a" and "star";\n"n/a" and "star, red dwarf";\n"Sun" and "planet"'
       //    'the orbits, object type are ...\n"Alpha Centauri C" and "planet";\n"n/a" and "star, red dwarf";\n"Sun" and "planet"'
     );
     test.done(); releaseConnector(conn);
@@ -673,11 +673,11 @@ exports.testListWeirdNoCatError = function (test) {
   testOne('list all silver', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'I don\'t know anything about "silver" ("").\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\''
-    ,'correct'
-   // TODO PRIO2 Better error
+      'I don\'t know anything about "silver" ("").\nError: EarlyExitException: expecting at least one iteration which starts with one of these possible Token sequences::\n  <[Comma] ,[and] ,[ACategory]> but found: \'FACT\''
+      ,'correct'
+      // TODO PRIO2 Better error
     );
-   //   'I don\'t know anything about "silver"(Error: "silver" is not a category!)');
+    //   'I don\'t know anything about "silver"(Error: "silver" is not a category!)');
     test.done(); releaseConnector(conn);
   });
 };
@@ -686,8 +686,8 @@ exports.testListWeirdUnknownError = function (test) {
   testOne('list all NOTANYWHERE', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-       'I don\'t know anything about "NOTANYWHERE" ("").\nI do not understand "NOTANYWHERE".'
-       );
+      'I don\'t know anything about "NOTANYWHERE" ("").\nI do not understand "NOTANYWHERE".'
+    );
     test.done();
     releaseConnector(conn);
   });
@@ -767,10 +767,10 @@ exports.testDescribeStupidDomain = function (test) {
   testOne('describe ABC in domain NODomain', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-  //   'I did not infer a domain restriction from "wiki". Specify an existing domain. (List all domains) to get exact names.\n',
-  //   'correct error msg');
+      //   'I did not infer a domain restriction from "wiki". Specify an existing domain. (List all domains) to get exact names.\n',
+      //   'correct error msg');
 
-   'I did not infer a domain restriction from "NODomain". Specify an existing domain. (List all domains) to get exact names.\n');
+      'I did not infer a domain restriction from "NODomain". Specify an existing domain. (List all domains) to get exact names.\n');
     test.done();
     releaseConnector(conn);
   });
@@ -791,10 +791,10 @@ exports.testDescribeCategorySenselessDomain = function (test) {
   testOne('describe category in domain wiki', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-//      '"in domain "wiki" make no sense when matching a metaword.\n' +
-'I did not infer a domain restriction from "wiki". Specify an existing domain. (List all domains) to get exact names.\n'
-//      '"category" is ' + SmartDialog.metawordsDescriptions['category']
-);
+      //      '"in domain "wiki" make no sense when matching a metaword.\n' +
+      'I did not infer a domain restriction from "wiki". Specify an existing domain. (List all domains) to get exact names.\n'
+      //      '"category" is ' + SmartDialog.metawordsDescriptions['category']
+    );
     test.done(); releaseConnector(conn);
   });
 };
@@ -811,9 +811,9 @@ exports.testDescribeADomain = function (test) {
   testOne('describe cosmos', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.3%) of records;\n'
-//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
-   );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
+      '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.3%) of records;\n'
+      //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
+    );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
     test.done(); releaseConnector(conn);
   });
 };
@@ -891,7 +891,7 @@ exports.testListAllDomainContainingNotPresent = function (test) {
   testOne('list all domains containing IUNIXDA', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'I did not find any domains containing IUNIXDA.\n'
+      'I did not find any domains containing IUNIXDA.\n'
     );
     test.done(); releaseConnector(conn);
   });
@@ -902,10 +902,10 @@ exports.testBadOP = function (test) {
   testOne('list all element names overfroombolding ea', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'I don\'t know anything about "element names overfroombolding ea" ("").\nI do not understand "overfroombolding".\nI do not understand "ea".',
-    'correct error msg'
-    // deepEqual 'ouch, this was in internal error. Recovering from a weird operator "overfroombolding"\n'
-//    at Object.deepEqual (C:\Users\Gerd\AppData\Roaming\npm\node_modules\nodeunit\lib\types.js:83:39)
+      'I don\'t know anything about "element names overfroombolding ea" ("").\nI do not understand "overfroombolding".\nI do not understand "ea".',
+      'correct error msg'
+      // deepEqual 'ouch, this was in internal error. Recovering from a weird operator "overfroombolding"\n'
+      //    at Object.deepEqual (C:\Users\Gerd\AppData\Roaming\npm\node_modules\nodeunit\lib\types.js:83:39)
 
     //  'ouch, this was in internal error. Recovering from a weird operator "overfroombolding"\n'
     );
@@ -923,10 +923,10 @@ exports.testOperatorStartsWith = function (test) {
     logPerf('testPerfListAll');
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'the element names starting with ni are ...\n"nickel";\n"nihonium";\n"niobium";\n"nitrogen"'
-    ,'ok' );
+      'the element names starting with ni are ...\n"nickel";\n"nihonium";\n"niobium";\n"nitrogen"'
+      ,'ok' );
     //TODO sort results
-//    'my element names starting with "ni" are ...\nnickel;\nnihonium;\nniobium;\nnitrogen');
+    //    'my element names starting with "ni" are ...\nnickel;\nnihonium;\nniobium;\nnitrogen');
     test.done(); releaseConnector(conn);
   });
 };
@@ -939,7 +939,7 @@ exports.testOperatorStartsWithFI = function (test) {
     logPerf('testPerfListAll');
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'I don\'t know anything about "KURUMBA LUBUMBA starting with FI" ("").\nI do not understand "KURUMBA".\nI do not understand "LUBUMBA".\nI do not understand "FI".'
+      'I don\'t know anything about "KURUMBA LUBUMBA starting with FI" ("").\nI do not understand "KURUMBA".\nI do not understand "LUBUMBA".\nI do not understand "FI".'
     );
     test.done(); releaseConnector(conn);
   });
@@ -980,8 +980,8 @@ exports.testListAllWithModelDataCollision = function (test) {
     //  var sRes = oRes;
     //logPerf('testPerfListAll');
     test.deepEqual(oRes,
-    'the ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394 are ...\n"FI-AR", "APPL_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_ACC_BE_APPS";\n"FI-LOC-FI", "ODATA_GLO_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_GLO_AC_BE_APPS"'
-    , 'correct result');
+      'the ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394 are ...\n"FI-AR", "APPL_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_ACC_BE_APPS";\n"FI-LOC-FI", "ODATA_GLO_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_GLO_AC_BE_APPS"'
+      , 'correct result');
     test.done(); releaseConnector(conn);
   });
 };
@@ -993,8 +993,8 @@ exports.testListAllWithModelDataCollisionProperCat = function (test) {
     //  var sRes = oRes;
     //logPerf('testPerfListAll');
     test.deepEqual(oRes,
-    'the ApplicationComponent, devclass, BackendCatalogId for S_ALR_87012394 are ...\n"FI-AR", "APPL_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_ACC_BE_APPS";\n"FI-LOC-FI", "ODATA_GLO_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_GLO_AC_BE_APPS"'
-    , 'correct result');
+      'the ApplicationComponent, devclass, BackendCatalogId for S_ALR_87012394 are ...\n"FI-AR", "APPL_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_ACC_BE_APPS";\n"FI-LOC-FI", "ODATA_GLO_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_GLO_AC_BE_APPS"'
+      , 'correct result');
     test.done(); releaseConnector(conn);
   });
 };
@@ -1008,8 +1008,8 @@ exports.testListAllWithModelDataCollisionProperCat2 = function (test) {
 
     test.deepEqual(oRes,
 
-    'the ApplicationComponent, devclass, Fiori Backend Catalog with TransactionCode S_ALR_87012394 are ...\n"FI-AR", "APPL_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_ACC_BE_APPS";\n"FI-LOC-FI", "ODATA_GLO_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_GLO_AC_BE_APPS"'
-    ,'correct result');
+      'the ApplicationComponent, devclass, Fiori Backend Catalog with TransactionCode S_ALR_87012394 are ...\n"FI-AR", "APPL_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_ACC_BE_APPS";\n"FI-LOC-FI", "ODATA_GLO_FIN_APP_DESCRIPTORS" and "SAP_TC_FIN_GLO_AC_BE_APPS"'
+      ,'correct result');
     test.done(); releaseConnector(conn);
   });
 };
@@ -1064,7 +1064,7 @@ exports.testOperatorContainingNit = function (test) {
     debuglog(JSON.stringify(oRes));
     // TODO what about element name ????
     test.deepEqual(oRes,
-    'the categories containing "lem" are ...\n"element name";\n"element number";\n"element properties";\n"element symbol"'
+      'the categories containing "lem" are ...\n"element name";\n"element number";\n"element properties";\n"element symbol"'
     );
     test.done(); releaseConnector(conn);
   });
@@ -1092,7 +1092,7 @@ exports.testOperatorCategoriesStartsWith = function (test) {
     logPerf('testPerfListAll');
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-     'the categories starting with elem are ...\n"element name";\n"element number";\n"element properties";\n"element symbol"'
+      'the categories starting with elem are ...\n"element name";\n"element number";\n"element properties";\n"element symbol"'
     //'my categories starting with "elem" are ...\nelement name;\nelement number;\nelement properties;\nelement symbol'
     );
     test.done(); releaseConnector(conn);
@@ -1107,7 +1107,7 @@ exports.testOperatorStartsWithQuoted = function (test) {
     logPerf('testPerfListAll');
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'the categories starting with "elem" are ...\n"element name";\n"element number";\n"element properties";\n"element symbol"'
+      'the categories starting with "elem" are ...\n"element name";\n"element number";\n"element properties";\n"element symbol"'
     );
     test.done(); releaseConnector(conn);
   });
@@ -1121,7 +1121,7 @@ exports.testOperatorStartsWithQuotedInDomain = function (test) {
     logPerf('testPerfListAll');
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-    'the categories starting with "elem" in domain IUPAC are ...\n"element name";\n"element number";\n"element symbol"' );
+      'the categories starting with "elem" in domain IUPAC are ...\n"element name";\n"element number";\n"element symbol"' );
     test.done(); releaseConnector(conn);
   });
 };
@@ -1134,7 +1134,7 @@ exports.testOperatorStartsWithQuotedInDomainSloppy = function (test) {
     logPerf('testPerfListAll');
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
- 'the categories starting with "elem" in domain IUPAD are ...\n"element name";\n"element number";\n"element symbol"'
+      'the categories starting with "elem" in domain IUPAD are ...\n"element name";\n"element number";\n"element symbol"'
     );
     test.done(); releaseConnector(conn);
   });
@@ -1150,7 +1150,7 @@ exports.testOperatorStartsWithQuotedInNoDomain = function (test) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
     // TODO better error 'I did not infer a domain restriction from "NONEXSITENT". Specify an existing domain. (List all domains) to get exact names.\n'
-    'I don\'t know anything about "categories starting with "elem" in domain NONEXSITENT" ("").\nI do not understand "NONEXSITENT".'
+      'I don\'t know anything about "categories starting with "elem" in domain NONEXSITENT" ("").\nI do not understand "NONEXSITENT".'
     );
     test.done(); releaseConnector(conn);
   });
@@ -1165,7 +1165,7 @@ exports.testOperatorStartsWithQuotedMemberInDomain = function (test) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
     //TODO SORTING
-     'the element names starting with e in domain IUPAC are ...\n"einsteinium";\n"erbium";\n"europium"'
+      'the element names starting with e in domain IUPAC are ...\n"einsteinium";\n"erbium";\n"europium"'
     );
     test.done(); releaseConnector(conn);
   });
@@ -1175,9 +1175,9 @@ exports.testShowMeQueryOK = function (test) {
   testOne('show me orbits with earth', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
- 'starting uri https://en.wikipedia.org/wiki/Earth'
- //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
-   );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
+      'starting uri https://en.wikipedia.org/wiki/Earth'
+      //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
+    );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
     test.done(); releaseConnector(conn);
   });
 };
@@ -1187,9 +1187,9 @@ exports.testShowMeBad = function (test) {
   testOne('show me funny', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
- 'I did not get what you want'
- //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
-   );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
+      'I did not get what you want'
+      //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
+    );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
     test.done(); releaseConnector(conn);
   });
 };

@@ -8,6 +8,12 @@ var rootdata = './test/regress/test/';
 
 // run regressions
 
+
+// environment variables
+// SET ABOT_WRITE_REGRESS=true   to overwrite input
+//
+//
+
 var fs = require('fs');
 
 function getArg(s) {
@@ -132,9 +138,6 @@ function getContext() {
   return context;
 }
 
-
-
-
 function runOne(conn, context, i, cb ) {
   var input =  context.input[i];
   var expected = context.expected[i] || '';
@@ -151,8 +154,8 @@ function runOne(conn, context, i, cb ) {
     } else {
       context.bad += 1;
       var s = '['+ i +'] input : "' + input + '"\n'
-       +    '['+ i +'] expect: "' + oRes.replace(/[\n]/g,'\\n') + '"\n'
-     +    '['+ i +'] actual: \"' + oRes.replace(/[\n]/g,'\\n') + '"\n';
+       +    '['+ i +'] expect: "' + expected.replace(/[\n]/g,'\\n') + '"\n'
+     +    '['+ i +'] actual: "' + oRes.replace(/[\n]/g,'\\n') + '"\n';
       var k = 0;
       for(k = 0; k < oRes.length && k < expected.length && oRes.charAt[k] === expected.charAt[k]; ++k) {
         /* empty */

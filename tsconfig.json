@@ -1,10 +1,9 @@
 {
     "compilerOptions": {
        // "target": "es6",
+       "skipLibCheck": true, // avoid lodash WeakMap mismatch
       //used to be "target": "es5",
        "target": "es2015",
-       "skipLibCheck": true, // avoid lodash WeakMap mismatch
-
        // "module" : "es6", //'es2015
         "module": "commonjs",
         "moduleResolution": "node",
@@ -14,11 +13,11 @@
         // new ^^
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "declaration": false,
+        "declaration": false, // TODO TRUE
         "noImplicitAny": false,
         "removeComments": false,
         "noLib": false,
-        "outDir" : "js", // was gen_tsc
+        "outDir" : "js",
        // "sourceMap" : true,
         "inlineSourceMap": true,
         "preserveConstEnums": true,
@@ -31,6 +30,7 @@
         "!node_modules/**"
     ],
     "files": [
+        "src/index.ts",
         "src/interfaces.d.ts",
         "src/match/ifmatch.ts",
      //   "src/match/toolmatch.ts",

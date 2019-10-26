@@ -4,8 +4,10 @@
 // })
 
 var builder = require('botbuilder');
+var process = require('process');
+var ABOT_MONGODB = process.env.ABOT_MONGODB || 'testdb';
 
-var MONGO_DBURL = 'mongodb://localhost/testdb';
+var MONGO_DBURL = 'mongodb://localhost/' + ABOT_MONGODB;
 
 // Create bot and bind to console
 var connector = new builder.ConsoleConnector().listen();
@@ -20,25 +22,6 @@ var Model = require('mgnlq_model').Model;
 function loadModel() {
   return Model.loadModelsOpeningConnection(mongoose, MONGO_DBURL, 'smbmodel');
 }
-/**
-
-var getTestModel = require('mgnlq_testmodel_replay').getTestModel;
-/*
-// Create bot and bind to console
-function getBotInstance() {
-  var connector = new HTMLConnector.HTMLConnector();
-  / ** the model is lazily obatained, if it is not obtained, there is no model * /
-  var res = getTestModel();
-  res.then((theModel) => connector.theModel = theModel);
-
-  function getM() {
-    //res.then((theModel) => connector.theModel = theModel);
-    return res;
-  }
-  SmartDialog.makeBot(connector, getM);
-  return res.then( ()=> connector);
-}
-*/
 
 
 botdialog.makeBot(connector, loadModel, { showModelLoadTime: true});

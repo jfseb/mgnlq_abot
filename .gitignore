@@ -5,6 +5,8 @@ info.lcov
 logs
 tmp
 
+
+.nyc_output/**
 gen3
 gen/**
 testmodel/*.bak

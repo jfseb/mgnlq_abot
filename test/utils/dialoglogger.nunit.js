@@ -11,8 +11,6 @@ var DialogLogger = require(root + '/utils/dialoglogger.js');
 var debug = require('debug');
 const debuglog = debug('dialoglogger.nunit');
 
-
-
 exports.testLogger = function (test) {
   test.expect(4);
 

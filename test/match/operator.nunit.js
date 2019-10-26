@@ -10,70 +10,70 @@ var root = '../../js';
 const Operator = require(root + '/match/operator.js');
 //const Category = OpsWord.Category;
 
-exports.testMatches= function (test) {
+exports.testMatches = function (test) {
   // prepare
   // act
   // check
   [{
-    operator : { operator : 'containing'},
-    fragment : 'abc',
-    str : 'xabcy',
+    operator: { operator: 'containing' },
+    fragment: 'abc',
+    str: 'xabcy',
     expectedResult: true
   },
   {
-    operator : { operator : 'ending with'},
-    fragment : 'abc',
-    str : 'xyzabc',
+    operator: { operator: 'ending with' },
+    fragment: 'abc',
+    str: 'xyzabc',
     expectedResult: true
   },
   {
-    operator : { operator : 'ending with'},
-    fragment : 'abc',
-    str : 'xyzabcz',
+    operator: { operator: 'ending with' },
+    fragment: 'abc',
+    str: 'xyzabcz',
     expectedResult: false
   },
   {
-    operator : { operator : 'ending with'},
-    fragment : 'abc',
-    str : 'xyzabczdefabc',
+    operator: { operator: 'ending with' },
+    fragment: 'abc',
+    str: 'xyzabczdefabc',
     expectedResult: true
   },
   {
-    operator : { operator : 'starting with'},
-    fragment : 'abc',
-    str : 'aBcz',
+    operator: { operator: 'starting with' },
+    fragment: 'abc',
+    str: 'aBcz',
     expectedResult: false
   },
   {
-    operator : { operator : 'starting with'},
-    fragment : 'abc',
-    str : 'xabc',
+    operator: { operator: 'starting with' },
+    fragment: 'abc',
+    str: 'xabc',
     expectedResult: false
   },
   {
-    operator : { operator : 'starting with'},
-    fragment : 'abc',
-    str : 'abcz',
+    operator: { operator: 'starting with' },
+    fragment: 'abc',
+    str: 'abcz',
     expectedResult: true
   },
   {
-    operator : { operator : 'starting with'},
-    fragment : 'abc',
-    str : 'abc',
+    operator: { operator: 'starting with' },
+    fragment: 'abc',
+    str: 'abc',
     expectedResult: true
   },
   {
-    operator : { operator : 'starting with'},
-    fragment : 'abc',
-    str : '',
+    operator: { operator: 'starting with' },
+    fragment: 'abc',
+    str: '',
     expectedResult: false
   }
-  ].forEach(function(oFixture) {
+  ].forEach(function (oFixture) {
     test.deepEqual(Operator.matches(
       oFixture.operator,
       oFixture.fragment,
-    oFixture.str),
-    oFixture.expectedResult, ' correct result  for ' + JSON.stringify(oFixture));
+      oFixture.str),
+      oFixture.expectedResult, ' correct result  for ' + JSON.stringify(oFixture));
   });
   test.done();
 };
@@ -86,9 +86,9 @@ exports.testMatchesError = function (test) {
       'not an operator',
       'abc',
       'def');
-    test.equal(1,0);
-  } catch(e) {
-    test.equal(1,1);
+    test.equal(1, 0);
+  } catch (e) {
+    test.equal(1, 1);
   }
   test.done();
 };

@@ -23,3 +23,84 @@ node smartbot.js
 This will attempt to connect to mongodatabase
 testdb on the default port
 
+
+
+# Development
+
+Where is what ?
+
+mgnlq_er
+mgnlq_parser1
+
+
+
+
+# Deployment
+
+
+In an actual setup or test run, the following environment variables
+must be supplied:
+
+- DATABASE_URL must point to a postgresSQL Database (user management, recording)
+                     default to:  var pglocalurl = "postgres://xx:pwpwpwp@localhost:5432/abot";
+
+- SET ABOT_DBNOSSL=true to not use SSL when connecting to Database URL
+
+
+
+- var envModelPath = process.env["ABOT_MODELPATH"] || "node_modules/mgnlq_testmodel/testmodel"; (mgnlq_model)
+
+
+# Test execution
+
+> to record test data, set MGNLQ_TESTMODEL_REPLAY=RECORD
+
+# running the bot / picking a db
+
+the bot runs against testdb per default,
+
+to change this one must eiter remove the cache in smbmodel\_cache.js.zp and/or set
+ SET MQNLQ_MODEL_NO_FILECACHE=true
+Then one may set ABOT_MONGODB=testdb2  to switch to an alternate db.
+
+the cache is recreated on the first run.
+
+
+
+# Regression tests
+
+per default the regression test runs against mock db files!
+
+
+ example: run against testmodel2  ( constants are in mgnlq_testmodel2)
+
+to run against true db:
+ SET MQNLQ_MODEL_NO_FILECACHE=true
+ SET ABOT_MONGODB=testdb2
+ SET MGNLQ_TESTMODEL2_REPLAY=RECORD
+
+
+beware, recently changed behaviour to let modelnames and collection names be plural
+
+# A quick mongo guide
+
+locate mongo on your system, e.g.
+```
+>mongo
+
+show dbs
+
+use test2db
+
+show collections
+
+db.metamodels.find({modelname: 'iupacs'});
+
+db.collections.find()
+
+```
+
+
+-> testdb2 : Too large keys to index ( WiredTiger ) ?
+
+list all sample questions

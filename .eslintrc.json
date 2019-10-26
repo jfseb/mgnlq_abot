@@ -17,7 +17,7 @@
             "off"
         ],
         "indent": [
-            "error",
+            "warn",
             2
         ],
         "linebreak-style": [
@@ -25,7 +25,7 @@
             "unix"
         ],
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [

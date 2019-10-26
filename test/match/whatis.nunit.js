@@ -13,14 +13,7 @@ const ListAll = require(root + '/match/listall.js');
 
 const MongoQueries = require(root + '/match/mongoqueries.js');
 
-//const InputFilterRules = require('mgnlq_er').InputFilterRules;
-
-//const mRules = InputFilterRules.getMRulesSample();
-
-
 const Model = require('mgnlq_model').Model;
-//const theModel = Model.loadModels();
-//const theModel2 = Model.loadModels('testmodel2');
 
 var getModel = require('mgnlq_testmodel_replay').getTestModel;
 var getModel2 = require('mgnlq_testmodel2').getTestModel;

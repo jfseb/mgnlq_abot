@@ -8,6 +8,7 @@
 
 import { InputFilter as InputFilter} from 'mgnlq_er';
 import { MongoQ as MongoQ } from 'mgnlq_parser1';
+import * as ListAll from './listall';
 
 
 import * as debug from 'debug';
@@ -750,72 +751,8 @@ export function analyzeOperator(opword: string, rules: IMatch.SplitRules, wholes
 */
 
 
-import * as ListAll from './listall';
 // const result = WhatIs.resolveCategory(cat, a1.entity,
 //   theModel.mRules, theModel.tools, theModel.records);
-
-/*
-export function resolveCategory(category: string, contextQueryString: string,
-  rules: IMatch.SplitRules, records: Array<IMatch.IRecord>): IMatch.IProcessedWhatIsAnswers {
-  if (contextQueryString.length === 0) {
-    return { errors: [ErError.makeError_EMPTY_INPUT()], tokens: [], answers: [] };
-  } else {
-    / *
-        var matched = InputFilter.analyzeString(contextQueryString, rules);
-        debuglog(debuglog.enabled ? ("after matched " + JSON.stringify(matched)): '-');
-        var aSentences = InputFilter.expandMatchArr(matched);
-        if(debuglog.enabled) {
-          debuglog("after expand" + aSentences.map(function (oSentence) {
-            return Sentence.rankingProduct(oSentence) + ":" + JSON.stringify(oSentence);
-          }).join("\n"));
-      } * /
-    // var categorySet = Model.getAllRecordCategoriesForTargetCategory(theModel, cat, true);
-
-    var res = ListAll.listAllWithContext(category, contextQueryString, rules, records);
-    //* sort by sentence
-    res.answers.forEach(o => { o._ranking = o._ranking *  Sentence.rankingProduct( o.sentence ); });
-    res.answers.sort(cmpByRanking);
-    return res;
-/ *
-    // ??? var res = ListAll.listAllHavingContext(category, contextQueryString, rules, records);
-
-    var aSentencesReinforced = processString(contextQueryString, rules);
-    //aSentences.map(function(oSentence) { return InputFilter.reinForce(oSentence); });
-    debuglog(debuglog.enabled ? ("after reinforce" + aSentencesReinforced.sentences.map(function (oSentence) {
-      return Sentence.rankingProduct(oSentence) + ":" + JSON.stringify(oSentence);
-    }).join("\n")) : '-');
-    var matchedAnswers = matchRecords(aSentencesReinforced, category, records); //aTool: Array<IMatch.ITool>): any / * objectstream* / {
-    debuglog(debuglog.enabled ? (" matchedAnswers" + JSON.stringify(matchedAnswers, undefined, 2)) : '-');
-    return matchedAnswers;
-* /
- }
-}
-*/
-
-/*
-export function resolveCategories(categories: string[], contextQueryString: string,
-  theModel: IMatch.IModels, domainCategoryFilter : IMatch.IDomainCategoryFilter): Promise<IMatch.IProcessedWhatIsTupelAnswers> {
-  var records = theModel.records;
-  var rules = theModel.rules;
-  if (contextQueryString.length === 0) {
-    return (global.Promise as any).resolve({
-      errors: [ErError.makeError_EMPTY_INPUT()],
-      tupelanswers: [],
-      tokens: []
-    });
-  } else {
-    // var categorySet = Model.getAllRecordCategoriesForTargetCategory(theModel, cat, true);
-    return ListAll.listAllTupelWithContext(categories, contextQueryString, theModel).then( (res) => {
-
-    //* sort by sentence
-    res.tupelanswers.forEach(o => { o._ranking = o._ranking *  Sentence.rankingProduct( o.sentence ); });
-    res.tupelanswers.sort(cmpByRankingTupel);
-    return res;
-    })
-  }
-}
-
-*/
 
 export function isIndiscriminateResultTupel(results: Array<IMatch.IWhatIsTupelAnswer>): string {
   var cnt = results.reduce(function (prev, result) {

@@ -1,0 +1,1 @@
+{"version":3,"sources":["/projects/nodejs/botbuilder/mgnlq_abot/src/../src/index.ts"],"names":[],"mappings":";;AACA,iDAAiD;AACxC,kCAAW;AAEpB,qDAAqD","file":"index.js","sourcesContent":["\nimport * as SmartDialog from './bot/smartdialog';\nexport { SmartDialog };\n\n//import * as SentenceParser from './sentenceparser';"],"sourceRoot":"ABC"}

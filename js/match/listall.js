@@ -17,9 +17,10 @@ const Utils = require("abot_utils");
 //import * as Match from './match';
 //import * as Toolmatcher from './toolmatcher';
 const mgnlq_model_1 = require("mgnlq_model");
+const mgnlq_er_1 = require("mgnlq_er");
 const Operator = require("./operator");
 const WhatIs = require("./whatis");
-const mgnlq_er_1 = require("mgnlq_er");
+const mgnlq_er_2 = require("mgnlq_er");
 const mgnlq_model_2 = require("mgnlq_model");
 const MongoQueries = require("./mongoqueries");
 function projectResultToStringArray(answer, result) {
@@ -258,7 +259,7 @@ function returnErrorTextIfOnlyError(results) {
     debuglog(() => 'here flattened errors ' + errors.length + '/' + results.length);
     if (errors.length === results.length) {
         var listOfErrors = flattenComplete(errors);
-        var r = mgnlq_er_1.ErError.explainError(listOfErrors);
+        var r = mgnlq_er_2.ErError.explainError(listOfErrors);
         debuglog(() => 'here explain ' + r);
         return r;
     }
@@ -285,7 +286,7 @@ function flattenToStringArray(results) {
     // TODO SPLIT BY DOMAIN
     var res = [];
     var cnt = results.reduce(function (prev, result) {
-        if (true) {
+        if (true) { // TODO result._ranking === results[0]._ranking) {
             var arrs = projectResultsToStringArray(result);
             res = res.concat(arrs);
         }
@@ -298,7 +299,7 @@ function joinResultsFilterDuplicates(answers) {
     var res = [];
     var seen = []; // serialized index
     var cnt = answers.reduce(function (prev, result) {
-        if (true) {
+        if (true) { // TODO result._ranking === results[0]._ranking) {
             var arrs = projectResultsToStringArray(result);
             var cntlen = arrs.reduce((prev, row) => {
                 var value = Utils.listToQuotedCommaAnd(row); //projectResultToStringArray(result, result));
@@ -344,7 +345,7 @@ exports.hasError = hasError;
 function hasEmptyResult(answers) {
     return !answers.every(answer => {
         if (answer.results.length <= 0) {
-            console.log('here empty' + JSON.stringify(answer));
+            //console.log('here empty' + JSON.stringify(answer));
         }
         return (answer.results.length > 0);
     });
@@ -373,7 +374,10 @@ function removeEmptyResults(answers) {
 }
 exports.removeEmptyResults = removeEmptyResults;
 function removeMetamodelResultIfOthers(answers) {
-    if (hasError(answers) || hasEmptyResult(answers)) {
+    if (hasError(answers)) {
+        throw Error('remove errors before');
+    }
+    if (hasEmptyResult(answers)) {
         throw Error('run removeEmptyResults before');
     }
     var domains = getDistinctOKDomains(answers);
@@ -383,6 +387,106 @@ function removeMetamodelResultIfOthers(answers) {
     return answers;
 }
 exports.removeMetamodelResultIfOthers = removeMetamodelResultIfOthers;
+function isSignificantWord(word) {
+    return word.rule.wordType === 'F'
+        || word.rule.wordType === 'C';
+}
+exports.isSignificantWord = isSignificantWord;
+function isSignificantDifference(actualword, matchedWord) {
+    var lca = actualword.toLowerCase();
+    var lcm = matchedWord.toLowerCase();
+    if (lca === lcm) {
+        return false;
+    }
+    if (lca + 's' === lcm) {
+        return false;
+    }
+    if (lca === lcm + 's') {
+        return false;
+    }
+    return true;
+}
+exports.isSignificantDifference = isSignificantDifference;
+function getQueryString(answ) {
+    var words = [];
+    debuglog(() => 'here tokens:' + answ.aux.tokens);
+    debuglog(() => JSON.stringify(answ.aux.sentence, undefined, 2));
+    debuglog(() => ' ' + mgnlq_er_1.Sentence.dumpNiceRuled(answ.aux.sentence));
+    answ.aux.sentence.forEach((word, index) => {
+        var word = answ.aux.sentence[index];
+        words.push(word.string);
+        if (isSignificantWord(word))
+            if (isSignificantDifference(word.matchedString, word.string)) {
+                words.push("(\"" + word.rule.matchedString + "\")");
+            }
+    });
+    return words.join(" ");
+}
+exports.getQueryString = getQueryString;
+;
+function cmpDomainSentenceRanking(a, b) {
+    var r = a.domain.localeCompare(b.domain);
+    if (r) {
+        return r;
+    }
+    var ca = mgnlq_er_1.Sentence.rankingGeometricMean(a.aux.sentence);
+    var cb = mgnlq_er_1.Sentence.rankingGeometricMean(b.aux.sentence);
+    return cb - ca;
+}
+exports.cmpDomainSentenceRanking = cmpDomainSentenceRanking;
+function retainOnlyTopRankedPerDomain(answers) {
+    var domains = getDistinctOKDomains(answers);
+    /* domains.sort();
+    / answers.forEach( (answer, index) =>  {
+       console.log(Sentence.rankingGeometricMean(answer.aux.sentence));
+     });
+     */
+    answers.sort(cmpDomainSentenceRanking);
+    return answers.filter((entry, index, arr) => {
+        if ((index === 0) || (entry.domain !== arr[index - 1].domain)) {
+            return true;
+        }
+        var prev = arr[index - 1];
+        var rank_prev = mgnlq_er_1.Sentence.rankingGeometricMean(prev.aux.sentence);
+        var rank = mgnlq_er_1.Sentence.rankingGeometricMean(entry.aux.sentence);
+        if (!WhatIs.safeEqual(rank, rank_prev)) {
+            debuglog(() => `dropping ${index} ${mgnlq_er_1.Sentence.dumpNiceRuled(entry.aux.sentence)} `);
+        }
+        return false;
+    });
+}
+exports.retainOnlyTopRankedPerDomain = retainOnlyTopRankedPerDomain;
+function resultAsListString(answers) {
+    var nonerror = removeErrorsIfOKAnswers(answers);
+    var nonempty = removeEmptyResults(nonerror);
+    var filteredNoMM = removeMetamodelResultIfOthers(nonempty);
+    var filtered = retainOnlyTopRankedPerDomain(filteredNoMM);
+    var domains = getDistinctOKDomains(filtered);
+    domains.sort();
+    var res = '';
+    if (domains.length > 1) {
+        res = "The query has answers in more than one domain:\n";
+    }
+    res += domains.map(dom => {
+        var answersForDomain = answers.filter(a => (a.domain === dom));
+        return answersForDomain.map(answ => {
+            var localres = '';
+            var querystr = getQueryString(answ);
+            var answerN = joinResultsTupel([answ]).join("\n");
+            localres += querystr;
+            if (domains.length > 1) {
+                localres += " in domain \"" + dom + "\"...\n";
+            }
+            else {
+                localres += "\n...";
+            }
+            localres += joinResultsTupel([answ]).join("\n") + "\n";
+            return localres;
+        }).join("\n");
+    }).join("\n");
+    return res;
+}
+exports.resultAsListString = resultAsListString;
 /**
  * TODO
  * @param results
@@ -391,7 +495,7 @@ function joinResultsTupel(results) {
     // TODO SPLIT BY DOMAIN
     var res = [];
     var cnt = results.reduce(function (prev, result) {
-        if (true) {
+        if (true) { // TODO result._ranking === results[0]._ranking) {
             var arrs = projectResultsToStringArray(result);
             var cntlen = arrs.reduce((prev, row) => {
                 var value = Utils.listToQuotedCommaAnd(row); //projectResultToStringArray(result, result));
