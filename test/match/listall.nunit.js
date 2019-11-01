@@ -10,10 +10,10 @@ var root = '../../js';
 //var debuglog = require('debug')('listall.nunit');
 
 const ListAll = require(root + '/match/listall.js');
-const ErBase = require('mgnlq_er').ErBase;
+const ErBase = require('mgnlq_parser1').ErBase;
 const MongoQueries = require(root + '/match/mongoqueries.js');
 //const WhatIs = require(root + '/match/whatis');
-//const Sentence = require('mgnlq_er').Sentence;
+//const Sentence = require('mgnlq_parser1').Sentence;
 const Model = require('mgnlq_model').Model;
 
 //const theModel = Model.loadModels();
@@ -34,17 +34,17 @@ exports.testListAllWithContext = function (test) {
     // NEW NOT RULES
     ListAll.listAllWithContext('url', 'unit test NavTargetResolution',
       theModel).then((res) => {
-        // console.log(JSON.stringify(res));
-        // test.deepEqual(ListAll.formatDistinctFromWhatIfResult([]), '');
-        var res3 = ListAll.joinResultsFilterDuplicates(res);
-        //test.deepEqual(res3, ['com.sap.NTA' ]);
-        test.deepEqual(res3, []);
+      // console.log(JSON.stringify(res));
+      // test.deepEqual(ListAll.formatDistinctFromWhatIfResult([]), '');
+      var res3 = ListAll.joinResultsFilterDuplicates(res);
+      //test.deepEqual(res3, ['com.sap.NTA' ]);
+      test.deepEqual(res3, []);
 
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
+      var res2 = ListAll.formatDistinctFromWhatIfResult(res);
 
-        test.deepEqual(res2, ''); // '"com.sap.NTA"');
-        test.done();
-      });
+      test.deepEqual(res2, ''); // '"com.sap.NTA"');
+      test.done();
+    });
     Model.releaseModel(theModel);
   });
 };
@@ -66,20 +66,20 @@ exports.testListAllMultWithCompareOneBadCat = function (test) {
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'devclass', 'FioriBackendCatalogs'], 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
 
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['FI-LOC-FI',
-              'ODATA_GLO_FIN_APP_DESCRIPTORS',
-              'SAP_TC_FIN_GLO_AC_BE_APPS']]
-/*
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['FI-LOC-FI',
+            'ODATA_GLO_FIN_APP_DESCRIPTORS',
+            'SAP_TC_FIN_GLO_AC_BE_APPS']]
+        /*
           [['CA', 'n/a', 'n/a'],
           ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'n/a'],
           ['FI-LOC-FI', 'ODATA_GLO_FIN_APP_DESCRIPTORS', 'n/a']] */,
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -90,23 +90,23 @@ exports.testListAllMultHavingCompareOneBadCat = function (test) {
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'devclass', 'FioriBackendCatalogs'], 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
 
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
 
-          [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['FI-LOC-FI',
-              'ODATA_GLO_FIN_APP_DESCRIPTORS',
-              'SAP_TC_FIN_GLO_AC_BE_APPS']]
-          /*
+        [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['FI-LOC-FI',
+            'ODATA_GLO_FIN_APP_DESCRIPTORS',
+            'SAP_TC_FIN_GLO_AC_BE_APPS']]
+        /*
                     [['CA', 'n/a', 'n/a'],
                     ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'n/a'],
                     ['FI-LOC-FI', 'ODATA_GLO_FIN_APP_DESCRIPTORS', 'n/a']]
                     */
-          ,
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+        ,
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -116,24 +116,24 @@ exports.testListAllMultHavingCompareBECategories = function (test) {
     theModel.rules.wordCache = {};
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'devclass', 'BackendCatalogId'], 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['FI-LOC-FI',
-              'ODATA_GLO_FIN_APP_DESCRIPTORS',
-              'SAP_TC_FIN_GLO_AC_BE_APPS']]
-          /*
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['FI-LOC-FI',
+            'ODATA_GLO_FIN_APP_DESCRIPTORS',
+            'SAP_TC_FIN_GLO_AC_BE_APPS']]
+        /*
                     [['CA', 'n/a', 'n/a'],
                     ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
                       ['FI-LOC-FI',
                         'ODATA_GLO_FIN_APP_DESCRIPTORS',
                         'SAP_TC_FIN_GLO_AC_BE_APPS']]
                         */
-          ,
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+        ,
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -145,21 +145,21 @@ exports.testListAllMultWithCompareBECategories = function (test) {
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'TechnicalCatalog'], 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
 
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [['CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN'],
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [['CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN'],
           ['CA', 'SAP_TC_FIN_ACC_BE_APPS:S4FIN']]
-          /*
+        /*
       [['CA', 'n/a', 'n/a'],
       ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
         ['FI-LOC-FI',
           'ODATA_GLO_FIN_APP_DESCRIPTORS',
           'SAP_TC_FIN_GLO_AC_BE_APPS']]*/
-          ,
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+        ,
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -176,7 +176,7 @@ exports.testProjectResultToStringArray = function (test) {
   test.deepEqual('' + res[0][2], 'null', 'is null');
   test.deepEqual(res,
     [['true', '1', 'null', 'abc'],
-    ['false', '-17.5', 'null', 'abc']
+      ['false', '-17.5', 'null', 'abc']
     ]);
   test.done();
 };
@@ -215,17 +215,17 @@ exports.testListAllMultWithCompareBECategoriesWithSet = function (test) {
     ListAll.listAllTupelWithContext(cats, 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
 
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [
-            ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['FI-LOC-FI',
-              'ODATA_GLO_FIN_APP_DESCRIPTORS',
-              'SAP_TC_FIN_GLO_AC_BE_APPS']],
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [
+          ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['FI-LOC-FI',
+            'ODATA_GLO_FIN_APP_DESCRIPTORS',
+            'SAP_TC_FIN_GLO_AC_BE_APPS']],
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -237,18 +237,18 @@ exports.testListAllMultWithCompareBECategoriesWithSetDomain = function (test) {
     //var categoryFilter = Model.getDomainCategoryFilterForTargetCategories(theModel, cats, true);
     ListAll.listAllTupelWithContext(cats, 'TransactionCode S_ALR_87012394',
       theModel).then((res) => {
-        //console.log(JSON.stringify(res));
+      //console.log(JSON.stringify(res));
 
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [
-            ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['FI-LOC-FI',
-              'ODATA_GLO_FIN_APP_DESCRIPTORS',
-              'SAP_TC_FIN_GLO_AC_BE_APPS']],
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [
+          ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['FI-LOC-FI',
+            'ODATA_GLO_FIN_APP_DESCRIPTORS',
+            'SAP_TC_FIN_GLO_AC_BE_APPS']],
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -263,18 +263,18 @@ exports.testListAllMultHavingCompareBECategoriesWithSet = function (test) {
     ListAll.listAllTupelWithContext(cats, 'TransactionCode S_ALR_87012394',
       theModel, categorySet).then((res) => {
 
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [
 
-            ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['FI-LOC-FI',
-              'ODATA_GLO_FIN_APP_DESCRIPTORS',
-              'SAP_TC_FIN_GLO_AC_BE_APPS']],
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+          ['FI-AR', 'APPL_FIN_APP_DESCRIPTORS', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['FI-LOC-FI',
+            'ODATA_GLO_FIN_APP_DESCRIPTORS',
+            'SAP_TC_FIN_GLO_AC_BE_APPS']],
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -286,16 +286,16 @@ exports.testListAllMultHavingCompareBECategoriesWithSetOrder = function (test) {
     var categorySet = Model.getDomainCategoryFilterForTargetCategories(theModel, cats, true);
     ListAll.listAllTupelWithContext(cats, 'TransactionCode S_ALR_87012394',
       theModel, categorySet).then((res) => {
-        //console.log(JSON.stringify(res));
-        test.deepEqual(ListAll.flattenToStringArray(res),
-          [['APPL_FIN_APP_DESCRIPTORS', 'FI-AR', 'SAP_TC_FIN_ACC_BE_APPS'],
-            ['ODATA_GLO_FIN_APP_DESCRIPTORS', 'FI-LOC-FI',
+      //console.log(JSON.stringify(res));
+      test.deepEqual(ListAll.flattenToStringArray(res),
+        [['APPL_FIN_APP_DESCRIPTORS', 'FI-AR', 'SAP_TC_FIN_ACC_BE_APPS'],
+          ['ODATA_GLO_FIN_APP_DESCRIPTORS', 'FI-LOC-FI',
 
-              'SAP_TC_FIN_GLO_AC_BE_APPS']],
-          'correct result');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+            'SAP_TC_FIN_GLO_AC_BE_APPS']],
+        'correct result');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -346,11 +346,11 @@ exports.testListAllWithContextDomainOPLike = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', 'domain "SOBJ Tables"',
       theModel).then((res) => {
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
-        test.deepEqual(res2, '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'); // '"com.sap.NTA"; "com.sap.SNav"');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+      var res2 = ListAll.formatDistinctFromWhatIfResult(res);
+      test.deepEqual(res2, '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'); // '"com.sap.NTA"; "com.sap.SNav"');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -438,11 +438,11 @@ exports.testListAllWithContextDomainLike = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', '"SOBJ Tables"',
       theModel).then((res) => {
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
-        test.deepEqual(res2, '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'); // '"com.sap.NTA"; "com.sap.SNav"');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+      var res2 = ListAll.formatDistinctFromWhatIfResult(res);
+      test.deepEqual(res2, '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'); // '"com.sap.NTA"; "com.sap.SNav"');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -452,13 +452,13 @@ exports.testListAllWithContextDomainLikeAmbiguous = function (test) {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', 'SOBJ Tables',
       theModel).then((res) => {
-        var res2 = ListAll.formatDistinctFromWhatIfResult(res);
-        test.deepEqual(res2,
-          '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'
-        ); // '"com.sap.NTA"; "com.sap.SNav"');
-        test.done();
-        Model.releaseModel(theModel);
-      });
+      var res2 = ListAll.formatDistinctFromWhatIfResult(res);
+      test.deepEqual(res2,
+        '"/UIF/LREPDATTR"; "/UIF/LREPDATTRCD"; "/UIF/LREPDCONT"; "/UIF/LREPDCONTCD"; "/UIF/LREPDEREF"; "/UIF/LREPDEREFCD"; "/UIF/LREPDLTXT"; "/UIF/LREPDLTXTCD"; "/UIF/LREPDREF"; "/UIF/LREPDREFCD"; "/UIF/LREPDSTXT"; "/UIF/LREPDSTXTCD"; "/UIF/LREPDTEXT"; "/UIF/LREPDTEXTCD"; "LTDHTRAW"; "LTDHTTMPL"; "LTR_REPOSITORY"; "SWOTDI"; "SWOTDQ"; "TZS02"'
+      ); // '"com.sap.NTA"; "com.sap.SNav"');
+      test.done();
+      Model.releaseModel(theModel);
+    });
   });
 };
 
@@ -494,7 +494,7 @@ exports.testremoveErrorsIfOKAnswers = function (test) {
   test.deepEqual(ListAll.removeErrorsIfOKAnswers(res2), [{ domain: 'a', errors: {} }, { domain: undefined }]);
   var res3 = [{ domain: 'a', errors: false }, { domain: 'A', errors: false }, { domain: 'a' }, { domain: undefined }, { domain: 'b', errors: {} }, { domain: 'b' }];
   test.deepEqual(ListAll.removeErrorsIfOKAnswers(res3), [{ domain: 'a', errors: false },
-  { domain: 'A', errors: false }, { domain: 'a' }, { domain: 'b' }], ' filter list'
+    { domain: 'A', errors: false }, { domain: 'a' }, { domain: 'b' }], ' filter list'
   );
   test.done();
 };
@@ -518,8 +518,8 @@ exports.testSortMetamodelLast = function(test) {
 
 exports.testHasEmpty = function (test) {
   var res = [{ domain: 'b', results: ['x'] }, { domain: 'metamodel', results: ['a'] },
-  { domain: 'a', results: [{}] },
-  { domain: 'metamodel', results: ['a'] },
+    { domain: 'a', results: [{}] },
+    { domain: 'metamodel', results: ['a'] },
   ];
   test.deepEqual(ListAll.hasEmptyResult(res), false);
   test.done();
@@ -529,8 +529,8 @@ exports.testHasEmpty = function (test) {
 
 exports.testRemoveMetamodelsResultIfOthersThrowsEmpty = function (test) {
   var res = [{ domain: 'b', results: [] }, { domain: 'metamodel', results: ['a'] },
-  { domain: 'a', results: [{}] },
-  { domain: 'metamodel', results: ['a'] },
+    { domain: 'a', results: [{}] },
+    { domain: 'metamodel', results: ['a'] },
   ];
   try {
     ListAll.removeMetamodelResultIfOthers(res);
@@ -555,22 +555,22 @@ exports.testRemoveMetamodelsResultIfOthersThrowsError = function (test) {
 
 exports.testRemoveMetamodelsResultIfOthersOthers = function (test) {
   var res = [{ domain: 'b', results: ['x'] }, { domain: 'metamodel', results: ['a'] },
-  { domain: 'a', results: [{}] },
-  { domain: 'metamodel', results: ['a'] },
+    { domain: 'a', results: [{}] },
+    { domain: 'metamodel', results: ['a'] },
   ];
   test.deepEqual(ListAll.removeMetamodelResultIfOthers(res), [{ domain: 'b', results: ['x'] },
-  { domain: 'a', results: [{}] }]);
+    { domain: 'a', results: [{}] }]);
   test.done();
 };
 
 exports.testRemoveMetamodelsResultIfOthersOnlyMetamodel = function (test) {
   var res = [{ domain: 'metamodel', results: ['a'] },
-  { domain: 'metamodel', results: [{}] },
-  { domain: 'metamodel', results: ['a'] }
+    { domain: 'metamodel', results: [{}] },
+    { domain: 'metamodel', results: ['a'] }
   ];
   test.deepEqual(ListAll.removeMetamodelResultIfOthers(res), [{ domain: 'metamodel', results: ['a'] },
-  { domain: 'metamodel', results: [{}] },
-  { domain: 'metamodel', results: ['a'] }
+    { domain: 'metamodel', results: [{}] },
+    { domain: 'metamodel', results: ['a'] }
   ]);
   test.done();
 };

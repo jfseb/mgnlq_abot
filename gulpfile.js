@@ -15,23 +15,77 @@ var testDir = 'test';
 var sourcemaproot = '/projects/nodejs/botbuilder/mgnlq_abot/';
 
 gulp.task('watch', function () {
-  gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx',  srcDir + '/**/*.ts', 'gulpfile.js'],
-    ['tsc', 'eslint']);
+  return gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx',  srcDir + '/**/*.ts', 'gulpfile.js'],
+    gulp.series(['tsc', 'eslint']));
 });
 
-//const babel = require('gulp-babel');
 
+
+var merge = require('merge-stream');
 /**
- * Definition files
+ * compile tsc (including srcmaps)
+ * @input srcDir
+ * @output js
  */
-gulp.task('tsc_d_ts', function () {
-  var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap: true });
+gulp.task('tsc', function () {
+  var tsProject = ts.createProject('tsconfig.json', { declaration: true, sourceMap : false, inlineSourceMap: true });
   var tsResult = tsProject.src() // gulp.src('lib/*.ts')
     .pipe(sourcemaps.init()) // This means sourcemaps will be generated
     .pipe(tsProject());
-  return tsResult.dts
+  return merge(tsResult, tsResult.js)
+    .pipe(sourcemaps.write('.', {
+      sourceRoot: function (file) {
+        file.sourceMap.sources[0] = sourcemaproot + 'src/' + file.sourceMap.sources[0];
+        // console.log('here is************* file' + JSON.stringify(file, undefined, 2))
+        return 'ABC';
+      },
+      mapSources: function (src) {
+        //console.log('here we remap' + src);
+        return  src;
+      }}
+    )) // ,  { sourceRoot: './' } ))
+    // Now the sourcemaps are added to the .js file
     .pipe(gulp.dest('js'));
 });
+
+//const babel = require('gulp-babel');
+gulp.task('clean:models', function () {
+  return del(
+
+    [
+      'test/data/mongoose_record_replay/testmodel/data/*',
+      'test/data/mongoose_record_replay/testmodel/queries.json',
+      'sensitive/_cachefalse.js.zip',
+      'testmodel2/_cachefalse.js.zip',
+      'node_modules/mgnlq_testmodel/testmodel/_cache.js.zip',
+      'node_modules/mgnlq_testmodel_replay/testmodel/_cache.js.zip',
+      'node_modules/abot_testmodel/testmodel/_cachefalse.js.zip',
+      'node_modules/abot_testmodel/testmodel/_cachetrue.js.zip',
+      'testmodel/_cachefalse.js.zip',
+      'sensitive/_cachetrue.js.zip',
+      'testmodel2/_cachetrue.js.zip',
+      'testmodel/_cachetrue.js.zip',
+    // here we use a globbing pattern to match everything inside the `mobile` folder
+    //  'dist/mobile/**/*',
+    // we don't want to clean this file though so we negate the pattern
+    //    '!dist/mobile/deploy.json'
+    ]);
+});
+
+gulp.task('clean', gulp.series('clean:models'));
+
+var nodeunit = require('gulp-nodeunit');
+
+gulp.task('test', gulp.series('tsc', function () {
+  return gulp.src(['test/**/*.js'])
+    .pipe(nodeunit({
+      reporter: 'minimal'
+      // reporterOptions: {
+      //  output: 'testcov'
+      // }
+    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
+    .pipe(gulp.dest('./out/lcov.info'));
+}));
 /**
  * compile tsc (including srcmaps)
  * @input srcDir
@@ -163,8 +217,8 @@ gulp.task('eslint', () => {
   // Also, Be sure to return the stream from the task;
   // Otherwise, the task may end before the stream has finished.
   return gulp.src(['src/**/*.js',
-            '!src/extern/**.js',
-              'test/**/*.js', 'gulpfile.js'])
+    '!src/extern/**.js',
+    'test/**/*.js', 'gulpfile.js'])
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
     .pipe(eslint())
@@ -186,11 +240,6 @@ gulp.task('coveralls', function () {
 });
 */
 
-// Default Task
-//gulp.task('default', ['tsc', 'tsc_d_ts', 'babel', 'eslint', 'doc', 'test']);
-//gulp.task('build', ['tsc', 'babel', 'eslint']);
-//gulp.task('allhome', ['default']);
-
-gulp.task('default', gulp.series('tsc', 'tsc_d_ts', 'eslint', 'test', 'doc'));
+gulp.task('default', gulp.series('tsc', 'eslint', 'test', 'doc'));
 gulp.task('build', gulp.series('tsc', 'eslint'));
 

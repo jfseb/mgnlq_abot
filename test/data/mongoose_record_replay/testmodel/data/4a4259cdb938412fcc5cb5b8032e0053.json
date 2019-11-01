@@ -1,0 +1,62 @@
+[
+  {
+    "table": "/UIF/LREPDATTR"
+  },
+  {
+    "table": "/UIF/LREPDATTRCD"
+  },
+  {
+    "table": "/UIF/LREPDCONT"
+  },
+  {
+    "table": "/UIF/LREPDCONTCD"
+  },
+  {
+    "table": "/UIF/LREPDEREF"
+  },
+  {
+    "table": "/UIF/LREPDEREFCD"
+  },
+  {
+    "table": "/UIF/LREPDLTXT"
+  },
+  {
+    "table": "/UIF/LREPDLTXTCD"
+  },
+  {
+    "table": "/UIF/LREPDREF"
+  },
+  {
+    "table": "/UIF/LREPDREFCD"
+  },
+  {
+    "table": "/UIF/LREPDSTXT"
+  },
+  {
+    "table": "/UIF/LREPDSTXTCD"
+  },
+  {
+    "table": "/UIF/LREPDTEXT"
+  },
+  {
+    "table": "/UIF/LREPDTEXTCD"
+  },
+  {
+    "table": "LTDHTRAW"
+  },
+  {
+    "table": "LTDHTTMPL"
+  },
+  {
+    "table": "LTR_REPOSITORY"
+  },
+  {
+    "table": "SWOTDI"
+  },
+  {
+    "table": "SWOTDQ"
+  },
+  {
+    "table": "TZS02"
+  }
+]

@@ -14,7 +14,7 @@ const debuglog = debug('describe');
 const logger = require("../utils/logger");
 var logPerf = logger.perf("perflistall");
 var perflog = debug('perf');
-const mgnlq_er_1 = require("mgnlq_er");
+const mgnlq_parser1_1 = require("mgnlq_parser1");
 const WhatIs = require("./whatis");
 const mgnlq_model_1 = require("mgnlq_model");
 //import * as Match from './match';
@@ -405,11 +405,11 @@ function describeFactInDomain(fact, filterdomain, theModel) {
     // remove categories and domains
     var onlyFacts = lengthOneSentences.filter(oSentence => {
         debuglog(JSON.stringify(oSentence[0]));
-        return !mgnlq_er_1.Word.Word.isDomain(oSentence[0]) &&
-            !mgnlq_er_1.Word.Word.isFiller(oSentence[0]) && !mgnlq_er_1.Word.Word.isCategory(oSentence[0]);
+        return !mgnlq_parser1_1.Word.Word.isDomain(oSentence[0]) &&
+            !mgnlq_parser1_1.Word.Word.isFiller(oSentence[0]) && !mgnlq_parser1_1.Word.Word.isCategory(oSentence[0]);
     });
     var onlyDomains = lengthOneSentences.filter(oSentence => {
-        return (mgnlq_er_1.Word.Word.isDomain(oSentence[0]));
+        return (mgnlq_parser1_1.Word.Word.isDomain(oSentence[0]));
     });
     var pPromise = undefined;
     debuglog(() => ` here onlyDomains ${onlyDomains.join(';')}`);

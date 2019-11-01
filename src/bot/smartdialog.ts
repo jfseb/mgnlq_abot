@@ -31,7 +31,7 @@ import * as MongoQueries from '../match/mongoqueries';
 
 import * as Utils from 'abot_utils';
 
-import { ErError as ErError } from 'mgnlq_er';
+import { ErError as ErError } from 'mgnlq_parser1';
 
 import * as _ from 'lodash';
 

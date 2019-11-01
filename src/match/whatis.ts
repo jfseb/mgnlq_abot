@@ -6,7 +6,7 @@
  */
 
 
-import { InputFilter as InputFilter} from 'mgnlq_er';
+import { InputFilter as InputFilter} from 'mgnlq_parser1';
 import { MongoQ as MongoQ } from 'mgnlq_parser1';
 import * as ListAll from './listall';
 
@@ -18,9 +18,9 @@ var debuglogV = debug('whatVis');
 var perflog = debug('perf');
 
 
-import { ErError as ErError} from 'mgnlq_er';
+import { ErError as ErError} from 'mgnlq_parser1';
 
-import { ErBase as ErBase} from 'mgnlq_er';
+import { ErBase as ErBase} from 'mgnlq_parser1';
 
 
 export function mockDebug(o) {
@@ -37,9 +37,9 @@ import * as IMatch from './ifmatch';
 //import * as Match from './match';
 //import * as Toolmatcher from './toolmatcher';
 
-import { Sentence as Sentence} from 'mgnlq_er';
+import { Sentence as Sentence} from 'mgnlq_parser1';
 
-import { Word as Word}  from 'mgnlq_er';
+import { Word as Word}  from 'mgnlq_parser1';
 
 import * as Algol from './algol';
 
@@ -663,7 +663,7 @@ export function processString(query: string, rules: IMatch.SplitRules
 ): IMatch.IProcessedSentences {
 
 //  if (!process.env.ABOT_OLDMATCH) {
-    return ErBase.processString(query, rules, rules.wordCache);
+    return ErBase.processString(query, rules, rules.wordCache, {} /*TODO OPERATORS} */ );
 //  }
 /*
   var matched = InputFilter.analyzeString(query, rules, sWords);

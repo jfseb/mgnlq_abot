@@ -6,12 +6,12 @@
  * @copyright (c) 2016 Gerd Forstmann
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const mgnlq_er_1 = require("mgnlq_er");
+const mgnlq_parser1_1 = require("mgnlq_parser1");
 const debug = require("debug");
 var debuglog = debug('whatis');
 var debuglogV = debug('whatVis');
 var perflog = debug('perf');
-const mgnlq_er_2 = require("mgnlq_er");
+const mgnlq_parser1_2 = require("mgnlq_parser1");
 function mockDebug(o) {
     debuglog = o;
     debuglogV = o;
@@ -20,7 +20,7 @@ function mockDebug(o) {
 exports.mockDebug = mockDebug;
 //import * as Match from './match';
 //import * as Toolmatcher from './toolmatcher';
-const mgnlq_er_3 = require("mgnlq_er");
+const mgnlq_parser1_3 = require("mgnlq_parser1");
 const Algol = require("./algol");
 /*
 export function cmpByResultThenRanking(a: IMatch.IWhatIsAnswer, b: IMatch.IWhatIsAnswer) {
@@ -563,7 +563,7 @@ function makeSimplifiedSentences(aSentences : IMatch.IProcessedSentences,  track
 */
 function classifyWordWithTargetCategory(word, targetcategory, rules, wholesentence) {
     //console.log("classify " + word + " "  + targetcategory);
-    var cats = mgnlq_er_1.InputFilter.categorizeAWord(word, rules, wholesentence, {});
+    var cats = mgnlq_parser1_1.InputFilter.categorizeAWord(word, rules, wholesentence, {});
     // TODO qualify
     cats = cats.filter(function (cat) {
         return cat.category === targetcategory;
@@ -615,7 +615,7 @@ function filterAcceptingOnly(res, categories) {
 exports.filterAcceptingOnly = filterAcceptingOnly;
 function processString(query, rules) {
     //  if (!process.env.ABOT_OLDMATCH) {
-    return mgnlq_er_2.ErBase.processString(query, rules, rules.wordCache);
+    return mgnlq_parser1_2.ErBase.processString(query, rules, rules.wordCache, {} /*TODO OPERATORS} */);
     //  }
     /*
       var matched = InputFilter.analyzeString(query, rules, sWords);
@@ -647,7 +647,7 @@ function analyzeContextString(contextQueryString, rules) {
     aSentencesReinforced.sentences = aSentencesReinforced.sentences.slice(0, Algol.Cutoff_Sentences);
     if (debuglog.enabled) {
         debuglog("after reinforce and cutoff" + aSentencesReinforced.sentences.length + "\n" + aSentencesReinforced.sentences.map(function (oSentence) {
-            return mgnlq_er_3.Sentence.rankingProduct(oSentence) + ":" + JSON.stringify(oSentence);
+            return mgnlq_parser1_3.Sentence.rankingProduct(oSentence) + ":" + JSON.stringify(oSentence);
         }).join("\n"));
     }
     return aSentencesReinforced;
@@ -675,8 +675,8 @@ function analyzeCategoryMult(categorylist, rules, wholesentence, gWords) {
     var res2 = filterAcceptingOnly(res.sentences, ["category", "filler"]);
     //  console.log("here res2" + JSON.stringify(res2) );
     //  console.log("here undefined ! + " + res2.filter(o => !o).length);
-    res2.sort(mgnlq_er_3.Sentence.cmpRankingProduct);
-    debuglog("resulting category sentences: \n", debuglog.enabled ? (mgnlq_er_3.Sentence.dumpNiceArr(res2.slice(0, 3), mgnlq_er_3.Sentence.rankingProduct)) : '-');
+    res2.sort(mgnlq_parser1_3.Sentence.cmpRankingProduct);
+    debuglog("resulting category sentences: \n", debuglog.enabled ? (mgnlq_parser1_3.Sentence.dumpNiceArr(res2.slice(0, 3), mgnlq_parser1_3.Sentence.rankingProduct)) : '-');
     // TODO:   res2 = filterAcceptingOnlySameDomain(res2);
     //debuglog("resulting category sentences", JSON.stringify(res2, undefined, 2));
     // expect only categories
@@ -685,7 +685,7 @@ function analyzeCategoryMult(categorylist, rules, wholesentence, gWords) {
         return undefined;
     }
     //res.sort(cmpByNrCategoriesAndSameDomain);
-    var rescat = mgnlq_er_3.Sentence.getDistinctCategoriesInSentence(res2[0]);
+    var rescat = mgnlq_parser1_3.Sentence.getDistinctCategoriesInSentence(res2[0]);
     return rescat;
     // "" return res[0].filter()
     // return classifyWordWithTargetCategory(categorylist, 'category', rules, wholesentence);

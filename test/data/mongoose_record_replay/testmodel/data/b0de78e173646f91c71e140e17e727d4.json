@@ -1,0 +1,12 @@
+[
+  {
+    "ApplicationComponent": "FI-AR",
+    "devclass": "APPL_FIN_APP_DESCRIPTORS",
+    "BackendCatalogId": "SAP_TC_FIN_ACC_BE_APPS"
+  },
+  {
+    "ApplicationComponent": "FI-LOC-FI",
+    "devclass": "ODATA_GLO_FIN_APP_DESCRIPTORS",
+    "BackendCatalogId": "SAP_TC_FIN_GLO_AC_BE_APPS"
+  }
+]

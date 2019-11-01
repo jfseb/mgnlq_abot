@@ -17,10 +17,10 @@ const Utils = require("abot_utils");
 //import * as Match from './match';
 //import * as Toolmatcher from './toolmatcher';
 const mgnlq_model_1 = require("mgnlq_model");
-const mgnlq_er_1 = require("mgnlq_er");
+const mgnlq_parser1_1 = require("mgnlq_parser1");
 const Operator = require("./operator");
 const WhatIs = require("./whatis");
-const mgnlq_er_2 = require("mgnlq_er");
+const mgnlq_parser1_2 = require("mgnlq_parser1");
 const mgnlq_model_2 = require("mgnlq_model");
 const MongoQueries = require("./mongoqueries");
 function projectResultToStringArray(answer, result) {
@@ -259,7 +259,7 @@ function returnErrorTextIfOnlyError(results) {
     debuglog(() => 'here flattened errors ' + errors.length + '/' + results.length);
     if (errors.length === results.length) {
         var listOfErrors = flattenComplete(errors);
-        var r = mgnlq_er_2.ErError.explainError(listOfErrors);
+        var r = mgnlq_parser1_2.ErError.explainError(listOfErrors);
         debuglog(() => 'here explain ' + r);
         return r;
     }
@@ -411,7 +411,7 @@ function getQueryString(answ) {
     var words = [];
     debuglog(() => 'here tokens:' + answ.aux.tokens);
     debuglog(() => JSON.stringify(answ.aux.sentence, undefined, 2));
-    debuglog(() => ' ' + mgnlq_er_1.Sentence.dumpNiceRuled(answ.aux.sentence));
+    debuglog(() => ' ' + mgnlq_parser1_1.Sentence.dumpNiceRuled(answ.aux.sentence));
     answ.aux.sentence.forEach((word, index) => {
         var word = answ.aux.sentence[index];
         words.push(word.string);
@@ -429,8 +429,8 @@ function cmpDomainSentenceRanking(a, b) {
     if (r) {
         return r;
     }
-    var ca = mgnlq_er_1.Sentence.rankingGeometricMean(a.aux.sentence);
-    var cb = mgnlq_er_1.Sentence.rankingGeometricMean(b.aux.sentence);
+    var ca = mgnlq_parser1_1.Sentence.rankingGeometricMean(a.aux.sentence);
+    var cb = mgnlq_parser1_1.Sentence.rankingGeometricMean(b.aux.sentence);
     return cb - ca;
 }
 exports.cmpDomainSentenceRanking = cmpDomainSentenceRanking;
@@ -447,10 +447,10 @@ function retainOnlyTopRankedPerDomain(answers) {
             return true;
         }
         var prev = arr[index - 1];
-        var rank_prev = mgnlq_er_1.Sentence.rankingGeometricMean(prev.aux.sentence);
-        var rank = mgnlq_er_1.Sentence.rankingGeometricMean(entry.aux.sentence);
+        var rank_prev = mgnlq_parser1_1.Sentence.rankingGeometricMean(prev.aux.sentence);
+        var rank = mgnlq_parser1_1.Sentence.rankingGeometricMean(entry.aux.sentence);
         if (!WhatIs.safeEqual(rank, rank_prev)) {
-            debuglog(() => `dropping ${index} ${mgnlq_er_1.Sentence.dumpNiceRuled(entry.aux.sentence)} `);
+            debuglog(() => `dropping ${index} ${mgnlq_parser1_1.Sentence.dumpNiceRuled(entry.aux.sentence)} `);
         }
         return false;
     });

@@ -20,9 +20,9 @@ var perflog = debug('perf');
 
 //import * as Toolmatcher from './toolmatcher';
 
-import { Sentence as Sentence } from 'mgnlq_er';
+import { Sentence as Sentence } from 'mgnlq_parser1';
 
-import { Word as Word } from 'mgnlq_er';
+import { Word as Word } from 'mgnlq_parser1';
 import * as Operator from './operator';
 
 import * as WhatIs from './whatis';

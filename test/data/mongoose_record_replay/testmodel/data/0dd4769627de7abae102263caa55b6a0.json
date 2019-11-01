@@ -1,0 +1,22 @@
+[
+  {
+    "orbits": null,
+    "object_type": null
+  },
+  {
+    "orbits": null,
+    "object_type": "star"
+  },
+  {
+    "orbits": "Alpha Centauri C",
+    "object_type": "planet"
+  },
+  {
+    "orbits": "Sun",
+    "object_type": "planet"
+  },
+  {
+    "orbits": "n/a",
+    "object_type": "star, red dwarf"
+  }
+]

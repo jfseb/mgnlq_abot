@@ -1,0 +1,356 @@
+[
+  {
+    "element_name": "actinium"
+  },
+  {
+    "element_name": "aluminium"
+  },
+  {
+    "element_name": "americium"
+  },
+  {
+    "element_name": "antimony"
+  },
+  {
+    "element_name": "argon"
+  },
+  {
+    "element_name": "arsenic"
+  },
+  {
+    "element_name": "astatine"
+  },
+  {
+    "element_name": "barium"
+  },
+  {
+    "element_name": "berkelium"
+  },
+  {
+    "element_name": "beryllium"
+  },
+  {
+    "element_name": "bismuth"
+  },
+  {
+    "element_name": "bohrium"
+  },
+  {
+    "element_name": "boron"
+  },
+  {
+    "element_name": "bromine"
+  },
+  {
+    "element_name": "cadmium"
+  },
+  {
+    "element_name": "caesium"
+  },
+  {
+    "element_name": "calcium"
+  },
+  {
+    "element_name": "californium"
+  },
+  {
+    "element_name": "carbon"
+  },
+  {
+    "element_name": "cerium"
+  },
+  {
+    "element_name": "chlorine"
+  },
+  {
+    "element_name": "chromium"
+  },
+  {
+    "element_name": "cobalt"
+  },
+  {
+    "element_name": "copernicium"
+  },
+  {
+    "element_name": "copper"
+  },
+  {
+    "element_name": "curium"
+  },
+  {
+    "element_name": "darmstadtium"
+  },
+  {
+    "element_name": "dubnium"
+  },
+  {
+    "element_name": "dysprosium"
+  },
+  {
+    "element_name": "einsteinium"
+  },
+  {
+    "element_name": "erbium"
+  },
+  {
+    "element_name": "europium"
+  },
+  {
+    "element_name": "fermium"
+  },
+  {
+    "element_name": "flerovium"
+  },
+  {
+    "element_name": "fluorine"
+  },
+  {
+    "element_name": "francium"
+  },
+  {
+    "element_name": "gadolinium"
+  },
+  {
+    "element_name": "gallium"
+  },
+  {
+    "element_name": "germanium"
+  },
+  {
+    "element_name": "gold"
+  },
+  {
+    "element_name": "hafnium"
+  },
+  {
+    "element_name": "hassium"
+  },
+  {
+    "element_name": "helium"
+  },
+  {
+    "element_name": "holmium"
+  },
+  {
+    "element_name": "hydrogen"
+  },
+  {
+    "element_name": "indium"
+  },
+  {
+    "element_name": "iodine"
+  },
+  {
+    "element_name": "iridium"
+  },
+  {
+    "element_name": "iron"
+  },
+  {
+    "element_name": "krypton"
+  },
+  {
+    "element_name": "lanthanum"
+  },
+  {
+    "element_name": "lawrencium"
+  },
+  {
+    "element_name": "lead"
+  },
+  {
+    "element_name": "lithium"
+  },
+  {
+    "element_name": "livermorium"
+  },
+  {
+    "element_name": "lutetium"
+  },
+  {
+    "element_name": "magnesium"
+  },
+  {
+    "element_name": "manganese"
+  },
+  {
+    "element_name": "meitnerium"
+  },
+  {
+    "element_name": "mendelevium"
+  },
+  {
+    "element_name": "mercury"
+  },
+  {
+    "element_name": "molybdenum"
+  },
+  {
+    "element_name": "moscovium"
+  },
+  {
+    "element_name": "neodymium"
+  },
+  {
+    "element_name": "neon"
+  },
+  {
+    "element_name": "neptunium"
+  },
+  {
+    "element_name": "nickel"
+  },
+  {
+    "element_name": "nihonium"
+  },
+  {
+    "element_name": "niobium"
+  },
+  {
+    "element_name": "nitrogen"
+  },
+  {
+    "element_name": "nobelium"
+  },
+  {
+    "element_name": "oganesson"
+  },
+  {
+    "element_name": "osmium"
+  },
+  {
+    "element_name": "oxygen"
+  },
+  {
+    "element_name": "palladium"
+  },
+  {
+    "element_name": "phosphorus"
+  },
+  {
+    "element_name": "platinum"
+  },
+  {
+    "element_name": "plutonium"
+  },
+  {
+    "element_name": "polonium"
+  },
+  {
+    "element_name": "potassium"
+  },
+  {
+    "element_name": "praseodymium"
+  },
+  {
+    "element_name": "promethium"
+  },
+  {
+    "element_name": "protactinium"
+  },
+  {
+    "element_name": "radium"
+  },
+  {
+    "element_name": "radon"
+  },
+  {
+    "element_name": "rhenium"
+  },
+  {
+    "element_name": "rhodium"
+  },
+  {
+    "element_name": "roentgenium"
+  },
+  {
+    "element_name": "rubidium"
+  },
+  {
+    "element_name": "ruthenium"
+  },
+  {
+    "element_name": "rutherfordium"
+  },
+  {
+    "element_name": "samarium"
+  },
+  {
+    "element_name": "scandium"
+  },
+  {
+    "element_name": "seaborgium"
+  },
+  {
+    "element_name": "selenium"
+  },
+  {
+    "element_name": "silicon"
+  },
+  {
+    "element_name": "silver"
+  },
+  {
+    "element_name": "sodium"
+  },
+  {
+    "element_name": "strontium"
+  },
+  {
+    "element_name": "sulfur"
+  },
+  {
+    "element_name": "tantalum"
+  },
+  {
+    "element_name": "technetium"
+  },
+  {
+    "element_name": "tellurium"
+  },
+  {
+    "element_name": "tennesine"
+  },
+  {
+    "element_name": "terbium"
+  },
+  {
+    "element_name": "thallium"
+  },
+  {
+    "element_name": "thorium"
+  },
+  {
+    "element_name": "thulium"
+  },
+  {
+    "element_name": "tin"
+  },
+  {
+    "element_name": "titanium"
+  },
+  {
+    "element_name": "tungsten"
+  },
+  {
+    "element_name": "uranium"
+  },
+  {
+    "element_name": "vanadium"
+  },
+  {
+    "element_name": "xenon"
+  },
+  {
+    "element_name": "ytterbium"
+  },
+  {
+    "element_name": "yttrium"
+  },
+  {
+    "element_name": "zinc"
+  },
+  {
+    "element_name": "zirconium"
+  }
+]

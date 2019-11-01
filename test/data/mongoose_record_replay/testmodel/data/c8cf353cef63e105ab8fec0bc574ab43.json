@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "5dbc49ea04edbc147889ab7b",
+    "element_name": "earth",
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ab7c",
+    "element_name": "wind",
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ab7d",
+    "element_name": "fire",
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ab7e",
+    "element_name": "water",
+    "__v": 0
+  }
+]

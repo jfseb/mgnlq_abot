@@ -395,7 +395,7 @@ exports.testListAllSingleSimple = function (test) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     test.deepEqual(sRes,
-      'the element names with element number 10 are ...\n"neon";\n"10"',
+      'the element names with element number 10 are ...\n"neon"',
       // TODO
       'result should be the element names for element number 10 are ...\n"neon"');
     test.done(); releaseConnector(conn);
@@ -811,7 +811,7 @@ exports.testDescribeADomain = function (test) {
   testOne('describe cosmos', function (conn, oRes) {
     debuglog(JSON.stringify(oRes));
     test.deepEqual(oRes,
-      '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.3%) of records;\n'
+      '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(13.3%) of records;\n'
       //  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a different model\n"cosmos" has a meaning in one domain "metamodel":\n"cosmos" is a value for category "domain" present in 13(14.8%) of records;\n'
     );//  '"cosmos"is a domain with 13 categories and 7 records\nDescription:a model with a small subset of cosmological entities. Main purpose is to test \na)properties which occur multiple times (e.g. "Sun" in "object name" as key and in "orbits"; \nb) "earth" as a property which is also present in a differnt model\n');
     test.done(); releaseConnector(conn);

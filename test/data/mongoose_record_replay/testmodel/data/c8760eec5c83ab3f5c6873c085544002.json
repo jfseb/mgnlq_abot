@@ -1,0 +1,98 @@
+[
+  {
+    "category": "AppDocumentationLinkKW"
+  },
+  {
+    "category": "AppKey"
+  },
+  {
+    "category": "AppName"
+  },
+  {
+    "category": "ApplicationComponent"
+  },
+  {
+    "category": "ApplicationType"
+  },
+  {
+    "category": "ArtifactId"
+  },
+  {
+    "category": "BSPApplicationURL"
+  },
+  {
+    "category": "BSPName"
+  },
+  {
+    "category": "BSPPackage"
+  },
+  {
+    "category": "BusinessCatalog"
+  },
+  {
+    "category": "BusinessGroupDescription"
+  },
+  {
+    "category": "BusinessGroupName"
+  },
+  {
+    "category": "BusinessRoleName"
+  },
+  {
+    "category": "ExternalReleaseName"
+  },
+  {
+    "category": "FrontendSoftwareComponent"
+  },
+  {
+    "category": "LPDCustInstance"
+  },
+  {
+    "category": "PrimaryODataPFCGRole"
+  },
+  {
+    "category": "PrimaryODataServiceName"
+  },
+  {
+    "category": "RoleName"
+  },
+  {
+    "category": "SemanticAction"
+  },
+  {
+    "category": "SemanticObject"
+  },
+  {
+    "category": "TechnicalCatalog"
+  },
+  {
+    "category": "TransactionCode"
+  },
+  {
+    "category": "URLParameters"
+  },
+  {
+    "category": "appId"
+  },
+  {
+    "category": "detailsurl"
+  },
+  {
+    "category": "fiori intent"
+  },
+  {
+    "category": "isPublished"
+  },
+  {
+    "category": "releaseId"
+  },
+  {
+    "category": "releaseName"
+  },
+  {
+    "category": "uri"
+  },
+  {
+    "category": "uri_rank"
+  }
+]

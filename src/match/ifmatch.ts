@@ -201,7 +201,7 @@ export interface IWordRange extends IRange
  * A rule matching a single string
  */
 
-//import { IErRule } from 'mgnlq_er'
+//import { IErRule } from 'mgnlq_parser1'
 
 /*}
 

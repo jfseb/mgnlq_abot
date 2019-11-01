@@ -1,0 +1,130 @@
+[
+  {
+    "_id": "5dbc49ea04edbc147889ac24",
+    "standort": [
+      "Berlin",
+      "München",
+      "Frankfurt",
+      "Hamburg",
+      "Bremen"
+    ],
+    "sendertyp": [
+      "öffentlich"
+    ],
+    "sender": "ARundfunkD",
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac25",
+    "standort": [
+      "Mainz"
+    ],
+    "sendertyp": [
+      "öffentlich",
+      "fernsehen"
+    ],
+    "sender": "ZDFernsehen",
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac26",
+    "standort": [
+      "Köln"
+    ],
+    "sendertyp": [
+      "öffentlich",
+      "radio"
+    ],
+    "sender": "DeutschLandFunk",
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac27",
+    "standort": [
+      "Berlin"
+    ],
+    "sendertyp": [
+      "öffentlich"
+    ],
+    "sender": "RadioImAmerikanischenSektor",
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac28",
+    "standort": [
+      "Berlin"
+    ],
+    "sendertyp": [
+      "government"
+    ],
+    "sender": "RadioImAmerikanischenSektor",
+    "gründungsjahr": 1946,
+    "betriebsende": 1994,
+    "nachfolger": "rs2",
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac29",
+    "standort": [
+      "Berlin"
+    ],
+    "sendertyp": [
+      "militärisch",
+      "radio"
+    ],
+    "sender": "BFBS",
+    "gründungsjahr": 1949,
+    "betriebsende": 1994,
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac2a",
+    "standort": [
+      "Berlin"
+    ],
+    "sendertyp": [
+      "privat",
+      "fernsehen"
+    ],
+    "sender": "RTL",
+    "besitzer": "RTLMediengruppe",
+    "gründungsjahr": 1984,
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac2b",
+    "standort": [
+      "Berlin"
+    ],
+    "sendertyp": [
+      "privat",
+      "fernsehen"
+    ],
+    "sender": "VOX",
+    "besitzer": "RTLMediengruppe",
+    "gründungsjahr": 1993,
+    "_synonyms": [],
+    "__v": 0
+  },
+  {
+    "_id": "5dbc49ea04edbc147889ac2c",
+    "standort": [
+      "Berlin"
+    ],
+    "sendertyp": [
+      "privat",
+      "fernsehen"
+    ],
+    "sender": "Nitro",
+    "besitzer": "RTLMediengruppe",
+    "_synonyms": [],
+    "__v": 0
+  }
+]

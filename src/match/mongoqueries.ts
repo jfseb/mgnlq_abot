@@ -20,12 +20,12 @@ import * as IMatch from './ifmatch';
 
 import { BreakDown } from 'mgnlq_model';
 
-import { Sentence as Sentence } from 'mgnlq_er';
+import { Sentence as Sentence } from 'mgnlq_parser1';
 
-import { Word as Word } from 'mgnlq_er';
+import { Word as Word } from 'mgnlq_parser1';
 import * as Operator from './operator';
 import * as WhatIs from './whatis';
-import { ErError as ErError } from 'mgnlq_er';
+import { ErError as ErError } from 'mgnlq_parser1';
 import { Model } from 'mgnlq_model';
 import { MongoQ as MongoQ } from 'mgnlq_parser1';
 

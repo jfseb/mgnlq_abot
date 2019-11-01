@@ -104,3 +104,19 @@ db.collections.find()
 -> testdb2 : Too large keys to index ( WiredTiger ) ?
 
 list all sample questions
+
+
+#
+- proper ordering for "numberic" columns
+
+list all sender with gründungsjahr smaller than 1972
+
+# discriminate    (less than number <coundcat> from )     (cat less than numberic)
+
+
+# introduce comparison operators
+
+  smaller than,  larger than
+
+# date columns   before after
+
