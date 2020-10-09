@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "5f7f50a3fa50202ef4d432bd",
+    "hints": "enjoy SAP",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432bc",
+    "hints": "when obtaining multiple ambigous results, use the \"List all ... for ... \" pattern or specify additional discriminating values",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432c1",
+    "hints": "have fun",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432ba",
+    "hints": "quoting objects like \"Manage Account\" simplifies parsing and may reduce ambiguities.",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432bf",
+    "hints": "apart from using me, the other way to make me better is to contribute.",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432be",
+    "hints": "the only way to make me better is to use me.",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432bb",
+    "hints": "Query entities containig many whitespaces must be quoted, e.g. \"List all AppNames in Role \"Assortment Specialist - Retail\" .",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f50a3fa50202ef4d432c0",
+    "hints": "register to get deeper insights into categories and the underlying model and remove some query limitations",
+    "__v": 0
+  }
+]

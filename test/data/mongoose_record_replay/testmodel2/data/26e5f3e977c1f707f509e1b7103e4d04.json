@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "5f7f5097fa50202ef4d3fe53",
+    "category": "element name",
+    "fact": "aluminium",
+    "synonyms": [
+      "aluminum"
+    ]
+  },
+  {
+    "_id": "5f7f5097fa50202ef4d3fe7e",
+    "category": "element name",
+    "fact": "caesium",
+    "synonyms": [
+      "cesium"
+    ]
+  }
+]

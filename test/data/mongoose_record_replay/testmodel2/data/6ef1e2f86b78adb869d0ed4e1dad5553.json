@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "5f7f5097fa50202ef4d3fed7",
+    "example_commands": "Learn the capital of the Klingon Empire is Qo'noS or Kronos",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f5097fa50202ef4d3fed8",
+    "example_commands": "Wrong",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f5097fa50202ef4d3fed6",
+    "example_commands": "list all example questions",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f5097fa50202ef4d3fed9",
+    "example_commands": "Yes",
+    "__v": 0
+  },
+  {
+    "_id": "5f7f5097fa50202ef4d3feda",
+    "example_commands": "what is the color of money",
+    "__v": 0
+  }
+]

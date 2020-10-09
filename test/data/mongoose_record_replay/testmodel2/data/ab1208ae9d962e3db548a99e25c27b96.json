@@ -1,0 +1,89 @@
+[
+  {
+    "PrimaryODataServiceName": "APJ_JOB_MANAGEMENT_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "CB_ACCOUNTING_DOCUMENT_BAM_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "CB_ACCOUNTING_DOCUMENT_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "CB_GL_ACCOUNT_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "CB_PROFIT_CENTER_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_ACC_DETERMINATION_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_AUDIT_JOURNAL_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_BALANCE_CARRY_FORWARD_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_CHART_OF_ACCOUNTS_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_EDITING_OPTIONS_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_FINANCIALS_POSTING_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_FINANCIAL_DOCUMENT_SRV_01"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_FINANCIAL_STATEMENT_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_FOREIGN_VAL_POST_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_GL_ACCOUNT_BALANCE_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_GL_ACCOUNT_LINE_ITEMS_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_GL_DOCUMENT_POST_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_GL_MANUAL_CLEARING_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_MAINT_CHART_OF_ACCOUNTS_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_MANAGE_GLACCOUNT_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_PROJECT_WIP_DETAIL_LIST_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_RECURRING_ACCOUNTING_DOC_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FAC_TAX_PAYABLE_POST_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FINS_TRR_MONITOR_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FIN_OPEN_CLOSE_PERIOD_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FIN_SEGMENT_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "FIN_USER_DEFAULTPARAMETER_SRV"
+  },
+  {
+    "PrimaryODataServiceName": "MAINSERVICE"
+  },
+  {
+    "PrimaryODataServiceName": "n/a"
+  }
+]

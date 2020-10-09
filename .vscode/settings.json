@@ -11,5 +11,8 @@
     "editor.formatOnSave": false,
     // Turns auto fix on save on or off.
     "eslint.autoFixOnSave": true,
-    "typescript.check.workspaceVersion": false
+    "typescript.check.workspaceVersion": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
   }

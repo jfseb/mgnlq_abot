@@ -33,7 +33,6 @@ export interface IERErrorNO_KNOWN_WORD extends IERError{
 };
 
 /*
-
 export interface IPromptDescription {
   description: string,
   type: string,
@@ -44,15 +43,42 @@ export interface IPromptDescription {
 }
 */
 
+/*
+export const aOperatorNames = ["starting with", "ending with",
+                          "containing", "excluding", "having", "being"
+                          ,"more than","less than" ,"exactly",
+                          "<", "<=", "!=", "=", ">", ">=",
+                          "order by", "order descending by",
+                          "existing", "not existing",
+                          "left_paren", "right_paren",
+                          "logical_and", "logical_or"
+                        ];
+export type OperatorName = "starting with" | "ending with"
+                        | "containing" | "being" | "excluding" | "having"
+                        | "more than" | "less than" | "exactly"
+                        | "<" | "<="| "!="| "="| ">"| ">="
+                        |"order by"| "order descending by"
+                        | "existing"| "not existing"
+                        | "left_paren"| "right_paren"
+                        | "logical_and" | "logical_or"
+                        ;
+*/
+
+
+/*
 export const aOperatorNames = ["starting with", "ending with", "containing", "excluding", "having", "being"];
 export type OperatorName = "starting with" | "ending with" | "containing" | "being" | "excluding" | "having";
+*/
 
+export type IOperator = IFModel.IOperator; // IModel.IOperator;
+/*
 export interface IOperator {
   operator : OperatorName,
   code : string,
   arity : number,
   argcategory : [ string[] ]
 }
+*/
 
 export type IRecord = { [key : string] : string
 };

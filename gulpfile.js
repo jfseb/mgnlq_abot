@@ -12,22 +12,22 @@ var sourcemaps = require('gulp-sourcemaps');
 var srcDir = 'src';
 var testDir = 'test';
 
-var sourcemaproot = '/projects/nodejs/botbuilder/mgnlq_abot/';
+var sourcemaproot = './';
 
 gulp.task('watch', function () {
   return gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx',  srcDir + '/**/*.ts', 'gulpfile.js'],
-    gulp.series(['tsc', 'eslint']));
+    gulp.series('tsc', 'eslint', 'test'));
 });
 
 
 
 var merge = require('merge-stream');
 /**
- * compile tsc (including srcmaps)
+ * compile tsc (with external srcmaps)
  * @input srcDir
  * @output js
  */
-gulp.task('tsc', function () {
+gulp.task('tsce', function () {
   var tsProject = ts.createProject('tsconfig.json', { declaration: true, sourceMap : false, inlineSourceMap: true });
   var tsResult = tsProject.src() // gulp.src('lib/*.ts')
     .pipe(sourcemaps.init()) // This means sourcemaps will be generated
@@ -35,13 +35,13 @@ gulp.task('tsc', function () {
   return merge(tsResult, tsResult.js)
     .pipe(sourcemaps.write('.', {
       sourceRoot: function (file) {
-        file.sourceMap.sources[0] = sourcemaproot + 'src/' + file.sourceMap.sources[0];
-        // console.log('here is************* file' + JSON.stringify(file, undefined, 2))
-        return 'ABC';
+        //file.sourceMap.sources[0] = /*sourcemaproot + 'src/' +*/ file.sourceMap.sources[0];
+        console.log('here is************* file' + JSON.stringify(file.sourceMap, undefined, 2));
+        return 'src';
       },
       mapSources: function (src) {
         //console.log('here we remap' + src);
-        return  src;
+        return src;
       }}
     )) // ,  { sourceRoot: './' } ))
     // Now the sourcemaps are added to the .js file
@@ -51,7 +51,6 @@ gulp.task('tsc', function () {
 //const babel = require('gulp-babel');
 gulp.task('clean:models', function () {
   return del(
-
     [
       'test/data/mongoose_record_replay/testmodel/data/*',
       'test/data/mongoose_record_replay/testmodel/queries.json',
@@ -61,6 +60,8 @@ gulp.task('clean:models', function () {
       'node_modules/mgnlq_testmodel_replay/testmodel/_cache.js.zip',
       'node_modules/abot_testmodel/testmodel/_cachefalse.js.zip',
       'node_modules/abot_testmodel/testmodel/_cachetrue.js.zip',
+      'node_modules/mgnlq_testmodel/testmodel/_cachefalse.js.zip',
+      'node_modules/mgnlq_testmodel/testmodel/_cachetrue.js.zip',
       'testmodel/_cachefalse.js.zip',
       'sensitive/_cachetrue.js.zip',
       'testmodel2/_cachetrue.js.zip',
@@ -74,40 +75,18 @@ gulp.task('clean:models', function () {
 
 gulp.task('clean', gulp.series('clean:models'));
 
-var nodeunit = require('gulp-nodeunit');
-
-gulp.task('test', gulp.series('tsc', function () {
-  return gulp.src(['test/**/*.js'])
-    .pipe(nodeunit({
-      reporter: 'minimal'
-      // reporterOptions: {
-      //  output: 'testcov'
-      // }
-    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
-    .pipe(gulp.dest('./out/lcov.info'));
-}));
 /**
  * compile tsc (including srcmaps)
  * @input srcDir
  * @output js
  */
 gulp.task('tsc', function () {
-  var tsProject = ts.createProject('tsconfig.json', { inlineSourceMap: true });
-  var tsResult = tsProject.src() // gulp.src('lib/*.ts')
+  var tsProject = ts.createProject('tsconfig.json', { declaration: true, sourceMap : false, inlineSourceMap: true });
+  return tsProject.src() // gulp.src('lib/*.ts')
     .pipe(sourcemaps.init()) // This means sourcemaps will be generated
-    .pipe(tsProject());
-  return tsResult.js
-    .pipe(sourcemaps.write('.', {
-      sourceRoot: function (file) {
-        file.sourceMap.sources[0] = sourcemaproot + 'src/' + file.sourceMap.sources[0];
-        // console.log('here is************* file' + JSON.stringify(file, undefined, 2))
-        return 'ABC';
-      },
-      mapSources: function (src) {
-        //console.log('here we remap' + src);
-        return /* sourcemaproot +*/ src;
-      }}
-    )) // ,  { sourceRoot: './' } ))
+    .pipe(tsProject())
+  // return merge(tsResult, tsResult.js)
+    .pipe(sourcemaps.write()) // ,  { sourceRoot: './' } ))
     // Now the sourcemaps are added to the .js file
     .pipe(gulp.dest('js'));
 });
@@ -122,40 +101,6 @@ gulp.task('clean:models', function () {
 });
 
 gulp.task('clean', gulp.series('clean:models'));
-
-
-// gulp.task('copyInputFilterRules', ['tsc', 'babel'], function () {
-//  return gulp.src([
-//    genDir + '/match/inputFilterRules.js'
-//  ], { 'base': genDir })
-//    .pipe(gulp.dest('gen_cov'));
-// });
-
-
-/*
-var newer = require('gulp-newer');
-
-var imgSrc = 'src/ *x* /x*.js';
-var imgDest = 'js';
-
-// compile standard sources with babel,
-// this takes care of copying plain js files from src to dest
-//
-gulp.task('babel', ['tsc'], function () {
-  // Add the newer pipe to pass through newer images only
-  return gulp.src([imgSrc, 'gen_tsc/x**x/*.js'])
-    .pipe(newer(imgDest))
- /x*   .pipe(babel({
-      comments: true,
-      presets: ['es2015']
-    }))
-*x/
-    .pipe(gulp.dest('js'));
-});
-
-*/
-
-
 
 //const replace = require('gulp-replace');
 // compile standard sources with babel,
@@ -177,37 +122,17 @@ gulp.task('copyelizacov', function () {
 });
 */
 
-var nodeunit = require('gulp-nodeunit');
+var jest = require('gulp-jest').default;
 
-gulp.task('test', gulp.series('tsc', 'copyeliza', function () {
-  return gulp.src(['test/**/*.js'])
-    .pipe(nodeunit({
-      reporter: 'minimal'
-    // reporterOptions: {
-    //  output: 'testcov'
-    // }
-    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
-    .pipe(gulp.dest('./out/lcov.info'));
-}));
-
-gulp.task('testmin', gulp.series('tsc', function () {
-  gulp.src(['test/**/*.js'])
-    .pipe(nodeunit({
-      reporter: 'minimal'
-    // reporterOptions: {
-    //  output: 'testcov'
-    // }
-    })).on('error', function (err) { console.log('This is weird: ' + err.message); })
-    .pipe(gulp.dest('./out/lcov.info'));
-}));
-
-
-var jsdoc = require('gulp-jsdoc3');
-
-gulp.task('doc', gulp.series( 'test', function (cb) {
-  return gulp.src([srcDir + '/**/*.js', 'README.md', './js/**/*.js'], { read: false })
-    .pipe(jsdoc(cb));
-}));
+gulp.task('jestonly', function () {
+  process.env.NODE_ENV = 'test';
+  return gulp.src('test').pipe(jest({
+    'preprocessorIgnorePatterns': [
+      './dist/', './node_modules/'
+    ],
+    'automock': false
+  }));
+});
 
 const eslint = require('gulp-eslint');
 
@@ -222,24 +147,29 @@ gulp.task('eslint', () => {
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
     .pipe(eslint())
-    // eslint.format() outputs the lint results to the console.
-    // Alternatively use eslint.formatEach() (see Docs).
+  // eslint.format() outputs the lint results to the console.
+  // Alternatively use eslint.formatEach() (see Docs).
     .pipe(eslint.format())
-    // To have the process exit with an error code (1) on
-    // lint error, return the stream and pipe to failAfterError last.
+  // To have the process exit with an error code (1) on
+  // lint error, return the stream and pipe to failAfterError last.
     .pipe(eslint.failAfterError());
 });
 
-// we don't use this'
-/*
-var coveralls = require('gulp-coveralls');
+gulp.task('test', gulp.series('tsc', 'copyeliza', 'jestonly')); 
 
-gulp.task('coveralls', function () {
-  gulp.src('testcov/ *    * /lcov.info')
-    .pipe(coveralls());
+const gulpRun = require('gulp-run');
+
+gulp.task('pack', () => {
+  return gulpRun('npm pack').exec().pipe(gulp.dest('outpu'));
 });
-*/
 
+var jsdoc = require('gulp-jsdoc3');
+
+gulp.task('doc', gulp.series('test', function (cb) {
+  return gulp.src([srcDir + '/**/*.js', 'README.md', './js/**/*.js'], { read: false })
+    .pipe(jsdoc(cb));
+}));
+
+// Default Task
 gulp.task('default', gulp.series('tsc', 'eslint', 'test', 'doc'));
 gulp.task('build', gulp.series('tsc', 'eslint'));
-

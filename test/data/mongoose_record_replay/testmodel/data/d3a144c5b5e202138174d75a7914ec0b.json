@@ -1,12 +1,15 @@
 [
   {
-    "_id": "5dbc49e6a32e0923f23840c8",
+    "_id": "5f7f4ed1fbf0a2ab5532be76",
     "modelname": "iupacs",
     "__v": 0,
+    "collectionname": "iupacs",
+    "domain": "IUPAC",
     "index": {
       "element_name": "text",
       "element_number": "text"
     },
+    "mongoosemodelname": "iupacs",
     "props": {
       "element_name": {
         "type": "String",
@@ -26,7 +29,7 @@
         "_m_category": "atomic weight"
       },
       "element_number": {
-        "type": "String",
+        "type": "Number",
         "trim": true,
         "_m_category": "element number",
         "index": true
@@ -52,9 +55,6 @@
           ]
         }
       ]
-    },
-    "collectionname": "iupacs",
-    "mongoosemodelname": "iupacs",
-    "domain": "IUPAC"
+    }
   }
 ]

@@ -1,0 +1,7 @@
+[
+  {
+    "BSPName": "FRA_ALERT_MAN",
+    "fiori_intent": "#ComplianceAlerts-manage",
+    "AppName": "Manage Alerts"
+  }
+]

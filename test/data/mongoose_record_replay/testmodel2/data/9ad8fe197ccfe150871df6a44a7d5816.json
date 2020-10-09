@@ -1,0 +1,23 @@
+[
+  {
+    "_id": "5f7f508efbf0a2ab5532bfa2",
+    "modelname": "hints",
+    "__v": 0,
+    "_categories": [
+      {
+        "category_synonyms": [
+          "tips and tricks",
+          "tips",
+          "tricks",
+          "expert tips"
+        ],
+        "_id": "5f7f508efa50202ef4d3c9c9",
+        "category": "hints",
+        "category_description": ""
+      }
+    ],
+    "collectionname": "hints",
+    "columns": [],
+    "domain": "hints"
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "_id": "5f7f508efbf0a2ab5532bf95",
+    "modelname": "twf_fields",
+    "__v": 0,
+    "collectionname": "twf_fields",
+    "domain": "TWF fields",
+    "index": {
+      "fieldName": "text"
+    },
+    "mongoosemodelname": "twf_fields",
+    "props": {
+      "fieldId": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "fieldId"
+      },
+      "fieldName": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "fieldName",
+        "index": true
+      },
+      "field_description": {
+        "type": "String",
+        "trim": true,
+        "_m_category": "field description"
+      }
+    }
+  }
+]
