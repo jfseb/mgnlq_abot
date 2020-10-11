@@ -11,7 +11,7 @@ var DialogLogger = require(root + '/utils/dialoglogger.js');
 var debug = require('debug');
 const debuglog = debug('dialoglogger.nunit');
 
-it("testLogger", done => {
+it('testLogger', done => {
   expect.assertions(4);
 
   var cA1 = undefined;
@@ -28,17 +28,17 @@ it("testLogger", done => {
             fn(undefined, {
               a: 1234
             }
-          );
+            );
           }
         }, function(err,o) {
           debuglog('done');
           expect(2).toEqual(2);
         }
-        );
+      );
     }
   };
 
-/*
+  /*
  botid : (session.message && session.message.address && session.message.address.bot && session.message.address.bot.id ) || this.name,
     userid: session.message.address
     && session.message.address.user
@@ -79,7 +79,7 @@ it("testLogger", done => {
   */
 
   DialogLogger.logger('LOGID','theurl', fakePG)(
-     answer,
+    answer,
     function(err, res) {
       debuglog('callback');
       expect(1).toEqual(1);
@@ -94,7 +94,7 @@ it("testLogger", done => {
         'TheAction',
         'AnIntent',
         'TheID',
-  {},
+        {},
         1234 ]);
       done();
     },
@@ -102,7 +102,7 @@ it("testLogger", done => {
   );
 });
 
-it("testLoggerInactive", done => {
+it('testLoggerInactive', done => {
   expect.assertions(1);
   var fakePG = {
     connect : function(o, fn) {
@@ -134,7 +134,7 @@ it("testLoggerInactive", done => {
   */
 
   DialogLogger.logger('LOGID','theurl', fakePG)(
-     answer,
+    answer,
     function(err, res) {
       debuglog('done');
       throw new Error('never here');

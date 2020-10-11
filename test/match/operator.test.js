@@ -10,7 +10,7 @@ var root = '../../js';
 const Operator = require(root + '/match/operator.js');
 //const Category = OpsWord.Category;
 
-it("testMatches", done => {
+it('testMatches', done => {
   // prepare
   // act
   // check
@@ -78,7 +78,7 @@ it("testMatches", done => {
 });
 
 
-it("testMatchesError", done => {
+it('testMatchesError', done => {
   expect.assertions(1);
   try {
     Operator.matches(

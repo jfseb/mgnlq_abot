@@ -1,18 +1,20 @@
+// run regressions
+// this uses testdb2  (mgnlq_testmodel2)
+
+// environment variables
+// SET ABOT_WRITE_REGRESS=true   to overwrite input
+//
+// otherwise data will be written to run/..
+
+// BEWARE, this test runs a significant time!
+
 var process = require('process');
 var root = '../../js';
-//var debuglog = require('debug')('plainRecoginizer.nunit');
 var debug = require('debug');
 const debuglog = debug('smartdialog.nunit.regress');
 
 var rootdata = './test/regress/test/';
 
-// run regressions
-
-
-// environment variables
-// SET ABOT_WRITE_REGRESS=true   to overwrite input
-//
-//
 
 var fs = require('fs');
 
@@ -29,6 +31,7 @@ function getArg(s) {
 
 var fnin = getArg('i') || 'input';
 
+jest.setTimeout(720000);
 
 var dataS = fs.readFileSync( rootdata + fnin + '.json');
 var data = JSON.parse(dataS);
@@ -47,19 +50,8 @@ function testOne(conn, str,cb) {
   conn.processMessage(str, 'unittest');
 }
 
-/*function testOne(str, cb, iconn) {
-  var conn = (iconn && Promise.resolve(iconn))  || getBotInstance();
-  return conn.then( (conn) => {
-    conn.setAnswerHook(cb.bind(undefined, conn));
-    conn.processMessage(str, 'unittest');
-    return conn;
-  });
-//  return conn;
-}*/
-
 var Model = require('mgnlq_model').Model;
-
-var getTestModel2 = require('mgnlq_testmodel2').getTestModel;
+var getTestModel2 = require('mgnlq_testmodel2').getTestModel2;
 
 // Create bot and bind to console
 function getBotInstance() {
@@ -154,7 +146,7 @@ function outFile(s) {
   return  rootdata + 'runs/' + run + '_' + s ;
 }
 
-it("testRegress1", done => {
+it('testRegress1', done => {
   getBotInstance().then((conn) => {
     var prefix = '';
     if(hasFlag('p')) {
@@ -172,11 +164,19 @@ it("testRegress1", done => {
         if(!context.diffs.length === 0) {
           console.log(context.diffs.join('\n'));
         }
-
-        expect(context.diffs.length).toEqual(0);
+        if( process.env.ABOT_WRITE_REGRESS) {
+          console.log('Errors : ' + context.diffs.length);
+        } else {
+          expect(context.diffs.length).toEqual(0);
+        }
         context.actual.forEach(function(sActual,iIndex) {
           var quest = iIndex +  ` result differs on \n question: >${context.input[iIndex]}<`;
-          expect(sActual + quest).toEqual(context.expected[iIndex] + quest);
+          if( sActual + quest != context.expected[iIndex] + quest) {
+            console.log(' differences in \n' + quest + '\n' + sActual + '\n' + context.expected[iIndex]);
+          }
+          if (! process.env.ABOT_WRITE_REGRESS) {
+            expect(sActual + quest).toEqual(context.expected[iIndex] + quest);
+          }
         });
         var rtavg = rtfull / context.input.length;
         var summaryCompact = run + '\t' + context.input.length + '\t' + (rtavg/1000).toFixed(2) + '\t' + context.ok + '\t'
@@ -185,17 +185,21 @@ it("testRegress1", done => {
         + 'avg:' + (rtavg/1000).toFixed(2)  + 's  total:' +  (rtfull/1000).toFixed(2) + 's' + '\t' + fnin + '\n';
         if (process.env.ABOT_WRITE_REGRESS) {
           console.log(summary);
+          if (!fs.existsSync(rootdata + 'runs') ) {
+            fs.mkdirSync(rootdata + 'runs');
+          }
           fs.writeFileSync(outFile('actual.json'), JSON.stringify(context.actual, undefined,2));
           fs.writeFileSync(outFile('diffs.txt'), summary + context.diffs.join('\n'));
           fs.writeFileSync(outFile('rts.txt'), summary + context.runtimes.join('\n'));
           fs.appendFile(rootdata  + 'runs/' + prefix + 'all.txt', summaryCompact, function() {});
           fs.appendFile(rootdata  + 'runs/' + prefix + 'rt_all.txt',
-          fnin + '\t' + context.runtimes.map(function(rt) {
-            return String('        ' + rt).slice(-7); }).join('\t') + '\n',
-          function() {});
+            fnin + '\t' + context.runtimes.map(function(rt) {
+              return String('        ' + rt).slice(-7); }).join('\t') + '\n',
+            function() {});
         }
-        done();
+        console.log('cleaning up, releasing connector');
         releaseConnector(conn);
+        done();
       });
     }
   });

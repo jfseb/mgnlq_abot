@@ -8,7 +8,7 @@ var root = '../../js';
 var Logger = require(root + '/utils/logger.js');
 
 
-it("testPerf", done => {
+it('testPerf', done => {
   var perf = Logger.perf('ABC');
   perf('abc');
   perf('abc');
@@ -20,7 +20,7 @@ it("testPerf", done => {
  * Unit test for sth
  */
 
-it("testCTor", done => {
+it('testCTor', done => {
   expect.assertions(8);
   try {
     Logger.logger('$');
@@ -79,7 +79,7 @@ it("testCTor", done => {
 });
 
 
-it("testSameInstanceHandedOut", done => {
+it('testSameInstanceHandedOut', done => {
   expect.assertions(2);
   var res = Logger.logger('AB');
   var res2 = Logger.logger('aBC');
@@ -92,7 +92,7 @@ it("testSameInstanceHandedOut", done => {
 
 var fs = require('fs');
 
-it("testLogOpenOverwrite", done => {
+it('testLogOpenOverwrite', done => {
   expect.assertions(2);
   var filef = Logger._test.getFileName('TEST_OV');
   try {
@@ -111,7 +111,7 @@ it("testLogOpenOverwrite", done => {
 });
 
 
-it("testLogOpenAppend", done => {
+it('testLogOpenAppend', done => {
   expect.assertions(4);
   var filef = Logger._test.getFileName('TEST_AB');
   try {
@@ -136,7 +136,7 @@ it("testLogOpenAppend", done => {
 });
 
 
-it("testLogException", done => {
+it('testLogException', done => {
   expect.assertions(2);
   var filef = Logger._test.getFileName('TEST_AC');
   try {
@@ -162,7 +162,7 @@ it("testLogException", done => {
 });
 
 
-it("testLogPerf", done => {
+it('testLogPerf', done => {
   expect.assertions(18);
 
   var sS = undefined;

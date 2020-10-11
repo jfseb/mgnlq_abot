@@ -57,9 +57,9 @@ must be supplied:
 
 # running the bot / picking a db
 
-the bot runs against testdb per default,
+the bot runs against "testdb" per default,
 
-to change this one must eiter remove the cache in smbmodel\_cache.js.zp and/or set
+to change this one must either remove the cache in smbmodel\_cache.js.zp and/or set
  SET MQNLQ_MODEL_NO_FILECACHE=true
 Then one may set ABOT_MONGODB=testdb2  to switch to an alternate db.
 

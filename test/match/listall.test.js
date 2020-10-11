@@ -7,19 +7,12 @@
 var process = require('process');
 var root = '../../js';
 
-//var debuglog = require('debug')('listall.nunit');
-
 const ListAll = require(root + '/match/listall.js');
 const ErBase = require('mgnlq_parser1').ErBase;
 const MongoQueries = require(root + '/match/mongoqueries.js');
-//const WhatIs = require(root + '/match/whatis');
-//const Sentence = require('mgnlq_parser1').Sentence;
 const Model = require('mgnlq_model').Model;
 
-//const theModel = Model.loadModels();
-
-
-var getModel = require('mgnlq_testmodel_replay').getTestModel;
+var getModel = require('mgnlq_testmodel2').getTestModel1;
 
 process.on('unhandledRejection', function onError(err) {
   console.log(err);
@@ -29,7 +22,7 @@ process.on('unhandledRejection', function onError(err) {
 
 //WhatIs.resetCache();
 
-it("testListAllWithContext", done => {
+it('testListAllWithContext', done => {
   getModel().then(theModel => {
     // NEW NOT RULES
     ListAll.listAllWithContext('url', 'unit test NavTargetResolution',
@@ -48,7 +41,7 @@ it("testListAllWithContext", done => {
   });
 });
 
-it("testJoinResultsTupel", done => {
+it('testJoinResultsTupel', done => {
   var result = [{
     // 'sentence': [{ 'string': 'mercury', 'matchedString': 'mercury', 'category': 'element name', '_ranking': 0.95 }],
     'columns': ['element name', 'atomic weight'], 'results': [
@@ -59,7 +52,7 @@ it("testJoinResultsTupel", done => {
   done();
 });
 
-it("testListAllMultWithCompareOneBadCat", done => {
+it('testListAllMultWithCompareOneBadCat', done => {
   getModel().then(theModel => {
     //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'devclass', 'FioriBackendCatalogs'], 'TransactionCode S_ALR_87012394',
@@ -80,7 +73,7 @@ it("testListAllMultWithCompareOneBadCat", done => {
 });
 
 
-it("testListAllMultHavingCompareOneBadCat", done => {
+it('testListAllMultHavingCompareOneBadCat', done => {
   getModel().then(theModel => {
     //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
     ListAll.listAllTupelWithContext(['ApplicationComponent', 'devclass', 'FioriBackendCatalogs'], 'TransactionCode S_ALR_87012394',
@@ -101,7 +94,7 @@ it("testListAllMultHavingCompareOneBadCat", done => {
   });
 });
 
-it("testListAllMultHavingCompareBECategories", done => {
+it('testListAllMultHavingCompareBECategories', done => {
   //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
   getModel().then(theModel => {
     theModel.rules.wordCache = {};
@@ -124,7 +117,7 @@ it("testListAllMultHavingCompareBECategories", done => {
   });
 });
 
-it("testListAllMultWithCompareBECategories", done => {
+it('testListAllMultWithCompareBECategories', done => {
   //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."4
   getModel().then(theModel => {
     theModel.rules.wordCache = {};
@@ -146,7 +139,7 @@ it("testListAllMultWithCompareBECategories", done => {
   });
 });
 
-it("testProjectResultToStringArray", done => {
+it('testProjectResultToStringArray', done => {
   var src = {
     columns: ['b', 'a', 'c', 'e'],
     results: [{ a: 1, b: true, c: null, e: 'abc' }
@@ -163,14 +156,14 @@ it("testProjectResultToStringArray", done => {
   done();
 });
 
-it("testFlattenErrors", done => {
+it('testFlattenErrors', done => {
   var r = [{ errors: false }, { errors: { abc: 1 } }];
   var res = ListAll.flattenErrors(r);
   expect(res).toEqual([{ abc: 1 }]);
   done();
 });
 
-it("testListAllMultWithCompareBECategories", done => {
+it('testListAllMultWithCompareBECategories', done => {
   //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."4
   getModel().then(theModel => {
     theModel.rules.wordCache = {};
@@ -187,7 +180,7 @@ it("testListAllMultWithCompareBECategories", done => {
 ///// with category set !
 
 
-it("testListAllMultWithCompareBECategoriesWithSet", done => {
+it('testListAllMultWithCompareBECategoriesWithSet', done => {
   getModel().then(theModel => {
     //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
     var cats = ['ApplicationComponent', 'devclass', 'BackendCatalogId'];
@@ -207,7 +200,7 @@ it("testListAllMultWithCompareBECategoriesWithSet", done => {
 });
 
 
-it("testListAllMultWithCompareBECategoriesWithSetDomain", done => {
+it('testListAllMultWithCompareBECategoriesWithSetDomain', done => {
   getModel().then(theModel => {
     //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
     var cats = ['ApplicationComponent', 'devclass', 'BackendCatalogId'];
@@ -228,7 +221,7 @@ it("testListAllMultWithCompareBECategoriesWithSetDomain", done => {
 
 
 
-it("testListAllMultHavingCompareBECategoriesWithSet", done => {
+it('testListAllMultHavingCompareBECategoriesWithSet', done => {
   getModel().then(theModel => {
     //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
     var cats = ['ApplicationComponent', 'devclass', 'BackendCatalogId'];
@@ -249,7 +242,7 @@ it("testListAllMultHavingCompareBECategoriesWithSet", done => {
 });
 
 
-it("testListAllMultHavingCompareBECategoriesWithSetOrder", done => {
+it('testListAllMultHavingCompareBECategoriesWithSetOrder', done => {
   getModel().then(theModel => {
     //"list all ApplicationComponent, devclass, FioriBackendCatalogs with TransactionCode S_ALR_87012394."
     var cats = ['devclass', 'ApplicationComponent', 'BackendCatalogId'];
@@ -309,7 +302,7 @@ exports.testListAllHavingContextEmpty = function (test) {
 
 */
 
-it("testListAllWithContextDomainOPLike", done => {
+it('testListAllWithContextDomainOPLike', done => {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', 'domain "SOBJ Tables"',
       theModel).then((res) => {
@@ -324,7 +317,7 @@ it("testListAllWithContextDomainOPLike", done => {
 });
 
 
-it("testIsSignificantDifference", done => {
+it('testIsSignificantDifference', done => {
   expect(ListAll.isSignificantDifference('abcdefs', 'hijlk')).toEqual(true);
   expect(ListAll.isSignificantDifference('abcdef', 'abcdef')).toEqual(false);
   expect(ListAll.isSignificantDifference('abcdefss', 'abcdef')).toEqual(true);
@@ -334,7 +327,7 @@ it("testIsSignificantDifference", done => {
   done();
 });
 
-it("testIsSignificantWord", done => {
+it('testIsSignificantWord', done => {
   getModel().then(theModel => {
     var procstring = ErBase.processString('element name Nickel in IUPAC', theModel.rules, {});
     //debuglog(JSON.stringify(procstring.sentences));
@@ -348,7 +341,7 @@ it("testIsSignificantWord", done => {
   });
 });
 
-it("testListAllNewFormatELementNames", done => {
+it('testListAllNewFormatELementNames', done => {
   getModel().then(theModel => {
     MongoQueries.listAll('Elements nAmes', theModel).then(res => {
       var nonerror = ListAll.removeErrorsIfOKAnswers(res);
@@ -364,7 +357,7 @@ it("testListAllNewFormatELementNames", done => {
 });
 
 
-it("testListAllFilterByRank", done => {
+it('testListAllFilterByRank', done => {
   getModel().then(theModel => {
     MongoQueries.listAll('Elements nAme', theModel).then(res => {
       var nonerror = ListAll.removeErrorsIfOKAnswers(res);
@@ -386,7 +379,7 @@ it("testListAllFilterByRank", done => {
 });
 
 
-it("testListAllNewFormatELementNames2", done => {
+it('testListAllNewFormatELementNames2', done => {
   getModel().then(theModel => {
     MongoQueries.listAll('element names starting with ni', theModel).then(res => {
       var nonerror = ListAll.removeErrorsIfOKAnswers(res);
@@ -404,7 +397,7 @@ it("testListAllNewFormatELementNames2", done => {
 
 
 
-it("testListAllWithContextDomainLike", done => {
+it('testListAllWithContextDomainLike', done => {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', '"SOBJ Tables"',
       theModel).then((res) => {
@@ -420,7 +413,7 @@ it("testListAllWithContextDomainLike", done => {
 
 
 
-it("testListAllWithContextDomainLikeAmbiguous", done => {
+it('testListAllWithContextDomainLikeAmbiguous', done => {
   getModel().then(theModel => {
     ListAll.listAllWithContext('Table', 'SOBJ Tables',
       theModel).then((res) => {
@@ -434,7 +427,7 @@ it("testListAllWithContextDomainLikeAmbiguous", done => {
   });
 });
 
-it("testGetDistinctDomains", done => {
+it('testGetDistinctDomains', done => {
   var res = [{ domain: 'a' }, { domain: undefined }];
   expect(ListAll.getDistinctOKDomains(res)).toEqual(['a']);
   var res1b = [{ domain: 'a' }, { domain: 'a' }, { domain: undefined }];
@@ -446,7 +439,7 @@ it("testGetDistinctDomains", done => {
   done();
 });
 
-it("testhasOKAnswer", done => {
+it('testhasOKAnswer', done => {
   var res = [{ domain: 'a' }, { domain: undefined }];
   expect(ListAll.hasOKAnswer(res)).toEqual(true);
   var res2 = [{ domain: 'a', errors: {} }, { domain: undefined }];
@@ -454,12 +447,12 @@ it("testhasOKAnswer", done => {
   done();
 });
 
-it("testFilterOKAnswer", done => {
+it('testFilterOKAnswer', done => {
   expect(ListAll.isOKAnswer({ domain: undefined })).toEqual(false);
   done();
 });
 
-it("testremoveErrorsIfOKAnswers", done => {
+it('testremoveErrorsIfOKAnswers', done => {
   var res = [{ domain: 'a' }, { domain: undefined }];
   expect(ListAll.removeErrorsIfOKAnswers(res)).toEqual([{ domain: 'a' }]);
   var res2 = [{ domain: 'a', errors: {} }, { domain: undefined }];
@@ -470,7 +463,7 @@ it("testremoveErrorsIfOKAnswers", done => {
   done();
 });
 
-it("testRemoveEmptyResults", done => {
+it('testRemoveEmptyResults', done => {
   var res = [{ domain: 'a', results: [] }, { domain: 'b', results: [{}] }];
   expect(ListAll.removeEmptyResults(res)).toEqual([{ domain: 'b', results: [{}] }]);
   done();
@@ -487,7 +480,7 @@ exports.testSortMetamodelLast = function(test) {
 };
 */
 
-it("testHasEmpty", done => {
+it('testHasEmpty', done => {
   var res = [{ domain: 'b', results: ['x'] }, { domain: 'metamodel', results: ['a'] },
     { domain: 'a', results: [{}] },
     { domain: 'metamodel', results: ['a'] },
@@ -498,7 +491,7 @@ it("testHasEmpty", done => {
 
 
 
-it("testRemoveMetamodelsResultIfOthersThrowsEmpty", done => {
+it('testRemoveMetamodelsResultIfOthersThrowsEmpty', done => {
   var res = [{ domain: 'b', results: [] }, { domain: 'metamodel', results: ['a'] },
     { domain: 'a', results: [{}] },
     { domain: 'metamodel', results: ['a'] },
@@ -512,7 +505,7 @@ it("testRemoveMetamodelsResultIfOthersThrowsEmpty", done => {
   done();
 });
 
-it("testRemoveMetamodelsResultIfOthersThrowsError", done => {
+it('testRemoveMetamodelsResultIfOthersThrowsError', done => {
   var res = [{ domain: 'b', errors: {}, results: ['a'] }];
   try {
     ListAll.removeMetamodelResultIfOthers(res);
@@ -524,7 +517,7 @@ it("testRemoveMetamodelsResultIfOthersThrowsError", done => {
 });
 
 
-it("testRemoveMetamodelsResultIfOthersOthers", done => {
+it('testRemoveMetamodelsResultIfOthersOthers', done => {
   var res = [{ domain: 'b', results: ['x'] }, { domain: 'metamodel', results: ['a'] },
     { domain: 'a', results: [{}] },
     { domain: 'metamodel', results: ['a'] },
@@ -534,7 +527,7 @@ it("testRemoveMetamodelsResultIfOthersOthers", done => {
   done();
 });
 
-it("testRemoveMetamodelsResultIfOthersOnlyMetamodel", done => {
+it('testRemoveMetamodelsResultIfOthersOnlyMetamodel', done => {
   var res = [{ domain: 'metamodel', results: ['a'] },
     { domain: 'metamodel', results: [{}] },
     { domain: 'metamodel', results: ['a'] }
@@ -546,7 +539,7 @@ it("testRemoveMetamodelsResultIfOthersOnlyMetamodel", done => {
   done();
 });
 
-it("testSortByDomains", done => {
+it('testSortByDomains', done => {
 
   done();
 });
@@ -567,7 +560,7 @@ exports.testListAllWithCategory = function (test) {
 
 */
 
-it("testinferDomain", done => {
+it('testinferDomain', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, 'domain FioriBOM');
     expect(domain).toEqual('FioriBOM');
@@ -576,7 +569,7 @@ it("testinferDomain", done => {
   });
 });
 
-it("testinferDomainBOM", done => {
+it('testinferDomainBOM', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, '"fiori bom"');
     expect(domain).toEqual('FioriBOM');
@@ -587,7 +580,7 @@ it("testinferDomainBOM", done => {
 
 
 
-it("testinferDomainUndef", done => {
+it('testinferDomainUndef', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, 'cannot be analyzed');
     expect(domain).toEqual(undefined);
@@ -598,7 +591,7 @@ it("testinferDomainUndef", done => {
 
 
 
-it("testinferDomain2_2", done => {
+it('testinferDomain2_2', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, 'domain related to fiori backend catalogs');
     expect(domain).toEqual('Fiori Backend Catalogs');
@@ -608,7 +601,7 @@ it("testinferDomain2_2", done => {
 });
 
 
-it("testinferDomainTwoDomains", done => {
+it('testinferDomainTwoDomains', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, 'domain FioriFLP domain wiki');
     expect(domain).toEqual(undefined);
@@ -617,7 +610,7 @@ it("testinferDomainTwoDomains", done => {
   });
 });
 
-it("testinferDomainDomainByCategory", done => {
+it('testinferDomainDomainByCategory', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, 'element symbol');
 
@@ -627,7 +620,7 @@ it("testinferDomainDomainByCategory", done => {
   });
 });
 
-it("testinferDomainDomainByCategoryAmbiguous", done => {
+it('testinferDomainDomainByCategoryAmbiguous', done => {
   getModel().then(theModel => {
     var domain = '';
     try {
@@ -642,7 +635,7 @@ it("testinferDomainDomainByCategoryAmbiguous", done => {
   });
 });
 
-it("testinferDomainTwoDomainsByCategory", done => {
+it('testinferDomainTwoDomainsByCategory', done => {
   getModel().then(theModel => {
     var domain = ListAll.inferDomain(theModel, 'element name country');
     expect(domain).toEqual(undefined);
@@ -662,13 +655,13 @@ exports.testListAllFilterStringList = function (test) {
 */
 
 
-it("testListAllRemoveCaseDuplicates", done => {
+it('testListAllRemoveCaseDuplicates', done => {
   var res = ListAll.removeCaseDuplicates(['abC', 'abc', 'Abc', 'ABC', 'abcD', 'ABCD', 'AB', 'a']);
   expect(res).toEqual(['a', 'AB', 'ABC', 'ABCD']);
   done();
 });
 
-it("testlikelyPluralDiff", done => {
+it('testlikelyPluralDiff', done => {
   expect(ListAll.likelyPluralDiff('element name', 'element names')).toEqual(true);
   expect(ListAll.likelyPluralDiff('element name', '"element names"')).toEqual(true);
   expect(ListAll.likelyPluralDiff('element name', '"element nam"')).toEqual(false);
@@ -676,7 +669,7 @@ it("testlikelyPluralDiff", done => {
   done();
 });
 
-it("testListAllFilterStringList", done => {
+it('testListAllFilterStringList', done => {
   var res = ListAll.getCategoryOpFilterAsDistinctStrings({
     operator: 'starting with'
   }, 'aBc', 'cat1', [

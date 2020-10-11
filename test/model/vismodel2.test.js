@@ -1,21 +1,16 @@
 
 var root = '../../js';
 
-
 //var debug = require('debug')('vismodel.nunit');
 
 const Vismodel = require(root + '/model/vismodel.js');
 
 const Model = require('mgnlq_model').Model;
 
-//const getModel = require('mgnlq_testmodel_replay').getTestModel;
-
-const getModel2 = require('mgnlq_testmodel2').getTestModel;
-
-//var m = Model.loadModels();
+const getModel2 = require('mgnlq_testmodel2').getTestModel2;
 
 
-it("testCalcCategoryRecordAppComp", done => {
+it('testCalcCategoryRecordAppComp', done => {
   getModel2().then((mdl2) => {
     Vismodel.calcCategoryRecord(mdl2, 'ApplicationComponent', 'FioriBOM').then((rec) => {
       expect(rec).toEqual({
@@ -34,6 +29,7 @@ it("testCalcCategoryRecordAppComp", done => {
 
 
 var fs = require('fs');
+//const { JsxEmit } = require('typescript');
 
 try {
   fs.mkdirSync('./tmp');
@@ -44,7 +40,8 @@ try {
 }
 
 
-it("testMakeViz2", done => {
+it('testMakeViz2', done => {
+  jest.setTimeout(500000);
   expect.assertions(1);
   getModel2().then((mdl2) => {
     try {
@@ -70,7 +67,7 @@ try {
   /*emtpy*/
 }
 
-it("testMakeTab", done => {
+it('testMakeTab', done => {
   expect.assertions(1);
   try {
     fs.mkdirSync('./tmp/testmodel/graph');
@@ -88,7 +85,7 @@ it("testMakeTab", done => {
 
 var TESTMODELLOCATION = 'node_modules/mgnlq_testmodel/';
 
-it("testMakeLUNR", done => {
-  Vismodel.makeLunrIndex(TESTMODELLOCATION + 'testmodel/iupac', './tmp/model_iupac', true);
+it('testMakeLUNR', done => {
+  Vismodel.makeLunrIndex(TESTMODELLOCATION + 'testmodel/iupacs', './tmp/model_iupac', true);
   done();
 });

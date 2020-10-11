@@ -108,23 +108,7 @@ var newFlow = true;
 
 import { Model } from 'mgnlq_model';
 
-var models = {};
-
-/*
-var mongooseMock = require('mongoose_record_replay').instrumentMongoose(require('mongoose'),
-  'node_modules/mgnlq_testmodel_replay/mgrecrep/',
-  'REPLAY');
-
-
-function loadModel(modelPath?: string): Promise<IMatch.IModels> {
-  modelPath = modelPath || "";
-  if (!models[modelPath])
-    models[modelPath] = Model.loadModels(mongooseMock, modelPath);
-  }
-  return models[modelPath];
-}
-*/
-
+//var models = {};
 
 
 function isAnonymous(userid: string): boolean {

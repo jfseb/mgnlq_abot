@@ -21,9 +21,9 @@ process.on('unhandledRejection', function onError(err) {
   throw err;
 });
 
-const getModel = require('mgnlq_testmodel_replay').getTestModel;
+const getModel = require('mgnlq_testmodel2').getTestModel1;
 
-it("testSloppyOrExactExact", done => {
+it('testSloppyOrExactExact', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     var res = Describe.sloppyOrExact('unit tests', 'unit tEsts', theModel);
@@ -33,7 +33,7 @@ it("testSloppyOrExactExact", done => {
   });
 });
 
-it("testSloppyOrExactPlural", done => {
+it('testSloppyOrExactPlural', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     var res = Describe.sloppyOrExact('unit test', 'Unit tests', theModel);
@@ -44,7 +44,7 @@ it("testSloppyOrExactPlural", done => {
 
 });
 
-it("testSloppyOrExactSloppy", done => {
+it('testSloppyOrExactSloppy', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     var res = Describe.sloppyOrExact('unit tests', 'Uint tests', theModel);
@@ -55,7 +55,7 @@ it("testSloppyOrExactSloppy", done => {
 
 });
 
-it("testSloppyOrExactSyn", done => {
+it('testSloppyOrExactSyn', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     var res = Describe.sloppyOrExact('element name', 'name', theModel);
@@ -66,7 +66,7 @@ it("testSloppyOrExactSyn", done => {
 
 });
 
-it("testCountPresence", done => {
+it('testCountPresence', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.countRecordPresence('orbits', 'Cosmos', theModel).then(res => {
@@ -82,7 +82,7 @@ it("testCountPresence", done => {
   });
 });
 
-it("testDescribeFactInDomain", done => {
+it('testDescribeFactInDomain', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('nomatchnotevenclose', undefined, theModel).then(res => {
@@ -96,7 +96,7 @@ it("testDescribeFactInDomain", done => {
   });
 });
 
-it("testDescribeFactInDomainFilter", done => {
+it('testDescribeFactInDomainFilter', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('nomatchnotevenclose', 'IUPAC', theModel).then(res => {
@@ -110,7 +110,7 @@ it("testDescribeFactInDomainFilter", done => {
   });
 });
 
-it("testDescribeFactInDomainSun", done => {
+it('testDescribeFactInDomainSun', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('sun', undefined, theModel).then((res) => {
@@ -133,7 +133,7 @@ it("testDescribeFactInDomainSun", done => {
 
 });
 
-it("testDescribeFactInDomainSunCosmos", done => {
+it('testDescribeFactInDomainSunCosmos', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('sun', 'Cosmos', theModel).then(res => {
@@ -149,7 +149,7 @@ it("testDescribeFactInDomainSunCosmos", done => {
   });
 });
 
-it("testDescribeFactInDomainProxima2", done => {
+it('testDescribeFactInDomainProxima2', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('Proxima Centauri', 'Cosmos', theModel).then(res => {
@@ -172,7 +172,7 @@ it("testDescribeFactInDomainProxima2", done => {
 
 ///TODO FIX THIS
 
-it("testDescribeFactInDomainAlpha", done => {
+it('testDescribeFactInDomainAlpha', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('Alpha Centauri C', 'Cosmos', theModel).then(res => {
@@ -194,7 +194,7 @@ it("testDescribeFactInDomainAlpha", done => {
 
 });
 
-it("testDescribeFactInDomainAlphaFuzz", done => {
+it('testDescribeFactInDomainAlphaFuzz', done => {
   getModel().then((theModel) => {
     Describe.describeFactInDomain('Alpha Centauri X', 'Cosmos', theModel).then(res => {
       var cmp = `"Alpha Centauri X" has a meaning in domain "Cosmos":
@@ -216,7 +216,7 @@ it("testDescribeFactInDomainAlphaFuzz", done => {
 });
 
 
-it("testDescribeFactInDomainBluePlanet", done => {
+it('testDescribeFactInDomainBluePlanet', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('blue planet', 'Cosmos', theModel).then(res => {
@@ -235,7 +235,7 @@ it("testDescribeFactInDomainBluePlanet", done => {
 
 
 
-it("testDescribeFactInDomainEarth", done => {
+it('testDescribeFactInDomainEarth', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     //TODO , restrict synonyms per domain!
@@ -258,7 +258,7 @@ in domain "Philosophers elements" "earth" is a value for category "element name"
 });
 
 
-it("testDescribeFactInDomainBluePlanetAll", done => {
+it('testDescribeFactInDomainBluePlanetAll', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     //TODO , restrict synonyms per domain!
@@ -274,7 +274,7 @@ it("testDescribeFactInDomainBluePlanetAll", done => {
   });
 });
 
-it("testDescribeFactInDomainSIUPAC", done => {
+it('testDescribeFactInDomainSIUPAC', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeFactInDomain('sun', 'IUPAC', theModel).then(res => {
@@ -289,7 +289,7 @@ it("testDescribeFactInDomainSIUPAC", done => {
 
 });
 
-it("testDescribeDomain", done => {
+it('testDescribeDomain', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeDomain('cusmos', 'Cosmos', theModel).then((oRes) => {
@@ -306,7 +306,7 @@ it("testDescribeDomain", done => {
   });
 });
 
-it("testDescribeFactWhichIsADomain", done => {
+it('testDescribeFactWhichIsADomain', done => {
   getModel().then((theModel) => {
     Describe.describeFactInDomain('cusmos', undefined, theModel).then(oRes => {
       expect(oRes).toEqual(
@@ -322,7 +322,7 @@ it("testDescribeFactWhichIsADomain", done => {
 });
 
 
-it("testDescribeFactInDomainMultiDomain", done => {
+it('testDescribeFactInDomainMultiDomain', done => {
   getModel().then((theModel) => {
     Describe.describeFactInDomain('earth', 'Philosophers elements', theModel).then(oRes => {
       expect(oRes).toEqual(
@@ -334,7 +334,7 @@ it("testDescribeFactInDomainMultiDomain", done => {
   });
 
 });
-it("testDescribeFactInDomainMultiDomainNoFilter", done => {
+it('testDescribeFactInDomainMultiDomainNoFilter', done => {
   getModel().then((theModel) => {
     Describe.describeFactInDomain('earth', undefined, theModel).then(oRes => {
       expect(oRes).toEqual(
@@ -348,7 +348,7 @@ it("testDescribeFactInDomainMultiDomainNoFilter", done => {
 });
 
 
-it("testDescribeCategoryStatsInDomain", done => {
+it('testDescribeCategoryStatsInDomain', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.getCategoryStatsInDomain('element name', 'IUPAC', theModel).then((oRes) => {
@@ -376,7 +376,7 @@ it("testDescribeCategoryStatsInDomain", done => {
 });
 
 
-it("testMakeValuesListOne", done => {
+it('testMakeValuesListOne', done => {
   var res = Describe.makeValuesListString(['abc']);
   expect(res).toEqual('The sole value is "abc"');
   done();
@@ -384,20 +384,20 @@ it("testMakeValuesListOne", done => {
 
 
 
-it("testMakeValuesListEarth", done => {
+it('testMakeValuesListEarth', done => {
   var res = Describe.makeValuesListString(['earth', 'fire', 'water', 'wind']);
   expect(res).toEqual('Possible values are ...\n"earth", "fire", "water" or "wind"');
   done();
 });
 
 
-it("testMakeValuesListFits", done => {
+it('testMakeValuesListFits', done => {
   var res = Describe.makeValuesListString(['abc', 'def', 'hif', 'klm']);
   expect(res).toEqual('Possible values are ...\n"abc", "def", "hif" or "klm"');
   done();
 });
 
-it("testMakeValuesListNoFit", done => {
+it('testMakeValuesListNoFit', done => {
   var res = Describe.makeValuesListString(['abc', 'def', 'hiasfasfasfsaf', 'klasfasfasfsafasfm', 'hijsasfasfasfasfdfsf', 'desafsfasff', 'kasdfasfsafsafdlm']);
   expect(res).toEqual(
     'Possible values are ...\n"abc", "def", "hiasfasfasfsaf", "klasfasfasfsafasfm", "hijsasfasfasfasfdfsf" ...'
@@ -407,7 +407,7 @@ it("testMakeValuesListNoFit", done => {
 
 
 
-it("testMakeValuesListLong", done => {
+it('testMakeValuesListLong', done => {
   var val1 = 'abcs';
   var val2 = 'abcsadlfaj askdf skfjKKKKK aksdlfj saldkf jaslkfdjas lfjsad flskjaf lsdfkjs alfjks df';
   var val3 = 'abcsadlfaj askdf skfjKKKKK aksdlfj saldkf jaslkfdjas lfjsad flskjaf lsdfkjs alfjks df';
@@ -418,7 +418,7 @@ it("testMakeValuesListLong", done => {
 });
 
 
-it("testMakeValuesListLong3", done => {
+it('testMakeValuesListLong3', done => {
   // no ...
   var val1 = 'abcs';
   var val2 = 'abcsadlfaj askdf skfjKKKKK aksdlfj saldkf jaslkfdjas lfjsad flskjaf lsdfkjs alfjks df';
@@ -439,7 +439,7 @@ ELEMENT_NAME_IUPAC = 'is a category in domain "IUPAC"\nIt is present in 118 (100
   + 'Possible values are ...\n"actinium", "aluminium", "americium", "antimony", "argon", "arsenic", "astatine" ...\nDescription: element name';
 
 
-it("testDescribeCategoryWithDomain", done => {
+it('testDescribeCategoryWithDomain', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeCategory('element name', 'IUPAC', theModel, 'describe element name in domain IUPAC').then(
@@ -457,7 +457,7 @@ it("testDescribeCategoryWithDomain", done => {
 });
 
 
-it("testDescribeCategoryWithInvalid", done => {
+it('testDescribeCategoryWithInvalid', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     var res = Describe.describeCategory('element name', 'IUPOCCCCCAC', theModel, 'describe element name in domain IUPAC');
@@ -472,7 +472,7 @@ it("testDescribeCategoryWithInvalid", done => {
   });
 });
 
-it("testDescribeInDomain", done => {
+it('testDescribeInDomain', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeCategoryInDomain('element name', 'IUPAC', theModel).then((res) => {
@@ -487,7 +487,7 @@ it("testDescribeInDomain", done => {
 });
 
 
-it("testDescribeCategoryInhomogeneous", done => {
+it('testDescribeCategoryInhomogeneous', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeCategory('orbits', undefined, theModel, 'abc').then((res) => {
@@ -505,7 +505,7 @@ it("testDescribeCategoryInhomogeneous", done => {
 });
 
 
-it("testDescribeCategoryEcc", done => {
+it('testDescribeCategoryEcc', done => {
   expect.assertions(1);
   getModel().then((theModel) => {
     Describe.describeCategory('eccentricity', undefined, theModel, 'abc').then((res) => {
@@ -521,7 +521,7 @@ it("testDescribeCategoryEcc", done => {
 });
 
 
-it("testDescribeCategoryMult", done => {
+it('testDescribeCategoryMult', done => {
   expect.assertions(2);
   getModel().then((theModel) => {
     Describe.describeCategory('element name', undefined, theModel, 'abc').then((res) => {

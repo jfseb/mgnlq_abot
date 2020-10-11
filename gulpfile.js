@@ -12,8 +12,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var srcDir = 'src';
 var testDir = 'test';
 
-var sourcemaproot = './';
-
 gulp.task('watch', function () {
   return gulp.watch([srcDir + '/**/*.js', testDir + '/**/*.js', srcDir + '/**/*.tsx',  srcDir + '/**/*.ts', 'gulpfile.js'],
     gulp.series('tsc', 'eslint', 'test'));
@@ -48,29 +46,26 @@ gulp.task('tsce', function () {
     .pipe(gulp.dest('js'));
 });
 
-//const babel = require('gulp-babel');
+
+var del = require('del');
+
+
 gulp.task('clean:models', function () {
   return del(
     [
       'test/data/mongoose_record_replay/testmodel/data/*',
+      'test/data/mongoose_record_replay/testmodel/data/*.*',
       'test/data/mongoose_record_replay/testmodel/queries.json',
+      'test/data/mongoose_record_replay/testmodel2/data/*',
+      'test/data/mongoose_record_replay/testmodel2/queries.json',
       'sensitive/_cachefalse.js.zip',
       'testmodel2/_cachefalse.js.zip',
-      'node_modules/mgnlq_testmodel/testmodel/_cache.js.zip',
-      'node_modules/mgnlq_testmodel_replay/testmodel/_cache.js.zip',
-      'node_modules/abot_testmodel/testmodel/_cachefalse.js.zip',
-      'node_modules/abot_testmodel/testmodel/_cachetrue.js.zip',
-      'node_modules/mgnlq_testmodel/testmodel/_cachefalse.js.zip',
-      'node_modules/mgnlq_testmodel/testmodel/_cachetrue.js.zip',
-      'testmodel/_cachefalse.js.zip',
+      'testmodel/_cache.js.zip',
+      'testmodel2/_cache.js.zip',
       'sensitive/_cachetrue.js.zip',
       'testmodel2/_cachetrue.js.zip',
-      'testmodel/_cachetrue.js.zip',
-    // here we use a globbing pattern to match everything inside the `mobile` folder
-    //  'dist/mobile/**/*',
-    // we don't want to clean this file though so we negate the pattern
-    //    '!dist/mobile/deploy.json'
-    ]);
+      'testmodel/_cachetrue.js.zip'
+    ], { force: true });
 });
 
 gulp.task('clean', gulp.series('clean:models'));
@@ -89,15 +84,6 @@ gulp.task('tsc', function () {
     .pipe(sourcemaps.write()) // ,  { sourceRoot: './' } ))
     // Now the sourcemaps are added to the .js file
     .pipe(gulp.dest('js'));
-});
-
-var del = require('del');
-
-gulp.task('clean:models', function () {
-  return del([
-    'sensitive/_cachefalse.js.zip',
-    'node_modules/abot_testmodel/testmodel/_cachefalse.js.zip',
-  ]);
 });
 
 gulp.task('clean', gulp.series('clean:models'));

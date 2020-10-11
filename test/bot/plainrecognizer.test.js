@@ -5,7 +5,7 @@ var root =  '../../js';
 
 const recognizer = require(root + '/bot/plainrecognizer.js');
 
-it("testParseRuleInt", async done => {
+it('testParseRuleInt', async done => {
   const res =
     recognizer.parseRule('what is <category> in <A1>');
   expect(res).toEqual({
@@ -21,7 +21,7 @@ it("testParseRuleInt", async done => {
 
 
 
-it("testParseRuleGreedy", done => {
+it('testParseRuleGreedy', done => {
   const res =
     recognizer.parseRule('what ((is)|(was)) a <category>? in <A1> and');
   expect(res).toEqual({
@@ -35,7 +35,7 @@ it("testParseRuleGreedy", done => {
   done();
 });
 
-it("testParseRuleIntParen", done => {
+it('testParseRuleIntParen', done => {
   const res =
     recognizer.parseRule('what (is)|(was) a <category> in <A1> and');
   expect(res).toEqual({
@@ -49,7 +49,7 @@ it("testParseRuleIntParen", done => {
   done();
 });
 
-it("testParseRuleIntParenWeird", done => {
+it('testParseRuleIntParenWeird', done => {
   const res =
     recognizer.parseRule('what (is)|(was) (a <category>) in <A1> and');
   expect(res).toEqual({
@@ -63,7 +63,7 @@ it("testParseRuleIntParenWeird", done => {
   done();
 });
 
-it("testParseRuleIntArray", done => {
+it('testParseRuleIntArray', done => {
   const res =
     recognizer.parseRule([/^what (is)|(was) (a (.*)) in (.*) and$/i, { 'category': 4, 'A1': 5 }]);
   expect(res).toEqual({
@@ -77,7 +77,7 @@ it("testParseRuleIntArray", done => {
   done();
 });
 
-it("testRecognize", done => {
+it('testRecognize', done => {
   const res =
     recognizer.parseRule('what ((is)|(was)) (a <category>) in <A1> and');
   expect(res).toEqual({
@@ -118,7 +118,7 @@ var oJSON = JSON.parse(fs.readFileSync('./resources/model/intents.json'));
 var oRules = recognizer.parseRules(oJSON);
 
 
-it("testRecognizerWs", done => {
+it('testRecognizerWs', done => {
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
   var oContext = {
@@ -145,7 +145,7 @@ it("testRecognizerWs", done => {
 });
 
 
-it("testTrimValueAdjusting", done => {
+it('testTrimValueAdjusting', done => {
   expect(recognizer.trimValueAdjusting('abc ')).toEqual({ deltaStart : 0, value : 'abc'});
   expect(recognizer.trimValueAdjusting('  abc ')).toEqual({ deltaStart : 2, value : 'abc'});
   expect(recognizer.trimValueAdjusting(' \t abc')).toEqual({ deltaStart : 3, value : 'abc'});
@@ -153,7 +153,7 @@ it("testTrimValueAdjusting", done => {
 });
 
 
-it("testRecognizerListallID", done => {
+it('testRecognizerListallID', done => {
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
   var oContext = {
@@ -177,7 +177,7 @@ it("testRecognizerListallID", done => {
 });
 
 
-it("testRecognizeSome", done => {
+it('testRecognizeSome', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -204,7 +204,7 @@ it("testRecognizeSome", done => {
   });
 });
 
-it("testRecognizeDescribe", done => {
+it('testRecognizeDescribe', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -232,7 +232,7 @@ it("testRecognizeDescribe", done => {
 });
 
 
-it("testRecognizeDescribeUppercase", done => {
+it('testRecognizeDescribeUppercase', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -260,7 +260,7 @@ it("testRecognizeDescribeUppercase", done => {
 });
 
 
-it("testRecognizeTellMeDescribe", done => {
+it('testRecognizeTellMeDescribe', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -287,7 +287,7 @@ it("testRecognizeTellMeDescribe", done => {
   });
 });
 
-it("testRecognizeTellMeAb", done => {
+it('testRecognizeTellMeAb', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -315,7 +315,7 @@ it("testRecognizeTellMeAb", done => {
 });
 
 
-it("testRecognizeTellMe", done => {
+it('testRecognizeTellMe', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -350,7 +350,7 @@ it("testRecognizeTellMe", done => {
 
 
 
-it("testRecognizeTellMeFi", done => {
+it('testRecognizeTellMeFi', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -377,7 +377,7 @@ it("testRecognizeTellMeFi", done => {
   });
 });
 
-it("testRecognizeWhatIsSimpleA", done => {
+it('testRecognizeWhatIsSimpleA', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -404,7 +404,7 @@ it("testRecognizeWhatIsSimpleA", done => {
   });
 });
 
-it("testRecognizeWhatIsSimpleA", done => {
+it('testRecognizeWhatIsSimpleA', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -432,7 +432,7 @@ it("testRecognizeWhatIsSimpleA", done => {
 });
 
 
-it("testRecognizeWhatIsComplex", done => {
+it('testRecognizeWhatIsComplex', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -467,7 +467,7 @@ it("testRecognizeWhatIsComplex", done => {
 
 
 
-it("testRecognizeWhatIsSimple", done => {
+it('testRecognizeWhatIsSimple', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -495,7 +495,7 @@ it("testRecognizeWhatIsSimple", done => {
 });
 
 
-it("testRecognizeTellMeD2", done => {
+it('testRecognizeTellMeD2', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
 
@@ -529,7 +529,7 @@ it("testRecognizeTellMeD2", done => {
 });
 
 
-it("testRecognizeSomeMore", done => {
+it('testRecognizeSomeMore', done => {
 
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
@@ -563,7 +563,7 @@ it("testRecognizeSomeMore", done => {
 });
 
 
-it("testRecognizeBuildTable", done => {
+it('testRecognizeBuildTable', done => {
 
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
@@ -593,7 +593,7 @@ it("testRecognizeBuildTable", done => {
 
 
 
-it("testRecognizeListAllBinOp", done => {
+it('testRecognizeListAllBinOp', done => {
 
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
@@ -620,7 +620,7 @@ it("testRecognizeListAllBinOp", done => {
   });
 });
 
-it("testRecognizeListAllBinOpDomain", done => {
+it('testRecognizeListAllBinOpDomain', done => {
 
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
@@ -649,7 +649,7 @@ it("testRecognizeListAllBinOpDomain", done => {
 
 
 
-it("testRecognizeListAllWhere", done => {
+it('testRecognizeListAllWhere', done => {
 
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
@@ -676,7 +676,7 @@ it("testRecognizeListAllWhere", done => {
   });
 });
 
-it("testtrimTrailingSentenceDelimiters", done => {
+it('testtrimTrailingSentenceDelimiters', done => {
   expect(recognizer.trimTrailingSentenceDelimiters('abc !!!?!')).toEqual('abc');
   expect(recognizer.trimTrailingSentenceDelimiters('abc ')).toEqual('abc');
   expect(recognizer.trimTrailingSentenceDelimiters('defhij " \n !!\n!?!')).toEqual('defhij "');
@@ -686,7 +686,7 @@ it("testtrimTrailingSentenceDelimiters", done => {
   done();
 });
 
-it("testRecognizeListAllWhereTails", done => {
+it('testRecognizeListAllWhereTails', done => {
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
   var cnt = 0;
@@ -720,7 +720,7 @@ it("testRecognizeListAllWhereTails", done => {
 });
 
 // TODO
-it("testRecognizeWith", done => {
+it('testRecognizeWith', done => {
 
   var oRules = recognizer.parseRules(oJSON);
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
@@ -747,21 +747,21 @@ it("testRecognizeWith", done => {
   });
 });
 
-it("testNormalizeWhitespace", done => {
+it('testNormalizeWhitespace', done => {
   expect(
     recognizer.normalizeWhitespace(' This is  \t  not\t"a love song"   and "we do like the USofA  ')
   ).toEqual(' This is not "a love song" and "we do like the USofA ');
   done();
 });
 
-it("testCompactQuoted", done => {
+it('testCompactQuoted', done => {
   expect(
     recognizer.compactQuoted(' This is not "a love song" and "we do like" the USofA')
   ).toEqual(' This is not <word> and <word> the USofA');
   done();
 });
 
-it("testCompactQuotedUnterminated", done => {
+it('testCompactQuotedUnterminated', done => {
   expect(
     recognizer.compactQuoted(' This is not "a love song" and "we do like the USofA')
   ).toEqual(' This is not <word> and "we do like the USofA');
@@ -769,13 +769,13 @@ it("testCompactQuotedUnterminated", done => {
   done();
 });
 
-it("testCountCompactWords", done => {
+it('testCountCompactWords', done => {
   expect(recognizer.countCompactWords('a b c d e f g h k i l m n')).toEqual(13);
   done();
 });
 
 
-it("testCountCompactWords", done => {
+it('testCountCompactWords', done => {
 
   expect(recognizer.countCompactWords(' a b ')).toEqual(4);
   expect(recognizer.countCompactWords('a,,,,,,,b, , , , ,c ')).toEqual(4);
@@ -784,7 +784,7 @@ it("testCountCompactWords", done => {
 
 
 
-it("testRecognizeTooLong", done => {
+it('testRecognizeTooLong', done => {
   var ambRules = {
     'Exit': [
       'Quit',
@@ -808,7 +808,7 @@ it("testRecognizeTooLong", done => {
 });
 
 
-it("testRecognizeTooLong2", done => {
+it('testRecognizeTooLong2', done => {
   var ambRules = {
     'Exit': [
       'QuAAAAA',
@@ -849,7 +849,7 @@ it("testRecognizeTooLong2", done => {
 
 
 
-it("testRecognizeNone", done => {
+it('testRecognizeNone', done => {
   var Recognizer = new (recognizer.RegExpRecognizer)(oRules);
   var oContext = {
     message: {
@@ -869,7 +869,7 @@ it("testRecognizeNone", done => {
 
 
 
-it("testRecognizeAmbiguous", done => {
+it('testRecognizeAmbiguous', done => {
 
   var ambRules = {
     'Exit': [

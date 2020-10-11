@@ -5,7 +5,7 @@
  */
 
 var process = require('process');
-const { JsxEmit } = require('typescript');
+//const { JsxEmit } = require('typescript');
 var root = '../../js';
 var debuglog = require('debugf')('whatis.test');
 
@@ -16,8 +16,10 @@ const MongoQueries = require(root + '/match/mongoqueries.js');
 
 const Model = require('mgnlq_model').Model;
 
-var getModel = require('mgnlq_testmodel_replay').getTestModel;
-var getModel2 = require('mgnlq_testmodel2').getTestModel;
+//var getModel = require('mgnlq_testmodel_replay').getTestModel1;
+
+var getModel =  require('mgnlq_testmodel2').getTestModel1;
+var getModel2 = require('mgnlq_testmodel2').getTestModel2;
 
 process.on('unhandledRejection', function onError(err) {
   console.log(err);
@@ -76,7 +78,7 @@ exports.testCmbByResultTupel = function (test) {
 };
 */
 
-it("testlocaleCompareArrays", done => {
+it('testlocaleCompareArrays', done => {
   expect(WhatIs.localeCompareArrays([],[])).toEqual(0);
   expect(WhatIs.localeCompareArrays(['A'],['A'])).toEqual(0);
   expect(WhatIs.localeCompareArrays(['A'],['a'])).toEqual(1);
@@ -131,7 +133,7 @@ exports.testCmbByResultTupelArrLength = function (test) {
 };
 */
 
-it("testFilterAcceptingOnly", done => {
+it('testFilterAcceptingOnly', done => {
   var inp = [
     [
       {
@@ -184,36 +186,36 @@ it("testFilterAcceptingOnly", done => {
   done();
 });
 
-it("testAnalyzeCategoryElemSingle", done => {
+it('testAnalyzeCategoryElemSingle', done => {
   expect.assertions(1);
   getModel().then(theModel => {
     var res = WhatIs.analyzeCategory('element names', theModel.rules, 'what is unit test wiki for abc');
     expect(res).toEqual('element name');
-    done();
     Model.releaseModel(theModel);
+    done();
   });
 
 });
 
-it("testAnalyzeCategoryElem", done => {
+it('testAnalyzeCategoryElem', done => {
   expect.assertions(1);
   getModel().then(theModel => {
     var res = WhatIs.analyzeCategory('element namess', theModel.rules, 'what is unit test wiki for abc');
     expect(res).toEqual('element name');
-    done();
     Model.releaseModel(theModel);
+    done();
   });
 });
 
 
-it("testAnalyzeCategoryMult", done => {
+it('testAnalyzeCategoryMult', done => {
   expect.assertions(1);
   getModel().then(theModel => {
     //    var res = WhatIs.analyzeCategoryMult('unit test and', theModel.rules, 'what is unit test wiki for abc');
     var res = WhatIs.analyzeCategoryMult('orbits and', theModel.rules, 'what is orbits albedo for sun');
     expect(res).toEqual(['orbits']);
-    done();
     Model.releaseModel(theModel);
+    done();
   });
 });
 
@@ -227,18 +229,18 @@ exports.testAnalyzeCategoryMult2 = function (test) {
 */
 
 // TODO, this is bullshit, complete cover must be better than sloppy matches!
-it("testCategorizeMultElement", done => {
+it('testCategorizeMultElement', done => {
   getModel().then(theModel => {
     var res = WhatIs.analyzeCategoryMult('element name and element number, element symbol', theModel.rules, 'what is unit test and wiki for abc');
     expect(res).toEqual(['element name', 'element number', 'element symbol']);
-    done();
     Model.releaseModel(theModel);
+    done();
   });
 });
 
 
 // TODO, this is bullshit, complete cover must be better than sloppy matches!
-it("testAnalyzeCusmos", done => {
+it('testAnalyzeCusmos', done => {
   getModel().then(theModel => {
     var res = WhatIs.analyzeContextString('cusmos', theModel.rules);
     delete res.sentences[0][0].rule;
@@ -270,18 +272,18 @@ it("testAnalyzeCusmos", done => {
         _ranking: 0.8913821472645002,
         levenmatch: 0.9382969971205265
       }]]);
-    done();
     Model.releaseModel(theModel);
+    done();
   });
 });
 
 
-it("testCategorizeMultElement2", done => {
+it('testCategorizeMultElement2', done => {
   getModel().then(theModel => {
     var res = WhatIs.analyzeCategoryMultOnlyAndComma('element name and element number, element symbol', theModel.rules, 'what is unit test and wiki for abc');
     expect(res).toEqual(['element name', 'element number', 'element symbol']);
-    done();
     Model.releaseModel(theModel);
+    done();
   });
 });
 
@@ -423,10 +425,10 @@ function doRecognizeNew(cat, str, fn) {
     MongoQueries.listAll(cat + ' with ' + str, theModel2).then(resultWI => {
       debuglog(debuglog ? ('listall result2 >:' + JSON.stringify(resultWI)) : '-');
       var joinresults = ListAll.joinResultsTupel(resultWI);
-      debuglog(()=> " doRecognizeNew 2 " + JSON.stringify(joinresults));
+      debuglog(()=> ' doRecognizeNew 2 ' + JSON.stringify(joinresults));
       //var res = WhatIs.resolveCategory(cat, str,
       //  theModel2.rules);
-      debuglog("prior invoke" + resultWI.map(o => {
+      debuglog('prior invoke' + resultWI.map(o => {
         var u = Object.assign({}, o);
         return JSON.stringify(u);
       }).join(' \n**\n'));
@@ -462,7 +464,7 @@ function doRecognizeMultNew(cats, str, fn) {
         return JSON.stringify(u);
       }).join(' \n**\n'));
       fn(undefined, resultWI, theModel2);
-/*
+      /*
     var resultArr = WhatIs.resolveCategories(cats, str,
       theModel2);
     debuglog(resultArr.tupelanswers.map(o => {
@@ -496,17 +498,17 @@ exports.testUpDownWhatIsBSPNameManageLabels = function (test) {
 
 
 
-it("testUpDownWhatIsBSPNameManageLabelsNew", done => {
+it('testUpDownWhatIsBSPNameManageLabelsNew', done => {
   jest.setTimeout(200000);
   // jest.setInterval(600000);
   doRecognizeNew('BSPName', 'manage labels', function (err, res, aModel) {
-    debuglog( "here result" );
+    debuglog( 'here result' );
     debuglog(()=>' here the result '+ JSON.stringify(res,undefined,2));
     expect(res[0].results[0].BSPName).toEqual('n/a');
     expect(res[1].results[0].BSPName).toEqual('FRA_ALERT_MAN');
     expect(res[0].columns[0]).toEqual('BSPName');
     //  test.deepEqual(res.answers[1].sentence[0].matchedString, 'Manage Alerts', ' category');
-  /*  test.deepEqual(res.answers.map(o => o.result),
+    /*  test.deepEqual(res.answers.map(o => o.result),
       ['n/a'], 'ranking');
     test.deepEqual(res.answers.map(o => o._ranking),
       [1.3537499999999998]
@@ -540,15 +542,15 @@ exports.testUpDownWhatIsBSPNameManageLablesQuote = function (test) {
 
 //jest.setTimeout(600000);
 
-it("testUpDownWhatIsBSPNameManageLabelQuoteNew", done => {
+it('testUpDownWhatIsBSPNameManageLabelQuoteNew', done => {
   //jest.setTimeout(600000);
   doRecognizeNew('BSPName', '"manage labels"', function (err, res, aModel) {
     expect(res[0].results).toEqual([{ BSPName: 'n/a'}]);
     expect(res.length).toEqual(1);
     expect(res[0].columns[0]).toEqual('BSPName');
-   expect(res[0].aux.sentence[2].matchedString).toEqual('Manage Labels');
+    expect(res[0].aux.sentence[2].matchedString).toEqual('Manage Labels');
     expect(res.map(o => o.results)).toEqual([[ { BSPName: 'n/a'}]]);
-      /*
+    /*
     test.deepEqual(res.answers.map(o => o._ranking),
       // [ 2.1374999999999997 ]
       [1.3537499999999998]
@@ -589,23 +591,23 @@ exports.testUpWhatIsBSPNameFioriIntentManageLablesQuote = function (test) {
 };
 */
 
-it("testWhatIsBSPNameFioriIntentManageLabelsNew", done => {
+it('testWhatIsBSPNameFioriIntentManageLabelsNew', done => {
   doRecognizeMultNew(['BSPName', 'fiori intent', 'AppName'], 'manage labels', function (err, resultArr, aModel) {
     expect(resultArr[0].results[0]).toEqual(
       { BSPName: 'n/a', 'fiori intent': '#ProductLabel-manage', 'AppName': 'Manage Labels'}
     );
     expect(// .map(o => ListAll.projectResultsToStringArray(o)),
-    ListAll.projectFullResultsToFlatStringArray(resultArr)).toEqual([
+      ListAll.projectFullResultsToFlatStringArray(resultArr)).toEqual([
       ['n/a', '#ProductLabel-manage', 'Manage Labels'],
-  // TODO: 2nd result should not be there as it is not close enoough
-  //AppNAme filters for it?
+      // TODO: 2nd result should not be there as it is not close enoough
+      //AppNAme filters for it?
       [ 'FRA_ALERT_MAN', '#ComplianceAlerts-manage', 'Manage Alerts' ]
     ]);
 
     expect(WhatIs.cmpByResultThenRankingTupel(resultArr[0],resultArr[1])).toEqual(1);
     expect(WhatIs.cmpByResultThenRankingTupel(resultArr[1],resultArr[0])).toEqual(-1);
     expect(WhatIs.cmpByResultThenRankingTupel(resultArr[1],resultArr[1])).toEqual(0);
-   expect(WhatIs.cmpRecords(resultArr[0].results[0],resultArr[1].results[0])).toEqual(1);
+    expect(WhatIs.cmpRecords(resultArr[0].results[0],resultArr[1].results[0])).toEqual(1);
     expect(WhatIs.cmpRecords(resultArr[1].results[0],resultArr[0].results[0])).toEqual(-1);
     expect(WhatIs.cmpRecords(resultArr[1].results[0],resultArr[1].results[0])).toEqual(0);
 
@@ -616,11 +618,11 @@ it("testWhatIsBSPNameFioriIntentManageLabelsNew", done => {
   });
 });
 
-it("testUpWhatIsBSPNameFioriIntentManageLabelsQuoteNew", done => {
+it('testUpWhatIsBSPNameFioriIntentManageLabelsQuoteNew', done => {
   doRecognizeMultNew(['BSPName', 'fiori intent', 'AppName'], '"manage labels"', function (err, resultArr, aModel) {
     expect(resultArr[0].results[0].BSPName).toEqual('n/a');
     expect(// resultArr.map(o => o.results),
-    ListAll.projectFullResultsToFlatStringArray(resultArr)).toEqual([
+      ListAll.projectFullResultsToFlatStringArray(resultArr)).toEqual([
       ['n/a', '#ProductLabel-manage', 'Manage Labels']]);
     var indis = WhatIs.isIndiscriminateResultTupel(resultArr);
     expect(indis).toEqual(undefined);

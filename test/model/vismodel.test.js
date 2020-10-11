@@ -6,11 +6,11 @@ const Vismodel = require(root + '/model/vismodel.js');
 
 const Model = require('mgnlq_model').Model;
 
-const getModel = require('mgnlq_testmodel_replay').getTestModel;
+const getModel = require('mgnlq_testmodel2').getTestModel1;
 
 //var m = Model.loadModels();
 
-it("testCalcCategoryRecord", done => {
+it('testCalcCategoryRecord', done => {
   getModel().then((m) => {
     Vismodel.calcCategoryRecord(m, 'element name', 'IUPAC').then((rec) => {
       expect(rec).toEqual({
@@ -27,7 +27,7 @@ it("testCalcCategoryRecord", done => {
   });
 });
 
-it("testCalcCategoryRecordOtherDomain", done => {
+it('testCalcCategoryRecordOtherDomain', done => {
   getModel().then((m) => {
     Vismodel.calcCategoryRecord(m, 'element name', 'Philosophers elements').then((rec) => {
       expect(rec).toEqual({

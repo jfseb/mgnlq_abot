@@ -3,7 +3,7 @@ var root = '../../js';
 
 var History = require(root + '/utils/history.js');
 
-it("testCtor", done => {
+it('testCtor', done => {
   // test.expect(3)
   var u = new History({
     length: 10, pos: 10
@@ -12,7 +12,7 @@ it("testCtor", done => {
   done();
 });
 
-it("testHistory0", done => {
+it('testHistory0', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -27,7 +27,7 @@ it("testHistory0", done => {
   done();
 });
 
-it("testHistory1", done => {
+it('testHistory1', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -58,7 +58,7 @@ it("testHistory1", done => {
   done();
 });
 
-it("testBackHitBorder", done => {
+it('testBackHitBorder', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -80,7 +80,7 @@ it("testBackHitBorder", done => {
   done();
 });
 
-it("testPushUndefined", done => {
+it('testPushUndefined', done => {
   expect.assertions(11);
   var u;
   u = new History({
@@ -115,7 +115,7 @@ it("testPushUndefined", done => {
   done();
 });
 
-it("testPushSameBackHitBorder", done => {
+it('testPushSameBackHitBorder', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -140,7 +140,7 @@ it("testPushSameBackHitBorder", done => {
   done();
 });
 
-it("testPushdefaultempty", done => {
+it('testPushdefaultempty', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -156,7 +156,7 @@ it("testPushdefaultempty", done => {
   done();
 });
 
-it("testPushNonSameBackHitBorder", done => {
+it('testPushNonSameBackHitBorder', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -181,7 +181,7 @@ it("testPushNonSameBackHitBorder", done => {
   done();
 });
 
-it("testRetpushOld", done => {
+it('testRetpushOld', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -212,7 +212,7 @@ it("testRetpushOld", done => {
   done();
 });
 
-it("testRetpushOld2", done => {
+it('testRetpushOld2', done => {
   // test.expect(3)
   var u;
   u = new History({
@@ -240,7 +240,7 @@ it("testRetpushOld2", done => {
   done();
 });
 
-it("testHistoryPersistenceWrite", done => {
+it('testHistoryPersistenceWrite', done => {
   // test.expect(3)
   var u;
   var oLastSave;
@@ -270,7 +270,7 @@ it("testHistoryPersistenceWrite", done => {
   done();
 });
 
-it("testHistoryPersistenceLoadEmpty", done => {
+it('testHistoryPersistenceLoadEmpty', done => {
   // test.expect(3)
   var u;
   var fnCB;
@@ -293,7 +293,7 @@ it("testHistoryPersistenceLoadEmpty", done => {
   done();
 });
 
-it("testHistoryPersistenceLoadEmptyPos2", done => {
+it('testHistoryPersistenceLoadEmptyPos2', done => {
   // test.expect(3)
   var u;
   var fnCB;
@@ -317,7 +317,7 @@ it("testHistoryPersistenceLoadEmptyPos2", done => {
   done();
 });
 
-it("testHistoryPersistenceLoadLate", done => {
+it('testHistoryPersistenceLoadLate', done => {
   // test.expect(3)
   var u;
   var fnCB;

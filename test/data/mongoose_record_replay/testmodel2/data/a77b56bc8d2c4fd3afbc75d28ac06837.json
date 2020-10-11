@@ -1,0 +1,46 @@
+[
+  {
+    "AppName": "Analyze Archiving Variants Distribution",
+    "ApplicationComponent": "BC-ILM-FIO"
+  },
+  {
+    "AppName": "Analyze Archiving Variants Distribution",
+    "ApplicationComponent": "BC-ILM-FIO-S4"
+  },
+  {
+    "AppName": "Application Job for Scheduling Archiving",
+    "ApplicationComponent": "BC-ILM-FIO"
+  },
+  {
+    "AppName": "ILM Monitoring of Archiving  Jobs",
+    "ApplicationComponent": "BC-ILM-FIO"
+  },
+  {
+    "AppName": "ILM Monitoring of Archiving Jobs",
+    "ApplicationComponent": "BC-ILM-FIO"
+  },
+  {
+    "AppName": "Manage Hierarchy",
+    "ApplicationComponent": "PP-FIO-PN-FC"
+  },
+  {
+    "AppName": "Monitor Archiving  Jobs",
+    "ApplicationComponent": "BC-ILM-FIO"
+  },
+  {
+    "AppName": "Monitor Archiving  Jobs",
+    "ApplicationComponent": "BC-ILM-FIO-S4"
+  },
+  {
+    "AppName": "Replicate Runtime Hierarchy",
+    "ApplicationComponent": "FI-FIO-GL"
+  },
+  {
+    "AppName": "Search Form Bundles",
+    "ApplicationComponent": "PSM-PSO-FIO"
+  },
+  {
+    "AppName": "Search for Cost Centers",
+    "ApplicationComponent": "CO-FIO"
+  }
+]

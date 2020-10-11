@@ -1,17 +1,19 @@
 {
-  "807d3ce983c2f3f55bca0f31c3601ec1": {
-    "op": "distinct",
-    "name": "mongonlq_eschemas",
-    "digest": "807d3ce983c2f3f55bca0f31c3601ec1",
-    "query": "modelname",
-    "res": 9
-  },
-  "9500a309933f286947c6717653aeb3ae": {
+  "c9edf8664459a45b5f6ecdba4b7a125d": {
     "op": "find",
     "name": "mongonlq_eschemas",
-    "digest": "9500a309933f286947c6717653aeb3ae",
+    "digest": "c9edf8664459a45b5f6ecdba4b7a125d",
     "query": {
-      "modelname": "metamodels"
+      "modelname": "fioribecatalogs"
+    },
+    "res": 1
+  },
+  "14327e3f5160b87e40ff68bc52f49181": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "14327e3f5160b87e40ff68bc52f49181",
+    "query": {
+      "modelname": "philoelements"
     },
     "res": 1
   },
@@ -24,30 +26,39 @@
     },
     "res": 1
   },
+  "e3da6f20c57318d3cbb0421624f8915d": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "e3da6f20c57318d3cbb0421624f8915d",
+    "query": {
+      "modelname": "r3trans"
+    },
+    "res": 1
+  },
+  "9500a309933f286947c6717653aeb3ae": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "9500a309933f286947c6717653aeb3ae",
+    "query": {
+      "modelname": "metamodels"
+    },
+    "res": 1
+  },
+  "7948707c035c8d5845e2391657b87cef": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "7948707c035c8d5845e2391657b87cef",
+    "query": {
+      "modelname": "sobj_tables"
+    },
+    "res": 1
+  },
   "0e8d6d8c83a848e708a9a99bd74ab13c": {
     "op": "find",
     "name": "mongonlq_eschemas",
     "digest": "0e8d6d8c83a848e708a9a99bd74ab13c",
     "query": {
       "modelname": "philoelements"
-    },
-    "res": 1
-  },
-  "19a0adac1ebbf18797d1a4616aaa2125": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "19a0adac1ebbf18797d1a4616aaa2125",
-    "query": {
-      "modelname": "fioriapps"
-    },
-    "res": 1
-  },
-  "c9edf8664459a45b5f6ecdba4b7a125d": {
-    "op": "find",
-    "name": "mongonlq_eschemas",
-    "digest": "c9edf8664459a45b5f6ecdba4b7a125d",
-    "query": {
-      "modelname": "fioribecatalogs"
     },
     "res": 1
   },
@@ -59,6 +70,133 @@
       "modelname": "r3trans"
     },
     "res": 1
+  },
+  "9eb0ddac8074e3c5c90893d71004a866": {
+    "op": "find",
+    "name": "mongonlq_eschemas",
+    "digest": "9eb0ddac8074e3c5c90893d71004a866",
+    "query": {
+      "modelname": "sobj_tables"
+    },
+    "res": 1
+  },
+  "c96d331a48c5a08db227704be79f3b95": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "c96d331a48c5a08db227704be79f3b95",
+    "query": {
+      "modelname": "cosmos"
+    },
+    "res": 1
+  },
+  "1439d1c83b84e93793a0e812e90eb16a": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "1439d1c83b84e93793a0e812e90eb16a",
+    "query": {
+      "modelname": "demomdls"
+    },
+    "res": 1
+  },
+  "3cf43beb3545d80003a0a9cfd88f2779": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "3cf43beb3545d80003a0a9cfd88f2779",
+    "query": {
+      "modelname": "fioriapps"
+    },
+    "res": 1
+  },
+  "8e1efa7e07e086e9d728f0c6b6751e1f": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "8e1efa7e07e086e9d728f0c6b6751e1f",
+    "query": {
+      "modelname": "fioribecatalogs"
+    },
+    "res": 1
+  },
+  "1a131fcb66f88577b51e2eaa7dfd85ed": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "1a131fcb66f88577b51e2eaa7dfd85ed",
+    "query": {
+      "modelname": "iupacs"
+    },
+    "res": 1
+  },
+  "ba66a7b7674b09f1a9e902c87da1a42f": {
+    "op": "find",
+    "name": "metamodels",
+    "digest": "ba66a7b7674b09f1a9e902c87da1a42f",
+    "query": {
+      "modelname": "metamodels"
+    },
+    "res": 1
+  },
+  "c8cf353cef63e105ab8fec0bc574ab43": {
+    "op": "find",
+    "name": "philoelements",
+    "digest": "c8cf353cef63e105ab8fec0bc574ab43",
+    "query": {},
+    "res": 4
+  },
+  "6c6941cf65eb1f3d6ed2401226f03ac3": {
+    "op": "find",
+    "name": "iupacs",
+    "digest": "6c6941cf65eb1f3d6ed2401226f03ac3",
+    "query": {},
+    "res": 118
+  },
+  "4a4259cdb938412fcc5cb5b8032e0053": {
+    "op": "aggregate",
+    "name": "sobj_tables",
+    "digest": "4a4259cdb938412fcc5cb5b8032e0053",
+    "query": [
+      [
+        {
+          "$match": {}
+        },
+        {
+          "$unwind": {
+            "path": "$_tables",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {}
+        },
+        {
+          "$group": {
+            "_id": {
+              "_tables": "$_tables"
+            },
+            "_tables": {
+              "$first": "$_tables"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "table": "$_tables.Table"
+          }
+        },
+        {
+          "$sort": {
+            "table": 1
+          }
+        }
+      ]
+    ],
+    "res": 20
+  },
+  "807d3ce983c2f3f55bca0f31c3601ec1": {
+    "op": "distinct",
+    "name": "mongonlq_eschemas",
+    "digest": "807d3ce983c2f3f55bca0f31c3601ec1",
+    "query": "modelname",
+    "res": 9
   },
   "14b25941dee0e239c366de17213c8fc7": {
     "op": "find",
@@ -78,812 +216,14 @@
     },
     "res": 1
   },
-  "ba66a7b7674b09f1a9e902c87da1a42f": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "ba66a7b7674b09f1a9e902c87da1a42f",
-    "query": {
-      "modelname": "metamodels"
-    },
-    "res": 1
-  },
-  "8e1efa7e07e086e9d728f0c6b6751e1f": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "8e1efa7e07e086e9d728f0c6b6751e1f",
-    "query": {
-      "modelname": "fioribecatalogs"
-    },
-    "res": 1
-  },
-  "9eb0ddac8074e3c5c90893d71004a866": {
+  "19a0adac1ebbf18797d1a4616aaa2125": {
     "op": "find",
     "name": "mongonlq_eschemas",
-    "digest": "9eb0ddac8074e3c5c90893d71004a866",
-    "query": {
-      "modelname": "sobj_tables"
-    },
-    "res": 1
-  },
-  "14327e3f5160b87e40ff68bc52f49181": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "14327e3f5160b87e40ff68bc52f49181",
-    "query": {
-      "modelname": "philoelements"
-    },
-    "res": 1
-  },
-  "c96d331a48c5a08db227704be79f3b95": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "c96d331a48c5a08db227704be79f3b95",
-    "query": {
-      "modelname": "cosmos"
-    },
-    "res": 1
-  },
-  "7948707c035c8d5845e2391657b87cef": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "7948707c035c8d5845e2391657b87cef",
-    "query": {
-      "modelname": "sobj_tables"
-    },
-    "res": 1
-  },
-  "3cf43beb3545d80003a0a9cfd88f2779": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "3cf43beb3545d80003a0a9cfd88f2779",
+    "digest": "19a0adac1ebbf18797d1a4616aaa2125",
     "query": {
       "modelname": "fioriapps"
     },
     "res": 1
-  },
-  "1a131fcb66f88577b51e2eaa7dfd85ed": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "1a131fcb66f88577b51e2eaa7dfd85ed",
-    "query": {
-      "modelname": "iupacs"
-    },
-    "res": 1
-  },
-  "e3da6f20c57318d3cbb0421624f8915d": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "e3da6f20c57318d3cbb0421624f8915d",
-    "query": {
-      "modelname": "r3trans"
-    },
-    "res": 1
-  },
-  "1439d1c83b84e93793a0e812e90eb16a": {
-    "op": "find",
-    "name": "metamodels",
-    "digest": "1439d1c83b84e93793a0e812e90eb16a",
-    "query": {
-      "modelname": "demomdls"
-    },
-    "res": 1
-  },
-  "3ef1a4b5874b8138c67d60973f7a19e9": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "3ef1a4b5874b8138c67d60973f7a19e9",
-    "query": "orbits",
-    "res": 4
-  },
-  "6b6e644ca4499b3561fc68980710d7f6": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "6b6e644ca4499b3561fc68980710d7f6",
-    "query": "gründungsjahr",
-    "res": 4
-  },
-  "e8c47f76a07725fe2fc026ea9912d999": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "e8c47f76a07725fe2fc026ea9912d999",
-    "query": "fiori_intent",
-    "res": 11
-  },
-  "7cdf4812f0e355fb813b57154d901881": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "7cdf4812f0e355fb813b57154d901881",
-    "query": "BSPName",
-    "res": 5
-  },
-  "33fe0d425a9f572c6e2a3e2b43bb6705": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "33fe0d425a9f572c6e2a3e2b43bb6705",
-    "query": "TechnicalCatalog",
-    "res": 12
-  },
-  "c45ba3fd5de8f180969b02e600f9fe2f": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "c45ba3fd5de8f180969b02e600f9fe2f",
-    "query": "PrimaryODataServiceName",
-    "res": 4
-  },
-  "9707a0c764233b35696d8309d060b047": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "9707a0c764233b35696d8309d060b047",
-    "query": "LPDCustInstance",
-    "res": 2
-  },
-  "342d1c1e129bd247aee792daffce1378": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "342d1c1e129bd247aee792daffce1378",
-    "query": "visual_magnitude",
-    "res": 4
-  },
-  "bf90b77e51104a68142ab67aeedc4da5": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "bf90b77e51104a68142ab67aeedc4da5",
-    "query": "sendertyp",
-    "res": 6
-  },
-  "4fd88335def99c99819400885f9b99e8": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "4fd88335def99c99819400885f9b99e8",
-    "query": "ArtifactId",
-    "res": 6
-  },
-  "d4f36066f1d2d1f26c28f531ffec3e04": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "d4f36066f1d2d1f26c28f531ffec3e04",
-    "query": "RoleName",
-    "res": 12
-  },
-  "b6f7ceccc02226c92ab3e65c3c59f144": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "b6f7ceccc02226c92ab3e65c3c59f144",
-    "query": "releaseId",
-    "res": 4
-  },
-  "a02abe127ccaad11673103b53faeac5f": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "a02abe127ccaad11673103b53faeac5f",
-    "query": "BusinessGroupName",
-    "res": 8
-  },
-  "51ca4d49364ae4e62962311f9ad76ffe": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "51ca4d49364ae4e62962311f9ad76ffe",
-    "query": "FrontendSoftwareComponent",
-    "res": 4
-  },
-  "86ca6598473762efcedbb81269b5b157": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "86ca6598473762efcedbb81269b5b157",
-    "query": "fiori_intent",
-    "res": 8
-  },
-  "73de0927343cb37507ee55826347dab0": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "73de0927343cb37507ee55826347dab0",
-    "query": "SemanticObject",
-    "res": 5
-  },
-  "8f434c3fdb7291894b559500688f3371": {
-    "op": "distinct",
-    "name": "iupacs",
-    "digest": "8f434c3fdb7291894b559500688f3371",
-    "query": "element_number",
-    "res": 118
-  },
-  "645fd0203f92a3c85a7b562a84392281": {
-    "op": "distinct",
-    "name": "r3trans",
-    "digest": "645fd0203f92a3c85a7b562a84392281",
-    "query": "devclass",
-    "res": 4
-  },
-  "02aa45e93a0a49ad749f12cea53d6e43": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "02aa45e93a0a49ad749f12cea53d6e43",
-    "query": "object_type",
-    "res": 4
-  },
-  "2301c28b178ccba7f2d588f8c5c20844": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "2301c28b178ccba7f2d588f8c5c20844",
-    "query": "besitzer",
-    "res": 2
-  },
-  "0d27f6f34dfe004c2804e2d035628422": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "0d27f6f34dfe004c2804e2d035628422",
-    "query": "appId",
-    "res": 13
-  },
-  "74e87949c0eee269265869b8b041ff8a": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "74e87949c0eee269265869b8b041ff8a",
-    "query": "ApplicationType",
-    "res": 6
-  },
-  "f8fc21cebd689685d0753b24de5b4edb": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "f8fc21cebd689685d0753b24de5b4edb",
-    "query": "BusinessCatalog",
-    "res": 10
-  },
-  "fa26ade2aac2c4eeedb7737f9dac65c6": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "fa26ade2aac2c4eeedb7737f9dac65c6",
-    "query": "BusinessGroupDescription",
-    "res": 7
-  },
-  "c581cd82d6b18d4e26b1091c83b6b443": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "c581cd82d6b18d4e26b1091c83b6b443",
-    "query": "TransactionCode",
-    "res": 7
-  },
-  "6c2040e76e106b5a8ea84ce5d6d3e9ee": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "6c2040e76e106b5a8ea84ce5d6d3e9ee",
-    "query": "ApplicationComponent",
-    "res": 6
-  },
-  "28d687d7c0f06156d66c884f0c19f76e": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "28d687d7c0f06156d66c884f0c19f76e",
-    "query": "SemanticAction",
-    "res": 8
-  },
-  "ee1e238d09baade11389e033b882e02d": {
-    "op": "distinct",
-    "name": "metamodels",
-    "digest": "ee1e238d09baade11389e033b882e02d",
-    "query": "domain",
-    "res": 9
-  },
-  "94333b5ee872827a8f1eefe8e2d64b61": {
-    "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "94333b5ee872827a8f1eefe8e2d64b61",
-    "query": "_tables.Table",
-    "res": 20
-  },
-  "415f07414c5de8a356be69c62f15a047": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "415f07414c5de8a356be69c62f15a047",
-    "query": "sender",
-    "res": 8
-  },
-  "7f2ba5eb8536e49c8386c09d16e13756": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "7f2ba5eb8536e49c8386c09d16e13756",
-    "query": "betriebsende",
-    "res": 2
-  },
-  "20f66b3aac497d232b0a688e8ac1c47a": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "20f66b3aac497d232b0a688e8ac1c47a",
-    "query": "AppName",
-    "res": 13
-  },
-  "9b659345391366ad75fdf021fddec1e1": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "9b659345391366ad75fdf021fddec1e1",
-    "query": "BSPApplicationURL",
-    "res": 5
-  },
-  "afde5d3c465899f8ba6da496c1048ad2": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "afde5d3c465899f8ba6da496c1048ad2",
-    "query": "BSPPackage",
-    "res": 5
-  },
-  "db09cf7af4e751fe6172eec98c2d8e47": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "db09cf7af4e751fe6172eec98c2d8e47",
-    "query": "SemanticObject",
-    "res": 11
-  },
-  "832d062696cb866a45d8f88c609a4352": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "832d062696cb866a45d8f88c609a4352",
-    "query": "PrimaryODataPFCGRole",
-    "res": 3
-  },
-  "29ae174a0fc74ed9376269a65a1a2a0c": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "29ae174a0fc74ed9376269a65a1a2a0c",
-    "query": "devclass",
-    "res": 6
-  },
-  "1118ca273d16cb89886c1990e3fe4885": {
-    "op": "distinct",
-    "name": "iupacs",
-    "digest": "1118ca273d16cb89886c1990e3fe4885",
-    "query": "element_name",
-    "res": 118
-  },
-  "92accef96c73d16b0d76316fa7012f24": {
-    "op": "distinct",
-    "name": "philoelements",
-    "digest": "92accef96c73d16b0d76316fa7012f24",
-    "query": "element_name",
-    "res": 4
-  },
-  "516222f42ce7b65c1d51958d06604c47": {
-    "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "516222f42ce7b65c1d51958d06604c47",
-    "query": "clientSpecific",
-    "res": 2
-  },
-  "9af2a46521c29eae2288d95f388977e9": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "9af2a46521c29eae2288d95f388977e9",
-    "query": "WebDynproApplication",
-    "res": 3
-  },
-  "73b43838e1490db0e3aeaf44370cb052": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "73b43838e1490db0e3aeaf44370cb052",
-    "query": "TransactionCode",
-    "res": 6
-  },
-  "d7f270ba3e08f3ad6be2bb468fe4de80": {
-    "op": "distinct",
-    "name": "metamodels",
-    "digest": "d7f270ba3e08f3ad6be2bb468fe4de80",
-    "query": "_categories.category",
-    "res": 88
-  },
-  "2fc9cefd1f2d711c440a4a5348413d94": {
-    "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "2fc9cefd1f2d711c440a4a5348413d94",
-    "query": "_tables.PrimaryTable",
-    "res": 3
-  },
-  "04d3a59ecb343c77799f2020f93dd809": {
-    "op": "distinct",
-    "name": "cosmos",
-    "digest": "04d3a59ecb343c77799f2020f93dd809",
-    "query": "object_name",
-    "res": 7
-  },
-  "98251cf92d9996aa685329a09d545eec": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "98251cf92d9996aa685329a09d545eec",
-    "query": "standort",
-    "res": 7
-  },
-  "8d8e02fb04aa546533d4522a23e2cd77": {
-    "op": "distinct",
-    "name": "demomdls",
-    "digest": "8d8e02fb04aa546533d4522a23e2cd77",
-    "query": "nachfolger",
-    "res": 2
-  },
-  "d5b7806ac36b9c583fa13ef96cdd93dc": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "d5b7806ac36b9c583fa13ef96cdd93dc",
-    "query": "ApplicationComponent",
-    "res": 12
-  },
-  "3b52d41a77ef8b9ee561156e3a279e70": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "3b52d41a77ef8b9ee561156e3a279e70",
-    "query": "releaseName",
-    "res": 4
-  },
-  "1d04b194145fd208616153822ac1f7f6": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "1d04b194145fd208616153822ac1f7f6",
-    "query": "BusinessRoleName",
-    "res": 8
-  },
-  "231a900a49b7e32f7b7b798149eef6b5": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "231a900a49b7e32f7b7b798149eef6b5",
-    "query": "SemanticAction",
-    "res": 9
-  },
-  "1a9ebdb47a00bec9d537d2f8124ac509": {
-    "op": "distinct",
-    "name": "fioriapps",
-    "digest": "1a9ebdb47a00bec9d537d2f8124ac509",
-    "query": "ExternalReleaseName",
-    "res": 4
-  },
-  "e4e407afd81939c8299b9b9b873aa67d": {
-    "op": "distinct",
-    "name": "fioribecatalogs",
-    "digest": "e4e407afd81939c8299b9b9b873aa67d",
-    "query": "BackendCatalogId",
-    "res": 7
-  },
-  "f2c8b7829da0ea6e751544b636e5b8a5": {
-    "op": "distinct",
-    "name": "iupacs",
-    "digest": "f2c8b7829da0ea6e751544b636e5b8a5",
-    "query": "element_symbol",
-    "res": 118
-  },
-  "820acb4495e80b5a325b3972e4af787d": {
-    "op": "distinct",
-    "name": "r3trans",
-    "digest": "820acb4495e80b5a325b3972e4af787d",
-    "query": "tcode",
-    "res": 4
-  },
-  "9d58dcef4e28ea886de158d8f36e0341": {
-    "op": "distinct",
-    "name": "sobj_tables",
-    "digest": "9d58dcef4e28ea886de158d8f36e0341",
-    "query": "TranslationRelevant",
-    "res": 2
-  },
-  "faf73080c5a6737ef15e4470437a8222": {
-    "op": "aggregate",
-    "name": "r3trans",
-    "digest": "faf73080c5a6737ef15e4470437a8222",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "20ac4fe8037163e82fb8d0dcfc8a6ee3": {
-    "op": "aggregate",
-    "name": "demomdls",
-    "digest": "20ac4fe8037163e82fb8d0dcfc8a6ee3",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "a7fc80661525561b0e57a601ddcc4fc7": {
-    "op": "aggregate",
-    "name": "philoelements",
-    "digest": "a7fc80661525561b0e57a601ddcc4fc7",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "549c520503aa2d42569f12b8cd9feef4": {
-    "op": "aggregate",
-    "name": "fioriapps",
-    "digest": "549c520503aa2d42569f12b8cd9feef4",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "638308122dadbf237e8d5c7d17a0a0e7": {
-    "op": "aggregate",
-    "name": "metamodels",
-    "digest": "638308122dadbf237e8d5c7d17a0a0e7",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "b28c3306dbf74ad2d904f89fe67c5ce8": {
-    "op": "aggregate",
-    "name": "fioribecatalogs",
-    "digest": "b28c3306dbf74ad2d904f89fe67c5ce8",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "26e5f3e977c1f707f509e1b7103e4d04": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "26e5f3e977c1f707f509e1b7103e4d04",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 2
-  },
-  "1b37f765bb305fe72fb085a2bd62d4a2": {
-    "op": "aggregate",
-    "name": "cosmos",
-    "digest": "1b37f765bb305fe72fb085a2bd62d4a2",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 5
-  },
-  "b65a79682b47c66a79ee3f84749b5631": {
-    "op": "aggregate",
-    "name": "sobj_tables",
-    "digest": "b65a79682b47c66a79ee3f84749b5631",
-    "query": [
-      [
-        {
-          "$match": {
-            "_synonyms.0": {
-              "$exists": true
-            }
-          }
-        },
-        {
-          "$project": {
-            "_synonyms": 1
-          }
-        },
-        {
-          "$unwind": "$_synonyms"
-        },
-        {
-          "$project": {
-            "category": "$_synonyms.category",
-            "fact": "$_synonyms.fact",
-            "synonyms": "$_synonyms.synonyms"
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "7e61af540847e03b9b257cffd8c376e5": {
-    "op": "find",
-    "name": "fillers",
-    "digest": "7e61af540847e03b9b257cffd8c376e5",
-    "query": {},
-    "res": 1
-  },
-  "6afd67c2d559c1557ad33448f6fdf851": {
-    "op": "find",
-    "name": "operators",
-    "digest": "6afd67c2d559c1557ad33448f6fdf851",
-    "query": {},
-    "res": 1
-  },
-  "382a71db1a9631ade86502dc153766de": {
-    "op": "find",
-    "name": "demomdls",
-    "digest": "382a71db1a9631ade86502dc153766de",
-    "query": {},
-    "res": 9
-  },
-  "d318c386e3e37abff6b5d7684ece29fd": {
-    "op": "aggregate",
-    "name": "metamodels",
-    "digest": "d318c386e3e37abff6b5d7684ece29fd",
-    "query": [
-      [
-        {
-          "$unwind": {
-            "path": "$_categories",
-            "preserveNullAndEmptyArrays": true
-          }
-        }
-      ]
-    ],
-    "res": 98
   },
   "9453820ea2f3197588ad495e075b2aef": {
     "op": "aggregate",
@@ -901,12 +241,21 @@
     ],
     "res": 20
   },
-  "bce2d7d87227d7550c6e545300de938a": {
-    "op": "find",
-    "name": "r3trans",
-    "digest": "bce2d7d87227d7550c6e545300de938a",
-    "query": {},
-    "res": 4
+  "d318c386e3e37abff6b5d7684ece29fd": {
+    "op": "aggregate",
+    "name": "metamodels",
+    "digest": "d318c386e3e37abff6b5d7684ece29fd",
+    "query": [
+      [
+        {
+          "$unwind": {
+            "path": "$_categories",
+            "preserveNullAndEmptyArrays": true
+          }
+        }
+      ]
+    ],
+    "res": 98
   },
   "c2a6257b23290f2104873dd471397ef6": {
     "op": "find",
@@ -915,19 +264,12 @@
     "query": {},
     "res": 7
   },
-  "c8cf353cef63e105ab8fec0bc574ab43": {
+  "382a71db1a9631ade86502dc153766de": {
     "op": "find",
-    "name": "philoelements",
-    "digest": "c8cf353cef63e105ab8fec0bc574ab43",
+    "name": "demomdls",
+    "digest": "382a71db1a9631ade86502dc153766de",
     "query": {},
-    "res": 4
-  },
-  "9afc5dfe707c9a1c0b36b3d80109900c": {
-    "op": "find",
-    "name": "fioribecatalogs",
-    "digest": "9afc5dfe707c9a1c0b36b3d80109900c",
-    "query": {},
-    "res": 8
+    "res": 9
   },
   "2b8f9915bfec037b8c9c0a522532bad7": {
     "op": "find",
@@ -936,22 +278,29 @@
     "query": {},
     "res": 14
   },
-  "6c6941cf65eb1f3d6ed2401226f03ac3": {
+  "9afc5dfe707c9a1c0b36b3d80109900c": {
     "op": "find",
-    "name": "iupacs",
-    "digest": "6c6941cf65eb1f3d6ed2401226f03ac3",
+    "name": "fioribecatalogs",
+    "digest": "9afc5dfe707c9a1c0b36b3d80109900c",
     "query": {},
-    "res": 118
+    "res": 8
   },
-  "e157a0558d04231e2b3023241cfad95d": {
+  "bce2d7d87227d7550c6e545300de938a": {
+    "op": "find",
+    "name": "r3trans",
+    "digest": "bce2d7d87227d7550c6e545300de938a",
+    "query": {},
+    "res": 4
+  },
+  "f53813e31005220632c85c58c28ce64d": {
     "op": "aggregate",
     "name": "fioriapps",
-    "digest": "e157a0558d04231e2b3023241cfad95d",
+    "digest": "f53813e31005220632c85c58c28ce64d",
     "query": [
       [
         {
           "$match": {
-            "AppName": "Manage Alerts"
+            "AppName": "Manage Labels"
           }
         },
         {
@@ -979,15 +328,15 @@
     ],
     "res": 1
   },
-  "f53813e31005220632c85c58c28ce64d": {
+  "e157a0558d04231e2b3023241cfad95d": {
     "op": "aggregate",
     "name": "fioriapps",
-    "digest": "f53813e31005220632c85c58c28ce64d",
+    "digest": "e157a0558d04231e2b3023241cfad95d",
     "query": [
       [
         {
           "$match": {
-            "AppName": "Manage Labels"
+            "AppName": "Manage Alerts"
           }
         },
         {
@@ -1187,15 +536,15 @@
     ],
     "res": 1
   },
-  "45344e4bf9605d6c6618c3f019a63a7b": {
+  "7be55fa81cb9fe1157ba7adb929372b5": {
     "op": "aggregate",
     "name": "fioriapps",
-    "digest": "45344e4bf9605d6c6618c3f019a63a7b",
+    "digest": "7be55fa81cb9fe1157ba7adb929372b5",
     "query": [
       [
         {
           "$match": {
-            "appId": "S_ALR_87012394",
+            "TransactionCode": "S_ALR_87012394",
             "AppName": "PrepareTax Report"
           }
         },
@@ -1224,15 +573,15 @@
     ],
     "res": 1
   },
-  "7be55fa81cb9fe1157ba7adb929372b5": {
+  "45344e4bf9605d6c6618c3f019a63a7b": {
     "op": "aggregate",
     "name": "fioriapps",
-    "digest": "7be55fa81cb9fe1157ba7adb929372b5",
+    "digest": "45344e4bf9605d6c6618c3f019a63a7b",
     "query": [
       [
         {
           "$match": {
-            "TransactionCode": "S_ALR_87012394",
+            "appId": "S_ALR_87012394",
             "AppName": "PrepareTax Report"
           }
         },
@@ -1357,48 +706,41 @@
     ],
     "res": 0
   },
-  "4a4259cdb938412fcc5cb5b8032e0053": {
+  "d4b753d8cebfcb01e843242dd768f550": {
     "op": "aggregate",
-    "name": "sobj_tables",
-    "digest": "4a4259cdb938412fcc5cb5b8032e0053",
+    "name": "iupacs",
+    "digest": "d4b753d8cebfcb01e843242dd768f550",
     "query": [
       [
         {
-          "$match": {}
-        },
-        {
-          "$unwind": {
-            "path": "$_tables",
-            "preserveNullAndEmptyArrays": true
+          "$match": {
+            "element_number": "10"
           }
-        },
-        {
-          "$match": {}
         },
         {
           "$group": {
             "_id": {
-              "_tables": "$_tables"
+              "element_name": "$element_name"
             },
-            "_tables": {
-              "$first": "$_tables"
+            "element_name": {
+              "$first": "$element_name"
             }
           }
         },
         {
           "$project": {
             "_id": 0,
-            "table": "$_tables.Table"
+            "element_name": 1
           }
         },
         {
           "$sort": {
-            "table": 1
+            "element_name": 1
           }
         }
       ]
     ],
-    "res": 20
+    "res": 0
   },
   "400bce86488c35d4cb33233d0bd8cd3f": {
     "op": "aggregate",
@@ -1436,42 +778,6 @@
     ],
     "res": 0
   },
-  "d4b753d8cebfcb01e843242dd768f550": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "d4b753d8cebfcb01e843242dd768f550",
-    "query": [
-      [
-        {
-          "$match": {
-            "element_number": "10"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_name": "$element_name"
-            },
-            "element_name": {
-              "$first": "$element_name"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_name": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_name": 1
-          }
-        }
-      ]
-    ],
-    "res": 1
-  },
   "95ccbb6ee16fd823c9bb0064c0f52e44": {
     "op": "aggregate",
     "name": "iupacs",
@@ -1508,6 +814,48 @@
           "$sort": {
             "atomic_weight": 1,
             "element_symbol": 1
+          }
+        }
+      ]
+    ],
+    "res": 1
+  },
+  "611b23e958115d17d8f71b62403a7437": {
+    "op": "aggregate",
+    "name": "iupacs",
+    "digest": "611b23e958115d17d8f71b62403a7437",
+    "query": [
+      [
+        {
+          "$match": {
+            "element_name": "mercury"
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "element_name": "$element_name",
+              "atomic_weight": "$atomic_weight"
+            },
+            "element_name": {
+              "$first": "$element_name"
+            },
+            "atomic_weight": {
+              "$first": "$atomic_weight"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "element_name": 1,
+            "atomic_weight": 1
+          }
+        },
+        {
+          "$sort": {
+            "element_name": 1,
+            "atomic_weight": 1
           }
         }
       ]
@@ -1556,42 +904,406 @@
     ],
     "res": 1
   },
-  "611b23e958115d17d8f71b62403a7437": {
+  "07c3f82f1cd7d103a299f1fbf422f2c3": {
     "op": "aggregate",
     "name": "iupacs",
-    "digest": "611b23e958115d17d8f71b62403a7437",
+    "digest": "07c3f82f1cd7d103a299f1fbf422f2c3",
     "query": [
       [
         {
           "$match": {
-            "element_name": "mercury"
+            "element_name": "silver"
           }
         },
         {
           "$group": {
             "_id": {
-              "element_name": "$element_name",
-              "atomic_weight": "$atomic_weight"
+              "element_name": "$element_name"
             },
             "element_name": {
               "$first": "$element_name"
-            },
-            "atomic_weight": {
-              "$first": "$atomic_weight"
             }
           }
         },
         {
           "$project": {
             "_id": 0,
-            "element_name": 1,
-            "atomic_weight": 1
+            "element_name": 1
           }
         },
         {
           "$sort": {
-            "element_name": 1,
-            "atomic_weight": 1
+            "element_name": 1
+          }
+        }
+      ]
+    ],
+    "res": 1
+  },
+  "83ec15fc707d0c738a0bfdd04a66295a": {
+    "op": "aggregate",
+    "name": "iupacs",
+    "digest": "83ec15fc707d0c738a0bfdd04a66295a",
+    "query": [
+      [
+        {
+          "$match": {
+            "element_name": "silver"
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "element_number": "$element_number"
+            },
+            "element_number": {
+              "$first": "$element_number"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "element_number": 1
+          }
+        },
+        {
+          "$sort": {
+            "element_number": 1
+          }
+        }
+      ]
+    ],
+    "res": 1
+  },
+  "0dd4769627de7abae102263caa55b6a0": {
+    "op": "aggregate",
+    "name": "cosmos",
+    "digest": "0dd4769627de7abae102263caa55b6a0",
+    "query": [
+      [
+        {
+          "$match": {}
+        },
+        {
+          "$group": {
+            "_id": {
+              "orbits": "$orbits",
+              "object_type": "$object_type"
+            },
+            "orbits": {
+              "$first": "$orbits"
+            },
+            "object_type": {
+              "$first": "$object_type"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "orbits": 1,
+            "object_type": 1
+          }
+        },
+        {
+          "$sort": {
+            "orbits": 1,
+            "object_type": 1
+          }
+        }
+      ]
+    ],
+    "res": 5
+  },
+  "c8760eec5c83ab3f5c6873c085544002": {
+    "op": "aggregate",
+    "name": "metamodels",
+    "digest": "c8760eec5c83ab3f5c6873c085544002",
+    "query": [
+      [
+        {
+          "$match": {
+            "domain": "FioriBOM"
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$_categories",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {
+            "domain": "FioriBOM"
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "_categories": "$_categories"
+            },
+            "_categories": {
+              "$first": "$_categories"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "category": "$_categories.category"
+          }
+        },
+        {
+          "$sort": {
+            "category": 1
+          }
+        }
+      ]
+    ],
+    "res": 32
+  },
+  "0a4710d368c8a1c37fcf2cebfc8a2756": {
+    "op": "aggregate",
+    "name": "metamodels",
+    "digest": "0a4710d368c8a1c37fcf2cebfc8a2756",
+    "query": [
+      [
+        {
+          "$match": {
+            "_categories.category": "domain",
+            "domain": "FioriBOM"
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$_categories",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {
+            "_categories.category": "domain",
+            "domain": "FioriBOM"
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "_categories": "$_categories"
+            },
+            "_categories": {
+              "$first": "$_categories"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "category": "$_categories.category"
+          }
+        },
+        {
+          "$sort": {
+            "category": 1
+          }
+        }
+      ]
+    ],
+    "res": 0
+  },
+  "429263864924406a8d8d36fd50390391": {
+    "op": "aggregate",
+    "name": "metamodels",
+    "digest": "429263864924406a8d8d36fd50390391",
+    "query": [
+      [
+        {
+          "$match": {
+            "domain": {
+              "$regex": "__REGEXP /iu/i"
+            }
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$_categories",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {
+            "domain": {
+              "$regex": "__REGEXP /iu/i"
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "domain": "$domain"
+            },
+            "domain": {
+              "$first": "$domain"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "domain": 1
+          }
+        },
+        {
+          "$sort": {
+            "domain": 1
+          }
+        }
+      ]
+    ],
+    "res": 1
+  },
+  "5771f6a4876503cb7212f8c3ab49d3b8": {
+    "op": "aggregate",
+    "name": "metamodels",
+    "digest": "5771f6a4876503cb7212f8c3ab49d3b8",
+    "query": [
+      [
+        {
+          "$match": {
+            "domain": {
+              "$regex": "__REGEXP /iunixda/i"
+            }
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$_categories",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {
+            "domain": {
+              "$regex": "__REGEXP /iunixda/i"
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "domain": "$domain"
+            },
+            "domain": {
+              "$first": "$domain"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "domain": 1
+          }
+        },
+        {
+          "$sort": {
+            "domain": 1
+          }
+        }
+      ]
+    ],
+    "res": 0
+  },
+  "b0de78e173646f91c71e140e17e727d4": {
+    "op": "aggregate",
+    "name": "fioribecatalogs",
+    "digest": "b0de78e173646f91c71e140e17e727d4",
+    "query": [
+      [
+        {
+          "$match": {
+            "TransactionCode": "S_ALR_87012394"
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "ApplicationComponent": "$ApplicationComponent",
+              "devclass": "$devclass",
+              "BackendCatalogId": "$BackendCatalogId"
+            },
+            "ApplicationComponent": {
+              "$first": "$ApplicationComponent"
+            },
+            "devclass": {
+              "$first": "$devclass"
+            },
+            "BackendCatalogId": {
+              "$first": "$BackendCatalogId"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "ApplicationComponent": 1,
+            "devclass": 1,
+            "BackendCatalogId": 1
+          }
+        },
+        {
+          "$sort": {
+            "ApplicationComponent": 1,
+            "devclass": 1,
+            "BackendCatalogId": 1
+          }
+        }
+      ]
+    ],
+    "res": 2
+  },
+  "185a69ee9d4a2783f8b856a02184956c": {
+    "op": "aggregate",
+    "name": "fioribecatalogs",
+    "digest": "185a69ee9d4a2783f8b856a02184956c",
+    "query": [
+      [
+        {
+          "$match": {
+            "TransactionCode": "GRM3"
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "ApplicationComponent": "$ApplicationComponent",
+              "fiori_intent": "$fiori_intent",
+              "BackendCatalogId": "$BackendCatalogId"
+            },
+            "ApplicationComponent": {
+              "$first": "$ApplicationComponent"
+            },
+            "fiori_intent": {
+              "$first": "$fiori_intent"
+            },
+            "BackendCatalogId": {
+              "$first": "$BackendCatalogId"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "ApplicationComponent": 1,
+            "fiori_intent": 1,
+            "BackendCatalogId": 1
+          }
+        },
+        {
+          "$sort": {
+            "ApplicationComponent": 1,
+            "fiori_intent": 1,
+            "BackendCatalogId": 1
           }
         }
       ]
@@ -1766,15 +1478,17 @@
     ],
     "res": 0
   },
-  "07c3f82f1cd7d103a299f1fbf422f2c3": {
+  "bdf0784d4e81b0cb1914886b12351c13": {
     "op": "aggregate",
     "name": "iupacs",
-    "digest": "07c3f82f1cd7d103a299f1fbf422f2c3",
+    "digest": "bdf0784d4e81b0cb1914886b12351c13",
     "query": [
       [
         {
           "$match": {
-            "element_name": "silver"
+            "element_name": {
+              "$regex": "__REGEXP /^ni/i"
+            }
           }
         },
         {
@@ -1800,281 +1514,7 @@
         }
       ]
     ],
-    "res": 1
-  },
-  "83ec15fc707d0c738a0bfdd04a66295a": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "83ec15fc707d0c738a0bfdd04a66295a",
-    "query": [
-      [
-        {
-          "$match": {
-            "element_name": "silver"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_number": "$element_number"
-            },
-            "element_number": {
-              "$first": "$element_number"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_number": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_number": 1
-          }
-        }
-      ]
-    ],
-    "res": 1
-  },
-  "0dd4769627de7abae102263caa55b6a0": {
-    "op": "aggregate",
-    "name": "cosmos",
-    "digest": "0dd4769627de7abae102263caa55b6a0",
-    "query": [
-      [
-        {
-          "$match": {}
-        },
-        {
-          "$group": {
-            "_id": {
-              "orbits": "$orbits",
-              "object_type": "$object_type"
-            },
-            "orbits": {
-              "$first": "$orbits"
-            },
-            "object_type": {
-              "$first": "$object_type"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "orbits": 1,
-            "object_type": 1
-          }
-        },
-        {
-          "$sort": {
-            "orbits": 1,
-            "object_type": 1
-          }
-        }
-      ]
-    ],
-    "res": 5
-  },
-  "0a4710d368c8a1c37fcf2cebfc8a2756": {
-    "op": "aggregate",
-    "name": "metamodels",
-    "digest": "0a4710d368c8a1c37fcf2cebfc8a2756",
-    "query": [
-      [
-        {
-          "$match": {
-            "_categories.category": "domain",
-            "domain": "FioriBOM"
-          }
-        },
-        {
-          "$unwind": {
-            "path": "$_categories",
-            "preserveNullAndEmptyArrays": true
-          }
-        },
-        {
-          "$match": {
-            "_categories.category": "domain",
-            "domain": "FioriBOM"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "_categories": "$_categories"
-            },
-            "_categories": {
-              "$first": "$_categories"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "category": "$_categories.category"
-          }
-        },
-        {
-          "$sort": {
-            "category": 1
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
-  "c8760eec5c83ab3f5c6873c085544002": {
-    "op": "aggregate",
-    "name": "metamodels",
-    "digest": "c8760eec5c83ab3f5c6873c085544002",
-    "query": [
-      [
-        {
-          "$match": {
-            "domain": "FioriBOM"
-          }
-        },
-        {
-          "$unwind": {
-            "path": "$_categories",
-            "preserveNullAndEmptyArrays": true
-          }
-        },
-        {
-          "$match": {
-            "domain": "FioriBOM"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "_categories": "$_categories"
-            },
-            "_categories": {
-              "$first": "$_categories"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "category": "$_categories.category"
-          }
-        },
-        {
-          "$sort": {
-            "category": 1
-          }
-        }
-      ]
-    ],
-    "res": 32
-  },
-  "429263864924406a8d8d36fd50390391": {
-    "op": "aggregate",
-    "name": "metamodels",
-    "digest": "429263864924406a8d8d36fd50390391",
-    "query": [
-      [
-        {
-          "$match": {
-            "domain": {
-              "$regex": "__REGEXP /iu/i"
-            }
-          }
-        },
-        {
-          "$unwind": {
-            "path": "$_categories",
-            "preserveNullAndEmptyArrays": true
-          }
-        },
-        {
-          "$match": {
-            "domain": {
-              "$regex": "__REGEXP /iu/i"
-            }
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "domain": "$domain"
-            },
-            "domain": {
-              "$first": "$domain"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "domain": 1
-          }
-        },
-        {
-          "$sort": {
-            "domain": 1
-          }
-        }
-      ]
-    ],
-    "res": 1
-  },
-  "5771f6a4876503cb7212f8c3ab49d3b8": {
-    "op": "aggregate",
-    "name": "metamodels",
-    "digest": "5771f6a4876503cb7212f8c3ab49d3b8",
-    "query": [
-      [
-        {
-          "$match": {
-            "domain": {
-              "$regex": "__REGEXP /iunixda/i"
-            }
-          }
-        },
-        {
-          "$unwind": {
-            "path": "$_categories",
-            "preserveNullAndEmptyArrays": true
-          }
-        },
-        {
-          "$match": {
-            "domain": {
-              "$regex": "__REGEXP /iunixda/i"
-            }
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "domain": "$domain"
-            },
-            "domain": {
-              "$first": "$domain"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "domain": 1
-          }
-        },
-        {
-          "$sort": {
-            "domain": 1
-          }
-        }
-      ]
-    ],
-    "res": 0
+    "res": 4
   },
   "04055de71363fa8347d6f371e0e63190": {
     "op": "aggregate",
@@ -2152,95 +1592,6 @@
     ],
     "res": 0
   },
-  "bdf0784d4e81b0cb1914886b12351c13": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "bdf0784d4e81b0cb1914886b12351c13",
-    "query": [
-      [
-        {
-          "$match": {
-            "element_name": {
-              "$regex": "__REGEXP /^ni/i"
-            }
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_name": "$element_name"
-            },
-            "element_name": {
-              "$first": "$element_name"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_name": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_name": 1
-          }
-        }
-      ]
-    ],
-    "res": 4
-  },
-  "ff57ce161b416e913b0ce378674df466": {
-    "op": "aggregate",
-    "name": "sobj_tables",
-    "digest": "ff57ce161b416e913b0ce378674df466",
-    "query": [
-      [
-        {
-          "$match": {
-            "category": {
-              "$regex": "__REGEXP /upa$/i"
-            }
-          }
-        },
-        {
-          "$unwind": {
-            "path": "$_tables",
-            "preserveNullAndEmptyArrays": true
-          }
-        },
-        {
-          "$match": {
-            "category": {
-              "$regex": "__REGEXP /upa$/i"
-            }
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "category": "$category"
-            },
-            "category": {
-              "$first": "$category"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "category": 1
-          }
-        },
-        {
-          "$sort": {
-            "category": 1
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
   "db0b366f2cad3518434636b40a239bc3": {
     "op": "aggregate",
     "name": "metamodels",
@@ -2292,101 +1643,56 @@
     ],
     "res": 0
   },
-  "b0de78e173646f91c71e140e17e727d4": {
+  "ff57ce161b416e913b0ce378674df466": {
     "op": "aggregate",
-    "name": "fioribecatalogs",
-    "digest": "b0de78e173646f91c71e140e17e727d4",
+    "name": "sobj_tables",
+    "digest": "ff57ce161b416e913b0ce378674df466",
     "query": [
       [
         {
           "$match": {
-            "TransactionCode": "S_ALR_87012394"
+            "category": {
+              "$regex": "__REGEXP /upa$/i"
+            }
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$_tables",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {
+            "category": {
+              "$regex": "__REGEXP /upa$/i"
+            }
           }
         },
         {
           "$group": {
             "_id": {
-              "ApplicationComponent": "$ApplicationComponent",
-              "devclass": "$devclass",
-              "BackendCatalogId": "$BackendCatalogId"
+              "category": "$category"
             },
-            "ApplicationComponent": {
-              "$first": "$ApplicationComponent"
-            },
-            "devclass": {
-              "$first": "$devclass"
-            },
-            "BackendCatalogId": {
-              "$first": "$BackendCatalogId"
+            "category": {
+              "$first": "$category"
             }
           }
         },
         {
           "$project": {
             "_id": 0,
-            "ApplicationComponent": 1,
-            "devclass": 1,
-            "BackendCatalogId": 1
+            "category": 1
           }
         },
         {
           "$sort": {
-            "ApplicationComponent": 1,
-            "devclass": 1,
-            "BackendCatalogId": 1
+            "category": 1
           }
         }
       ]
     ],
-    "res": 2
-  },
-  "185a69ee9d4a2783f8b856a02184956c": {
-    "op": "aggregate",
-    "name": "fioribecatalogs",
-    "digest": "185a69ee9d4a2783f8b856a02184956c",
-    "query": [
-      [
-        {
-          "$match": {
-            "TransactionCode": "GRM3"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "ApplicationComponent": "$ApplicationComponent",
-              "fiori_intent": "$fiori_intent",
-              "BackendCatalogId": "$BackendCatalogId"
-            },
-            "ApplicationComponent": {
-              "$first": "$ApplicationComponent"
-            },
-            "fiori_intent": {
-              "$first": "$fiori_intent"
-            },
-            "BackendCatalogId": {
-              "$first": "$BackendCatalogId"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "ApplicationComponent": 1,
-            "fiori_intent": 1,
-            "BackendCatalogId": 1
-          }
-        },
-        {
-          "$sort": {
-            "ApplicationComponent": 1,
-            "fiori_intent": 1,
-            "BackendCatalogId": 1
-          }
-        }
-      ]
-    ],
-    "res": 1
+    "res": 0
   },
   "d2cc993e435cb6da92bc90c32e993c5a": {
     "op": "aggregate",
@@ -2592,57 +1898,6 @@
     ],
     "res": 0
   },
-  "fcb23e5334fb42c1f2badb9a190b2ef8": {
-    "op": "aggregate",
-    "name": "sobj_tables",
-    "digest": "fcb23e5334fb42c1f2badb9a190b2ef8",
-    "query": [
-      [
-        {
-          "$match": {
-            "category": {
-              "$regex": "__REGEXP /^elem/i"
-            }
-          }
-        },
-        {
-          "$unwind": {
-            "path": "$_tables",
-            "preserveNullAndEmptyArrays": true
-          }
-        },
-        {
-          "$match": {
-            "category": {
-              "$regex": "__REGEXP /^elem/i"
-            }
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "category": "$category"
-            },
-            "category": {
-              "$first": "$category"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "category": 1
-          }
-        },
-        {
-          "$sort": {
-            "category": 1
-          }
-        }
-      ]
-    ],
-    "res": 0
-  },
   "be06fb1f50340f3ec7fad4aa80455f5c": {
     "op": "aggregate",
     "name": "metamodels",
@@ -2693,6 +1948,57 @@
       ]
     ],
     "res": 5
+  },
+  "fcb23e5334fb42c1f2badb9a190b2ef8": {
+    "op": "aggregate",
+    "name": "sobj_tables",
+    "digest": "fcb23e5334fb42c1f2badb9a190b2ef8",
+    "query": [
+      [
+        {
+          "$match": {
+            "category": {
+              "$regex": "__REGEXP /^elem/i"
+            }
+          }
+        },
+        {
+          "$unwind": {
+            "path": "$_tables",
+            "preserveNullAndEmptyArrays": true
+          }
+        },
+        {
+          "$match": {
+            "category": {
+              "$regex": "__REGEXP /^elem/i"
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "category": "$category"
+            },
+            "category": {
+              "$first": "$category"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "category": 1
+          }
+        },
+        {
+          "$sort": {
+            "category": 1
+          }
+        }
+      ]
+    ],
+    "res": 0
   },
   "b7be96dedcc461c40d9e412f3e736ab9": {
     "op": "aggregate",
@@ -2818,44 +2124,6 @@
     ],
     "res": 0
   },
-  "1783b7ef9cf2de9dc63201f819d2cb10": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "1783b7ef9cf2de9dc63201f819d2cb10",
-    "query": [
-      [
-        {
-          "$match": {
-            "element_name": {
-              "$regex": "__REGEXP /^e/i"
-            }
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_name": "$element_name"
-            },
-            "element_name": {
-              "$first": "$element_name"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_name": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_name": 1
-          }
-        }
-      ]
-    ],
-    "res": 3
-  },
   "83654f4dce4ee56743b5470aaa013b57": {
     "op": "aggregate",
     "name": "iupacs",
@@ -2894,6 +2162,44 @@
     ],
     "res": 0
   },
+  "1783b7ef9cf2de9dc63201f819d2cb10": {
+    "op": "aggregate",
+    "name": "iupacs",
+    "digest": "1783b7ef9cf2de9dc63201f819d2cb10",
+    "query": [
+      [
+        {
+          "$match": {
+            "element_name": {
+              "$regex": "__REGEXP /^e/i"
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": {
+              "element_name": "$element_name"
+            },
+            "element_name": {
+              "$first": "$element_name"
+            }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "element_name": 1
+          }
+        },
+        {
+          "$sort": {
+            "element_name": 1
+          }
+        }
+      ]
+    ],
+    "res": 3
+  },
   "75590072bd37d0cbfafa13bc59130b80": {
     "op": "aggregate",
     "name": "cosmos",
@@ -2930,198 +2236,6 @@
           "$sort": {
             "_url": 1,
             "orbits": 1
-          }
-        }
-      ]
-    ],
-    "res": 1
-  },
-  "53344ae4d76ada792256cd199b79f065": {
-    "op": "aggregate",
-    "name": "fioribecatalogs",
-    "digest": "53344ae4d76ada792256cd199b79f065",
-    "query": [
-      [
-        {
-          "$match": {
-            "TransactionCode": "S_ALR_87012394"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "devclass": "$devclass",
-              "ApplicationComponent": "$ApplicationComponent",
-              "BackendCatalogId": "$BackendCatalogId"
-            },
-            "devclass": {
-              "$first": "$devclass"
-            },
-            "ApplicationComponent": {
-              "$first": "$ApplicationComponent"
-            },
-            "BackendCatalogId": {
-              "$first": "$BackendCatalogId"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "devclass": 1,
-            "ApplicationComponent": 1,
-            "BackendCatalogId": 1
-          }
-        },
-        {
-          "$sort": {
-            "devclass": 1,
-            "ApplicationComponent": 1,
-            "BackendCatalogId": 1
-          }
-        }
-      ]
-    ],
-    "res": 2
-  },
-  "4f62b611cc7035e3b42749360bcb9cde": {
-    "op": "aggregate",
-    "name": "philoelements",
-    "digest": "4f62b611cc7035e3b42749360bcb9cde",
-    "query": [
-      [
-        {
-          "$match": {}
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_name": "$element_name"
-            },
-            "element_name": {
-              "$first": "$element_name"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_name": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_name": 1
-          }
-        }
-      ]
-    ],
-    "res": 4
-  },
-  "448b448ef55eac43b277eb3941c3c063": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "448b448ef55eac43b277eb3941c3c063",
-    "query": [
-      [
-        {
-          "$match": {}
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_name": "$element_name"
-            },
-            "element_name": {
-              "$first": "$element_name"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_name": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_name": 1
-          }
-        }
-      ]
-    ],
-    "res": 118
-  },
-  "cf145915ea4d95a5512f1adbb5e5c19c": {
-    "op": "aggregate",
-    "name": "iupacs",
-    "digest": "cf145915ea4d95a5512f1adbb5e5c19c",
-    "query": [
-      [
-        {
-          "$match": {}
-        },
-        {
-          "$group": {
-            "_id": {
-              "element_number": "$element_number"
-            },
-            "element_number": {
-              "$first": "$element_number"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "element_number": 1
-          }
-        },
-        {
-          "$sort": {
-            "element_number": 1
-          }
-        }
-      ]
-    ],
-    "res": 118
-  },
-  "cd3457d7c1696a5d762b73c0a3af5204": {
-    "op": "aggregate",
-    "name": "fioriapps",
-    "digest": "cd3457d7c1696a5d762b73c0a3af5204",
-    "query": [
-      [
-        {
-          "$match": {
-            "TransactionCode": "S_ALR_87012394"
-          }
-        },
-        {
-          "$group": {
-            "_id": {
-              "ApplicationComponent": "$ApplicationComponent",
-              "TechnicalCatalog": "$TechnicalCatalog"
-            },
-            "ApplicationComponent": {
-              "$first": "$ApplicationComponent"
-            },
-            "TechnicalCatalog": {
-              "$first": "$TechnicalCatalog"
-            }
-          }
-        },
-        {
-          "$project": {
-            "_id": 0,
-            "ApplicationComponent": 1,
-            "TechnicalCatalog": 1
-          }
-        },
-        {
-          "$sort": {
-            "ApplicationComponent": 1,
-            "TechnicalCatalog": 1
           }
         }
       ]

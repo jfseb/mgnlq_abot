@@ -9,7 +9,7 @@ var AppData = require(root + '/utils/appdata.js');
 /**
  * Unit test for sth
  */
-it("testPersistence", done => {
+it('testPersistence', done => {
   expect.assertions(2);
   var u;
   u = new AppData.PersistenceHandle('_Test3', 'File1');
@@ -30,7 +30,7 @@ it("testPersistence", done => {
 });
 
 var fs = require('fs');
-const { expandTokenMatchesToSentences } = require('mgnlq_parser1/js/match/erbase');
+//const { expandTokenMatchesToSentences } = require('mgnlq_parser1/js/match/erbase');
 
 function rmDir(dirPath) {
   try {
@@ -49,7 +49,7 @@ function rmDir(dirPath) {
   fs.rmdirSync(dirPath);
 }
 
-it("testPersistenceNoDirOnSave", done => {
+it('testPersistenceNoDirOnSave', done => {
   expect.assertions(2);
   var dirf = AppData._test.getFileAndDir('_Test4a', 'File1');
   try {
@@ -80,7 +80,7 @@ it("testPersistenceNoDirOnSave", done => {
 
 /*eslint no-unused-vars: ["error", { "caughtErrors": "none" }]*/
 
-it("testPersistenceNoDirOnRead", done => {
+it('testPersistenceNoDirOnRead', done => {
   expect.assertions(1);
   var dirf = AppData._test.getFileAndDir('_Test4b', 'File1');
   try {
@@ -106,7 +106,7 @@ it("testPersistenceNoDirOnRead", done => {
   });
 });
 
-it("testPersistenceNoJSON", done => {
+it('testPersistenceNoJSON', done => {
   expect.assertions(1);
   var dirf = AppData._test.getFileAndDir('_Test3x', 'FileA.json');
   try {
@@ -148,7 +148,7 @@ it("testPersistenceNoJSON", done => {
 /**
  * Unit test for sth
  */
-it("testPersistenceNoDir", async done => {
+it('testPersistenceNoDir', async done => {
   expect.assertions(3);
   // prepare
   var u = new AppData.PersistenceHandle('_Test4', 'File1');

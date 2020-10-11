@@ -1,0 +1,143 @@
+[
+  {
+    "fiori_intent": "#AccountingDocument-Display"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-analyzeDocumentChanges"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-analyzeGLLineItems"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-analyzeLineItems"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-displayFactSheet"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-displayFactsheet"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-manage"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-manageDocument"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-manageManualClearing"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-manageManualclearing"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-postCurrencyAdjustments"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-postGLDocument"
+  },
+  {
+    "fiori_intent": "#AccountingDocument-postTaxPayables"
+  },
+  {
+    "fiori_intent": "#AccountingJournalList-auditJournal"
+  },
+  {
+    "fiori_intent": "#ApplicationJob-Show"
+  },
+  {
+    "fiori_intent": "#ApplicationJob-show"
+  },
+  {
+    "fiori_intent": "#ChartOfAccounts-display"
+  },
+  {
+    "fiori_intent": "#ChartOfAccounts-manage"
+  },
+  {
+    "fiori_intent": "#EventBasedRevnRecgn-monitor"
+  },
+  {
+    "fiori_intent": "#FinancialStatement-display"
+  },
+  {
+    "fiori_intent": "#FiscalPeriod-openPostingPeriods"
+  },
+  {
+    "fiori_intent": "#GLAccount-Display"
+  },
+  {
+    "fiori_intent": "#GLAccount-analyzeTrialBalance"
+  },
+  {
+    "fiori_intent": "#GLAccount-carryForwardBalance"
+  },
+  {
+    "fiori_intent": "#GLAccount-displayBalance"
+  },
+  {
+    "fiori_intent": "#GLAccount-displayFactSheet"
+  },
+  {
+    "fiori_intent": "#GLAccount-displayFactsheet"
+  },
+  {
+    "fiori_intent": "#GLAccount-displayGLLineItem"
+  },
+  {
+    "fiori_intent": "#GLAccount-manage"
+  },
+  {
+    "fiori_intent": "#GLAccountDetermination-setupAccountAssignments"
+  },
+  {
+    "fiori_intent": "#GLAccountMaster-manage"
+  },
+  {
+    "fiori_intent": "#GeneralLedgerAccount-DisplayChartofAccounts"
+  },
+  {
+    "fiori_intent": "#GeneralLedgerAccount-DisplayFinancialStatement"
+  },
+  {
+    "fiori_intent": "#JournalEntryPostingConfign-editPostingOptions"
+  },
+  {
+    "fiori_intent": "#LedgerGLLineItem-displayGLLineItem"
+  },
+  {
+    "fiori_intent": "#PostingPeriod-openPostingPeriods"
+  },
+  {
+    "fiori_intent": "#ProfitCenter-displayFactSheet"
+  },
+  {
+    "fiori_intent": "#ProfitCenter-displayFactsheet"
+  },
+  {
+    "fiori_intent": "#ProfitCenter-manageProfitCenter"
+  },
+  {
+    "fiori_intent": "#ProfitCenter-openProfitCenter"
+  },
+  {
+    "fiori_intent": "#ProfitCenter-requestProfitcenter"
+  },
+  {
+    "fiori_intent": "#ProfitCenterGroup-manageProfitCenterGroup"
+  },
+  {
+    "fiori_intent": "#Project-displayWIPDetails"
+  },
+  {
+    "fiori_intent": "#RecurringAccountingDocument-manage"
+  },
+  {
+    "fiori_intent": "#Segment-manageSegment"
+  },
+  {
+    "fiori_intent": "#Shell-plugin"
+  },
+  {
+    "fiori_intent": "n/a"
+  }
+]
