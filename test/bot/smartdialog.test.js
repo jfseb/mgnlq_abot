@@ -384,7 +384,18 @@ it('testMakeTable', done => {
 
 
 it('testListAllSingleSimple', done => {
-  testOne('List all element names with element number 10', function (conn, oRes) {
+  testOne('List all element names with element_number 10', function (conn, oRes) {
+    var sRes = oRes;
+    debuglog(JSON.stringify(oRes));
+    // TODO was expect(sRes).toEqual('the element names with element number 10 are ...\n"neon"');
+    console.log('>' + sRes + '<');
+    expect(sRes).toEqual('I did not find any element names with element number 10.\n');
+    releaseConnector(conn); done();
+  });
+});
+
+it('testListAllStringEq', done => {
+  testOne('List all element_names with element_name barium', function (conn, oRes) {
     var sRes = oRes;
     debuglog(JSON.stringify(oRes));
     // TODO was expect(sRes).toEqual('the element names with element number 10 are ...\n"neon"');
@@ -395,6 +406,53 @@ it('testListAllSingleSimple', done => {
 });
 
 
+it('testListAllElementNumberExplicit2', done => {
+  testOne('List all element_names with "element_name" cadmium', function (conn, oRes) {
+    var sRes = oRes;
+    debuglog(JSON.stringify(oRes));
+    // TODO was expect(sRes).toEqual('the element names with element number 10 are ...\n"neon"');
+    console.log('>' + sRes + '<');
+    expect(sRes).toEqual('the element_names with "element_name" cadmium are ...\n'
+    + '"cadmium"');
+    releaseConnector(conn); 
+    done();
+  });
+});
+
+/* TODO
+it('testListAllElementNumberExplicit3', done => {
+  testOne('List all element names with "element_number" less than 10', function (conn, oRes) {
+    var sRes = oRes;
+    debuglog(JSON.stringify(oRes));
+    // TODO was expect(sRes).toEqual('the element names with element number 10 are ...\n"neon"');
+    console.log('>' + sRes + '<');
+    expect(sRes).toEqual('I did not finxd any element names with "element_number" 10.\n');
+    releaseConnector(conn); done();
+  });
+});
+*/
+
+/* TODO
+it('testListAllStringLT', done => {
+  testOne('List all element_names with element_name < americium', function (conn, oRes) {
+    var sRes = oRes;
+    debuglog(JSON.stringify(oRes));
+    // TODO was expect(sRes).toEqual('the element names with element number 10 are ...\n"neon"');
+    console.log('>' + sRes + '<');
+    expect(sRes).toEqual('I did not find any element names with element number 10.\n');
+    releaseConnector(conn); done();
+  });
+});
+*/
+
+
+
+/*
+"list all element names with element names less than 10",
+"list all element names with \"element numbers\" less than 10",
+"list all element names with \"element numbers\" < 10",
+"list all element names with \"element numbers\" < \"10\"",
+*/
 
 
 it('testWhatIsNonParseable', done => {

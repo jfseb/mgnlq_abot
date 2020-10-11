@@ -26,6 +26,7 @@
 "What is the BSPName for Fiori App \"Manage Labels\"",
 "List all ODataServices for FI-FIO-GL",
 "what is the element name for element number 117",
+"what is the element name for \"element number\" 117",
 "what is the \"ui5 component name\" for fiori intent #RequestForQuotation-manage",
 "what is the ApplicationComponent for sap.cus.sd.lib.processflow",
 "what is the ApplicationType for #ControllingDocument-setControllingArea",
@@ -57,6 +58,9 @@
 "list all element number, element names, atomic weight",
 "list all element numbers with atomic weight \"78.971(8)\"",
 "list all element names with element names less than 10",
+"list all element names with \"element numbers\" less than 10",
+"list all element names with \"element numbers\" < 10",
+"list all element names with \"element numbers\" < \"10\"",
 "list all fiori intents in FI-FIO-GL with ApplicationType Analytical and Application Component FI-FIO-GL",
 "list all fiori intents in FI-FIO-GL with ApplicationType Analytical or Application Component FI-FIO-GL",
 "list all fiori intents in FI-FIO-GL"
